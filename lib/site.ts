@@ -3,7 +3,7 @@ export const siteConfig = {
   github: "https://github.com/Abhishek-Mallick/opaline",
   registryUrl: (
     process.env.NEXT_PUBLIC_REGISTRY_URL ??
-    "https://abhishek-mallick.github.io/opaline/r"
+    "https://opaline.buildlab.in/r"
   ).replace(/\/$/, ""),
 }
 

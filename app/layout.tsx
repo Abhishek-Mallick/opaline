@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://opaline.buildlab.in"),
   title: "Opaline — Liquid glass components",
   description:
     "Liquid glass and premium, minimal React components. Copy-paste, shadcn compatible: npx shadcn@latest add @opaline/all",

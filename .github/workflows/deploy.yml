@@ -15,10 +15,9 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  # Change these three if you move to a custom domain (and drop BASE_PATH).
-  BASE_PATH: /opaline
-  REGISTRY_URL: https://abhishek-mallick.github.io/opaline/r
-  NEXT_PUBLIC_REGISTRY_URL: https://abhishek-mallick.github.io/opaline/r
+  # Served from the custom domain root (public/CNAME), so no BASE_PATH.
+  REGISTRY_URL: https://opaline.buildlab.in/r
+  NEXT_PUBLIC_REGISTRY_URL: https://opaline.buildlab.in/r
 
 jobs:
   build:

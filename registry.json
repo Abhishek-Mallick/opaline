@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "opaline",
-  "homepage": "https://abhishek-mallick.github.io/opaline",
+  "homepage": "https://opaline.buildlab.in",
   "items": [
     {
       "name": "theme",
@@ -124,7 +124,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -157,7 +157,7 @@
       "title": "Glass Card",
       "description": "Frosted card surface with header, content and footer slots.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -190,7 +190,7 @@
       "title": "Glass Dock",
       "description": "macOS-style dock with cosine magnification and hover labels.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -226,7 +226,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -262,7 +262,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -298,8 +298,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json",
-        "https://abhishek-mallick.github.io/opaline/r/use-active-indicator.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json",
+        "https://opaline.buildlab.in/r/use-active-indicator.json"
       ],
       "files": [
         {
@@ -332,8 +332,8 @@
       "title": "Glass Tab Bar",
       "description": "Floating iOS 26 tab bar with a sliding liquid selection.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json",
-        "https://abhishek-mallick.github.io/opaline/r/use-active-indicator.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json",
+        "https://opaline.buildlab.in/r/use-active-indicator.json"
       ],
       "files": [
         {
@@ -366,7 +366,7 @@
       "title": "Glass Input",
       "description": "Capsule text field — perfect for search — with icon and adornment slots.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -399,7 +399,7 @@
       "title": "Glass Toolbar",
       "description": "Floating capsule toolbar that groups icon actions.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -432,7 +432,7 @@
       "title": "Glass Badge",
       "description": "Small glass chip with an optional glowing status dot.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -469,7 +469,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -506,7 +506,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -542,7 +542,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -578,7 +578,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -611,7 +611,7 @@
       "title": "Glass Notification",
       "description": "iOS notification banner plus a stack that fans out on hover.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -644,7 +644,7 @@
       "title": "Glass Lens",
       "description": "Draggable magnifying lens that bends whatever is beneath it.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/liquid-glass.json"
+        "https://opaline.buildlab.in/r/liquid-glass.json"
       ],
       "files": [
         {
@@ -1059,46 +1059,46 @@
       "title": "Everything",
       "description": "The Opaline theme and every component in one install.",
       "registryDependencies": [
-        "https://abhishek-mallick.github.io/opaline/r/theme.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-button.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-card.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-dock.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-switch.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-slider.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-tabs.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-tab-bar.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-input.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-toolbar.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-badge.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-dialog.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-menu.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-tooltip.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-player.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-notification.json",
-        "https://abhishek-mallick.github.io/opaline/r/glass-lens.json",
-        "https://abhishek-mallick.github.io/opaline/r/button.json",
-        "https://abhishek-mallick.github.io/opaline/r/input.json",
-        "https://abhishek-mallick.github.io/opaline/r/textarea.json",
-        "https://abhishek-mallick.github.io/opaline/r/label.json",
-        "https://abhishek-mallick.github.io/opaline/r/card.json",
-        "https://abhishek-mallick.github.io/opaline/r/badge.json",
-        "https://abhishek-mallick.github.io/opaline/r/kbd.json",
-        "https://abhishek-mallick.github.io/opaline/r/separator.json",
-        "https://abhishek-mallick.github.io/opaline/r/switch.json",
-        "https://abhishek-mallick.github.io/opaline/r/checkbox.json",
-        "https://abhishek-mallick.github.io/opaline/r/radio-group.json",
-        "https://abhishek-mallick.github.io/opaline/r/slider.json",
-        "https://abhishek-mallick.github.io/opaline/r/tabs.json",
-        "https://abhishek-mallick.github.io/opaline/r/tooltip.json",
-        "https://abhishek-mallick.github.io/opaline/r/dialog.json",
-        "https://abhishek-mallick.github.io/opaline/r/dropdown-menu.json",
-        "https://abhishek-mallick.github.io/opaline/r/accordion.json",
-        "https://abhishek-mallick.github.io/opaline/r/avatar.json",
-        "https://abhishek-mallick.github.io/opaline/r/progress.json",
-        "https://abhishek-mallick.github.io/opaline/r/skeleton.json",
-        "https://abhishek-mallick.github.io/opaline/r/spinner.json",
-        "https://abhishek-mallick.github.io/opaline/r/activity-rings.json",
-        "https://abhishek-mallick.github.io/opaline/r/shimmer-text.json"
+        "https://opaline.buildlab.in/r/theme.json",
+        "https://opaline.buildlab.in/r/glass-button.json",
+        "https://opaline.buildlab.in/r/glass-card.json",
+        "https://opaline.buildlab.in/r/glass-dock.json",
+        "https://opaline.buildlab.in/r/glass-switch.json",
+        "https://opaline.buildlab.in/r/glass-slider.json",
+        "https://opaline.buildlab.in/r/glass-tabs.json",
+        "https://opaline.buildlab.in/r/glass-tab-bar.json",
+        "https://opaline.buildlab.in/r/glass-input.json",
+        "https://opaline.buildlab.in/r/glass-toolbar.json",
+        "https://opaline.buildlab.in/r/glass-badge.json",
+        "https://opaline.buildlab.in/r/glass-dialog.json",
+        "https://opaline.buildlab.in/r/glass-menu.json",
+        "https://opaline.buildlab.in/r/glass-tooltip.json",
+        "https://opaline.buildlab.in/r/glass-player.json",
+        "https://opaline.buildlab.in/r/glass-notification.json",
+        "https://opaline.buildlab.in/r/glass-lens.json",
+        "https://opaline.buildlab.in/r/button.json",
+        "https://opaline.buildlab.in/r/input.json",
+        "https://opaline.buildlab.in/r/textarea.json",
+        "https://opaline.buildlab.in/r/label.json",
+        "https://opaline.buildlab.in/r/card.json",
+        "https://opaline.buildlab.in/r/badge.json",
+        "https://opaline.buildlab.in/r/kbd.json",
+        "https://opaline.buildlab.in/r/separator.json",
+        "https://opaline.buildlab.in/r/switch.json",
+        "https://opaline.buildlab.in/r/checkbox.json",
+        "https://opaline.buildlab.in/r/radio-group.json",
+        "https://opaline.buildlab.in/r/slider.json",
+        "https://opaline.buildlab.in/r/tabs.json",
+        "https://opaline.buildlab.in/r/tooltip.json",
+        "https://opaline.buildlab.in/r/dialog.json",
+        "https://opaline.buildlab.in/r/dropdown-menu.json",
+        "https://opaline.buildlab.in/r/accordion.json",
+        "https://opaline.buildlab.in/r/avatar.json",
+        "https://opaline.buildlab.in/r/progress.json",
+        "https://opaline.buildlab.in/r/skeleton.json",
+        "https://opaline.buildlab.in/r/spinner.json",
+        "https://opaline.buildlab.in/r/activity-rings.json",
+        "https://opaline.buildlab.in/r/shimmer-text.json"
       ]
     }
   ]

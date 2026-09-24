@@ -16,7 +16,7 @@ import {
 } from "../registry/theme.ts"
 
 const REGISTRY_URL = (
-  process.env.REGISTRY_URL ?? "https://abhishek-mallick.github.io/opaline/r"
+  process.env.REGISTRY_URL ?? "https://opaline.buildlab.in/r"
 ).replace(/\/$/, "")
 const HOMEPAGE = REGISTRY_URL.replace(/\/r$/, "")
 
