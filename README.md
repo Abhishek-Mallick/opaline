@@ -120,33 +120,56 @@ The corner radius comes from your CSS (`rounded-*`), so the refraction always fo
 
 ## Components
 
+Every component has a page with a live preview, source and install commands at
+[opaline.buildlab.in/components](https://opaline.buildlab.in/components). Press <kbd>⌘K</kbd> on the site to search.
+
 ### Liquid Glass
 
 | Name | Description |
 | --- | --- |
 | `liquid-glass` | The primitive behind every glass component |
+| `glass-dock` | macOS-style dock with smooth magnification and hover labels |
 | `glass-button` | Pill button with a highlight that follows the pointer |
+| `glass-lens` | Draggable magnifying lens |
+| `glass-sidebar` | Floating source list with a sliding selection and icon-only mode |
+| `glass-command` | ⌘K command palette (cmdk) |
+| `glass-sheet` | Floating side sheet, or a drag-to-dismiss drawer with `side="bottom"` |
+| `glass-toast` | Toasts shown with `toast()` that drop in from the top |
+| `glass-popover` | Popover on frosted glass |
+| `glass-select` | Capsule select with a frosted option list |
+| `glass-menu` | Dropdown menu |
+| `glass-dialog` | Modal on a frosted glass sheet |
+| `glass-knob` | Rotary dial with a glass cap |
+| `glass-clock` | Analog clock with a sweeping second hand |
+| `glass-stack` | Swipeable deck of glass cards |
+| `glass-player` | Now-playing widget |
 | `glass-card` | Frosted card with header, content and footer slots |
-| `glass-dock` | macOS-style dock with magnification and hover labels |
-| `glass-switch` | iOS switch whose thumb turns into a glass lens while pressed |
-| `glass-slider` | Slider whose thumb becomes a refracting lens while dragging |
-| `glass-tabs` | Segmented control with a glass bubble that slides between tabs |
+| `glass-switch` | iOS switch whose thumb turns into a lens while pressed |
+| `glass-slider` | Slider whose thumb becomes a lens while dragging |
+| `glass-tabs` | Segmented control with a gliding glass bubble |
 | `glass-tab-bar` | Floating iOS 26 tab bar |
+| `glass-notification` | iOS notification banner and a stack that fans out on hover |
 | `glass-input` | Capsule text field with icon and adornment slots |
 | `glass-toolbar` | Floating capsule toolbar |
-| `glass-badge` | Small glass chip with an optional glowing status dot |
-| `glass-dialog` | Modal on a frosted glass sheet |
-| `glass-menu` | Dropdown menu on liquid glass |
 | `glass-tooltip` | Capsule tooltip |
-| `glass-player` | Now-playing widget |
-| `glass-notification` | iOS notification banner and a stack that fans out on hover |
-| `glass-lens` | Draggable magnifying lens |
+| `glass-badge` | Glass chip with an optional glowing status dot |
 
-### Essentials
+### Accents
 
-These keep the shadcn/ui API, so they replace the stock components directly.
+| Name | Description |
+| --- | --- |
+| `mesh-gradient` | Drifting, grain-textured colour field (a good backdrop for glass) |
+| `rolling-number` | Number whose digits roll like an odometer |
+| `activity-rings` | Apple Watch–style progress rings |
+| `shimmer-text` | Text with a slow light sweep |
+| `spinner` | Apple-style activity indicator |
 
-`button` · `input` · `textarea` · `label` · `card` · `badge` · `kbd` · `separator` · `switch` · `checkbox` · `radio-group` · `slider` · `tabs` · `tooltip` · `dialog` · `dropdown-menu` · `accordion` · `avatar` · `progress` · `skeleton` · `spinner` · `activity-rings` · `shimmer-text`
+## For AI agents
+
+- [`/llms.txt`](https://opaline.buildlab.in/llms.txt): index of every component ([llmstxt.org](https://llmstxt.org))
+- [`/llms-full.txt`](https://opaline.buildlab.in/llms-full.txt): install and usage for every component in one file
+- `/components/<name>.md`: Markdown version of each component page (also the **Copy page** button)
+- `/r/<name>.json`: shadcn registry items with full source
 
 ## Browser support
 
@@ -187,8 +210,20 @@ pnpm registry:validate
 | `registry/index.ts` | Registry manifest (names, descriptions, dependencies) |
 | `registry/theme.ts` | Design tokens |
 | `registry.json` | Generated from the manifest. Run `pnpm registry:gen` after changes |
+| `components/demos/` | One demo per component, shown in previews and "View code" |
 | `components/site/` | Showcase site |
 
-To add a component, create it under `registry/opaline/ui`, add it to `registry/index.ts`, add a demo tile in `components/site`, then run `pnpm registry:gen`.
+To add a component:
+
+1. Create it in `registry/opaline/ui/<name>.tsx`.
+2. Add it to `registry/index.ts` with a `usage` snippet.
+3. Add a demo in `components/demos/<name>.tsx` and register it in `components/demos/index.tsx`. For glass components, also pick a wallpaper in `components/demos/meta.ts`.
+4. Run `pnpm registry:gen`.
+
+Pull requests run typecheck, build and registry validation (`.github/workflows/ci.yml`).
 
 Pushes to `main` deploy to GitHub Pages at `opaline.buildlab.in` through `.github/workflows/deploy.yml`.
+
+## License
+
+[MIT](./LICENSE)

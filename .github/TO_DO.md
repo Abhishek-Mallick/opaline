@@ -4,26 +4,23 @@
 - [ ] DNS: CNAME `opaline` → `abhishek-mallick.github.io`
 - [ ] Pages: Source = GitHub Actions, custom domain `opaline.buildlab.in`, enforce HTTPS
 - [ ] Smoke test: `npx shadcn@latest add https://opaline.buildlab.in/r/all.json` in a fresh app
-- [ ] Add MIT `LICENSE`
-- [ ] Submit `@opaline` to the shadcn registry directory (`apps/v4/registry/directory.json`)
-- [ ] Add og:image and favicon
+- [ ] Submit `@opaline` to the shadcn directory (see `.github/shadcn-directory/`)
 
 ## Components
-- [ ] Glass: sheet/drawer, popover, select, toast, command palette, sidebar
-- [ ] Essentials: select, popover, sheet, toast, command, date picker, table, alert-dialog
-- [ ] Blocks: hero, pricing, auth, settings, iOS-style widgets
+- [ ] Glass: context menu, date picker, stepper, segmented picker with icons
+- [ ] Widgets: weather, calendar, battery (iOS widget sizes)
+- [ ] Blocks: hero, pricing, auth, control center, lock screen
 
 ## Site & docs
-- [ ] Per-component pages with preview, code and props
+- [ ] Props table on each component page
 - [ ] Glass playground (bezel / refraction / blur / dispersion sliders)
-- [ ] ⌘K search and `llms.txt`
+- [ ] Let visitors drop in their own wallpaper behind the demos
 
 ## Engineering
-- [ ] PR CI: typecheck, build, registry validate
-- [ ] Throttle displacement-map regeneration while resizing (dock)
-- [ ] Pause refraction for off-screen elements
+- [ ] Pause refraction for off-screen elements (IntersectionObserver)
 - [ ] Better Safari/Firefox fallback, and respect `prefers-reduced-motion`
 - [ ] Playwright visual tests (Chromium + WebKit, light/dark)
+- [ ] CI smoke test that installs `@opaline/all` into a fresh Next.js app
 
 ## Marketing
 - [ ] Launch: X thread with screen recordings, Product Hunt, Show HN, r/reactjs

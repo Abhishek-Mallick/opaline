@@ -56,8 +56,10 @@ export function Hero() {
             <GlassButton size="icon" aria-label="Like">
               <HeartIcon />
             </GlassButton>
-            <GlassButton variant="prominent">
-              Explore components <ArrowRightIcon />
+            <GlassButton variant="prominent" asChild>
+              <a href="#components">
+                Explore components <ArrowRightIcon />
+              </a>
             </GlassButton>
             <GlassButton size="icon" aria-label="Pause">
               <PauseIcon className="fill-current" />

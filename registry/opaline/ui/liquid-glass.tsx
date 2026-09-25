@@ -6,6 +6,7 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 import {
   createDisplacementMap,
+  preloadDisplacementMap,
   supportsLiquidGlass,
 } from "@/registry/opaline/lib/glass-refraction"
 
@@ -29,6 +30,8 @@ type LiquidGlassProps = React.ComponentProps<"div"> & {
   /** Render the glass onto its only child element instead of a div. */
   asChild?: boolean
 }
+
+type MapEntry = { url: string; key: number }
 
 function useSize(ref: React.RefObject<HTMLElement | null>) {
   const [size, setSize] = React.useState({ width: 0, height: 0, radius: 0 })
@@ -57,6 +60,94 @@ function useSize(ref: React.RefObject<HTMLElement | null>) {
   }, [ref])
 
   return size
+}
+
+function GlassFilter({
+  id,
+  map,
+  width,
+  height,
+  blur,
+  scale,
+  dispersion,
+  saturation,
+}: {
+  id: string
+  map: string
+  width: number
+  height: number
+  blur: number
+  scale: number
+  dispersion: number
+  saturation: number
+}) {
+  const displace = (k: number, result: string) => (
+    <feDisplacementMap
+      in="blur"
+      in2="map"
+      scale={scale * k}
+      xChannelSelector="R"
+      yChannelSelector="G"
+      result={result}
+    />
+  )
+
+  return (
+    <filter
+      id={id}
+      x="0"
+      y="0"
+      width={width}
+      height={height}
+      filterUnits="userSpaceOnUse"
+      colorInterpolationFilters="sRGB"
+    >
+      <feGaussianBlur in="SourceGraphic" stdDeviation={blur} result="blur" />
+      <feImage
+        href={map}
+        x="0"
+        y="0"
+        width={width}
+        height={height}
+        preserveAspectRatio="none"
+        result="map"
+      />
+      {dispersion > 0 ? (
+        <>
+          {displace(1, "dr")}
+          <feColorMatrix
+            in="dr"
+            type="matrix"
+            values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
+            result="r"
+          />
+          {displace(1 - dispersion, "dg")}
+          <feColorMatrix
+            in="dg"
+            type="matrix"
+            values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
+            result="g"
+          />
+          {displace(1 - dispersion * 2, "db")}
+          <feColorMatrix
+            in="db"
+            type="matrix"
+            values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
+            result="b"
+          />
+          <feBlend in="r" in2="g" mode="screen" result="rg" />
+          <feBlend in="rg" in2="b" mode="screen" result="refracted" />
+        </>
+      ) : (
+        displace(1, "refracted")
+      )}
+      <feColorMatrix
+        in="refracted"
+        type="saturate"
+        values={String(saturation)}
+      />
+    </filter>
+  )
 }
 
 function LiquidGlass({
@@ -88,23 +179,51 @@ function LiquidGlass({
   const scale = refraction ?? rim * 1.6
   const blurPx = blur ?? (variant === "frosted" ? 10 : 1.5)
 
-  const map = React.useMemo(
-    () =>
-      enabled && width > 0 && height > 0
-        ? createDisplacementMap({ width, height, radius, bezel: rim })
-        : "",
-    [enabled, width, height, radius, rim]
-  )
+  // Double-buffered maps: a new map is mounted in its own filter and only
+  // becomes the active backdrop once its image has decoded and painted, so the
+  // glass never flashes empty. While the element resizes, rebuilds are
+  // debounced and the current map is simply stretched to the new size.
+  const [current, setCurrent] = React.useState<MapEntry | null>(null)
+  const [next, setNext] = React.useState<MapEntry | null>(null)
+  const counter = React.useRef(0)
+  const currentUrl = React.useRef("")
+  const hasMap = current !== null
 
-  const backdrop = map
-    ? `url(#${id})`
+  React.useEffect(() => {
+    if (!enabled || width === 0 || height === 0) return
+    let cancelled = false
+    const timer = setTimeout(
+      () => {
+        const url = createDisplacementMap({ width, height, radius, bezel: rim })
+        if (!url || url === currentUrl.current) return
+        const entry = { url, key: ++counter.current }
+        setNext(entry)
+        preloadDisplacementMap(url).then(() => {
+          if (cancelled) return
+          currentUrl.current = url
+          setCurrent(entry)
+          setNext(null)
+        })
+      },
+      hasMap ? 140 : 0
+    )
+    return () => {
+      cancelled = true
+      clearTimeout(timer)
+    }
+  }, [enabled, width, height, radius, rim, hasMap])
+
+  const filterId = (entry: MapEntry) => `${id}-${entry.key}`
+  const backdrop = current
+    ? `url(#${filterId(current)})`
     : `blur(${blur ?? (variant === "frosted" ? 14 : 8)}px) saturate(${saturation})`
+  const filters = [current, next].filter((e): e is MapEntry => e !== null)
 
   return (
     <Comp
       ref={innerRef}
       data-slot="liquid-glass"
-      data-refracting={map ? "" : undefined}
+      data-refracting={current ? "" : undefined}
       className={cn("relative isolate", className)}
       style={style}
       {...props}
@@ -134,99 +253,26 @@ function LiquidGlass({
           shadow && "[box-shadow:var(--glass-rim),var(--glass-shadow)]"
         )}
       />
-      {map ? (
+      {filters.length ? (
         <svg
           aria-hidden
           width="0"
           height="0"
           className="pointer-events-none absolute size-0"
         >
-          <filter
-            id={id}
-            x="0"
-            y="0"
-            width={width}
-            height={height}
-            filterUnits="userSpaceOnUse"
-            colorInterpolationFilters="sRGB"
-          >
-            <feGaussianBlur
-              in="SourceGraphic"
-              stdDeviation={blurPx}
-              result="blur"
-            />
-            <feImage
-              href={map}
-              x="0"
-              y="0"
+          {filters.map((entry) => (
+            <GlassFilter
+              key={entry.key}
+              id={filterId(entry)}
+              map={entry.url}
               width={width}
               height={height}
-              preserveAspectRatio="none"
-              result="map"
+              blur={blurPx}
+              scale={scale}
+              dispersion={dispersion}
+              saturation={saturation}
             />
-            {dispersion > 0 ? (
-              <>
-                <feDisplacementMap
-                  in="blur"
-                  in2="map"
-                  scale={scale}
-                  xChannelSelector="R"
-                  yChannelSelector="G"
-                  result="dr"
-                />
-                <feColorMatrix
-                  in="dr"
-                  type="matrix"
-                  values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
-                  result="r"
-                />
-                <feDisplacementMap
-                  in="blur"
-                  in2="map"
-                  scale={scale * (1 - dispersion)}
-                  xChannelSelector="R"
-                  yChannelSelector="G"
-                  result="dg"
-                />
-                <feColorMatrix
-                  in="dg"
-                  type="matrix"
-                  values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
-                  result="g"
-                />
-                <feDisplacementMap
-                  in="blur"
-                  in2="map"
-                  scale={scale * (1 - dispersion * 2)}
-                  xChannelSelector="R"
-                  yChannelSelector="G"
-                  result="db"
-                />
-                <feColorMatrix
-                  in="db"
-                  type="matrix"
-                  values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
-                  result="b"
-                />
-                <feBlend in="r" in2="g" mode="screen" result="rg" />
-                <feBlend in="rg" in2="b" mode="screen" result="refracted" />
-              </>
-            ) : (
-              <feDisplacementMap
-                in="blur"
-                in2="map"
-                scale={scale}
-                xChannelSelector="R"
-                yChannelSelector="G"
-                result="refracted"
-              />
-            )}
-            <feColorMatrix
-              in="refracted"
-              type="saturate"
-              values={String(saturation)}
-            />
-          </filter>
+          ))}
         </svg>
       ) : null}
       <Slot.Slottable>{children}</Slot.Slottable>
