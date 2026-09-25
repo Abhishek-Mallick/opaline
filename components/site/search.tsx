@@ -10,7 +10,7 @@ import {
   SparklesIcon,
 } from "lucide-react"
 
-import { siteConfig } from "@/lib/site"
+import { siteConfig, withBase } from "@/lib/site"
 import { categoryLabels, docItems, type Category } from "@/registry/index"
 import {
   GlassCommandDialog,
@@ -49,6 +49,7 @@ export function SearchCommand() {
   const go = (href: string) => {
     setOpen(false)
     if (href.startsWith("http")) window.open(href, "_blank", "noopener")
+    else if (/\.\w+$/.test(href)) window.location.href = withBase(href) // static file
     else router.push(href)
   }
 

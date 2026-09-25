@@ -69,6 +69,7 @@ pnpm dev          # showcase at http://localhost:3000
 | | |
 | --- | --- |
 | [@Abhishek-Mallick](https://github.com/Abhishek-Mallick) | Creator and lead maintainer |
+| [@deepraj21](https://github.com/deepraj21) | Maintainer |
 
 Maintainers review pull requests, triage issues and cut releases. Code ownership is defined in [`CODEOWNERS`](./CODEOWNERS).
 
