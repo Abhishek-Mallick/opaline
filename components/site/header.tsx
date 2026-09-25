@@ -7,6 +7,7 @@ import Link from "next/link"
 
 import { SearchCommand } from "@/components/site/search"
 import { siteConfig } from "@/lib/site"
+import { applyTheme, isDark, THEME_STORAGE_KEY, toggleTheme } from "@/lib/theme"
 import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
 
 export function Logo({ className }: { className?: string }) {
@@ -44,16 +45,21 @@ export function GithubIcon(props: React.ComponentProps<"svg">) {
 }
 
 function ThemeToggle() {
-  const toggle = () => {
-    const dark = document.documentElement.classList.toggle("dark")
-    try {
-      localStorage.setItem("opaline-theme", dark ? "dark" : "light")
-    } catch {}
-  }
+  React.useEffect(() => {
+    // The inline script only sets the class; bring the meta tags in line.
+    applyTheme(isDark())
+    // Keep other open tabs in sync.
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === THEME_STORAGE_KEY) applyTheme(e.newValue === "dark")
+    }
+    window.addEventListener("storage", onStorage)
+    return () => window.removeEventListener("storage", onStorage)
+  }, [])
+
   return (
     <button
       type="button"
-      onClick={toggle}
+      onClick={toggleTheme}
       aria-label="Toggle theme"
       className="grid size-9 cursor-pointer place-items-center rounded-full transition-colors hover:bg-foreground/[0.06] active:scale-90"
     >

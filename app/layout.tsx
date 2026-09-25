@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { GithubIcon, Header, Logo } from "@/components/site/header"
 import { InstallModeProvider } from "@/components/site/install-mode"
 import { siteConfig, withBase } from "@/lib/site"
+import { THEME_COLORS, themeScript } from "@/lib/theme"
 import { GlassToaster } from "@/registry/opaline/ui/glass-toast"
 
 import "./globals.css"
@@ -29,14 +30,12 @@ export const metadata: Metadata = {
   alternates: { types: { "text/plain": `${siteConfig.url}/llms.txt` } },
 }
 
+// Light by default, independent of the OS or browser preference. The toggle
+// updates both tags at runtime (lib/theme.ts).
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fcfcfd" },
-    { media: "(prefers-color-scheme: dark)", color: "#0b0b0c" },
-  ],
+  themeColor: THEME_COLORS.light,
+  colorScheme: "light",
 }
-
-const themeScript = `try{var t=localStorage.getItem("opaline-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
