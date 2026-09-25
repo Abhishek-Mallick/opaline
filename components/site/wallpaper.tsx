@@ -11,6 +11,7 @@ export type WallpaperName =
   | "dunes"
   | "bloom"
   | "grid"
+  | "dusk"
 
 const svg = (markup: string) =>
   `url("data:image/svg+xml,${encodeURIComponent(markup)}")`
@@ -78,6 +79,13 @@ const styles: Record<WallpaperName, React.CSSProperties> = {
       radial-gradient(circle at 22% 78%, #7c5cff 0 12%, transparent 12.5%),
       radial-gradient(circle at 84% 18%, #00d68f 0 8%, transparent 8.5%),
       linear-gradient(135deg, #fff7ed, #fdf2f8)`,
+  },
+  dusk: {
+    background: `
+      radial-gradient(circle at 78% 30%, #ffd9a8 0 9%, transparent 9.4%),
+      radial-gradient(circle at 16% 78%, #22d3ee 0 7%, transparent 7.4%),
+      repeating-linear-gradient(180deg, transparent 0 22px, rgba(255,255,255,0.14) 22px 24px) 0 72% / 100% 28% no-repeat,
+      linear-gradient(160deg, #1e3a8a, #7c3aed 45%, #f472b6 75%, #fdba74)`,
   },
   grid: {
     background: `
