@@ -48,6 +48,25 @@ export const keyframes: Record<string, Record<string, Record<string, string>>> =
         "translate3d(var(--glass-exit-x, 0), var(--glass-exit-y, 0), 0) scale(var(--glass-exit-scale, 1))",
     },
   },
+  "opaline-slide-in": {
+    from: { opacity: "0", transform: "translateX(var(--slide-from, 16px))" },
+  },
+  "opaline-shake": {
+    "0%, 100%": { transform: "translateX(0)" },
+    "20%": { transform: "translateX(-5px)" },
+    "40%": { transform: "translateX(5px)" },
+    "60%": { transform: "translateX(-3px)" },
+    "80%": { transform: "translateX(3px)" },
+  },
+  "opaline-cloud": {
+    from: { transform: "translateX(-1.5px)" },
+    to: { transform: "translateX(1.5px)" },
+  },
+  "opaline-fall": {
+    from: { transform: "translateY(-3px)", opacity: "0" },
+    "30%": { opacity: "1" },
+    to: { transform: "translateY(4px)", opacity: "0" },
+  },
   // Blobs are centred with the `translate` property, so this only drifts.
   "opaline-drift": {
     "0%": { transform: "translate(0, 0) scale(1)" },
@@ -194,6 +213,141 @@ export const items: Item[] = [
     <GlassControlSlider label="Display" icon={<SunDimIcon />} defaultValue={70} />
   </GlassControlTile>
 </GlassControlCenter>`
+  ),
+  glass(
+    "glass-segmented",
+    "Glass Segmented",
+    "Icon segmented picker whose glass bubble stretches like liquid as it travels.",
+    `import { GlassSegmented, GlassSegmentedItem } from "@/components/ui/glass-segmented"
+
+<GlassSegmented defaultValue="photos" aria-label="Library">
+  <GlassSegmentedItem value="photos" icon={<ImageIcon />} label="Photos" />
+  <GlassSegmentedItem value="albums" icon={<FolderIcon />} label="Albums" />
+  <GlassSegmentedItem value="search" icon={<SearchIcon />} label="Search" />
+</GlassSegmented>`,
+    { internal: ["liquid-glass", "use-active-indicator"] }
+  ),
+  glass(
+    "glass-date-picker",
+    "Glass Date Picker",
+    "Glass calendar with a gliding day bubble, and a capsule date picker.",
+    `import { GlassCalendar, GlassDatePicker } from "@/components/ui/glass-date-picker"
+
+<GlassDatePicker onValueChange={setDate} />
+
+// or inline
+<GlassCalendar value={date} onValueChange={setDate} weekStartsOn={1} />`,
+    {
+      dependencies: ["radix-ui", "lucide-react"],
+      internal: ["liquid-glass", "use-active-indicator"],
+      keyframes: ["opaline-slide-in"],
+    }
+  ),
+  glass(
+    "glass-stepper",
+    "Glass Stepper",
+    "Capsule stepper with rolling digits, hold-to-accelerate and a shake at the limits.",
+    `import { GlassStepper } from "@/components/ui/glass-stepper"
+
+<GlassStepper defaultValue={2} min={1} max={10} label="Guests" />
+<GlassStepper
+  defaultValue={24}
+  step={0.5}
+  format={{ style: "unit", unit: "celsius" }}
+  label="Temperature"
+/>`,
+    {
+      dependencies: ["lucide-react"],
+      internal: ["liquid-glass", "rolling-number"],
+      keyframes: ["opaline-shake"],
+    }
+  ),
+  glass(
+    "glass-context-menu",
+    "Glass Context Menu",
+    "Right-click menu that springs from the cursor, with a row of round quick actions.",
+    `import {
+  GlassContextMenu,
+  GlassContextMenuAction,
+  GlassContextMenuActions,
+  GlassContextMenuContent,
+  GlassContextMenuItem,
+  GlassContextMenuTrigger,
+} from "@/components/ui/glass-context-menu"
+
+<GlassContextMenu>
+  <GlassContextMenuTrigger>Right-click me</GlassContextMenuTrigger>
+  <GlassContextMenuContent>
+    <GlassContextMenuActions>
+      <GlassContextMenuAction icon={<CopyIcon />} label="Copy" />
+      <GlassContextMenuAction icon={<ShareIcon />} label="Share" />
+      <GlassContextMenuAction icon={<TrashIcon />} label="Delete" variant="destructive" />
+    </GlassContextMenuActions>
+    <GlassContextMenuItem>Get Info</GlassContextMenuItem>
+    <GlassContextMenuItem>Rename</GlassContextMenuItem>
+  </GlassContextMenuContent>
+</GlassContextMenu>`,
+    { dependencies: ["radix-ui", "lucide-react"] }
+  ),
+  glass(
+    "glass-widget",
+    "Glass Widget",
+    "iOS home-screen widget frame on liquid glass — small, medium and large.",
+    `import { GlassWidget } from "@/components/ui/glass-widget"
+
+<GlassWidget size="small">…</GlassWidget>
+<GlassWidget size="medium">…</GlassWidget>`
+  ),
+  glass(
+    "glass-widget-weather",
+    "Weather Widget",
+    "Weather widget with animated condition art and an hourly forecast.",
+    `import { GlassWidgetWeather } from "@/components/ui/glass-widget-weather"
+
+<GlassWidgetWeather
+  size="medium"
+  location="Cupertino"
+  temperature={72}
+  condition="partly-cloudy"
+  high={76}
+  low={58}
+  hourly={[
+    { time: "Now", temperature: 72, condition: "partly-cloudy" },
+    { time: "3PM", temperature: 74, condition: "sunny" },
+  ]}
+/>`,
+    { internal: ["liquid-glass", "glass-widget"], keyframes: ["opaline-cloud", "opaline-fall"] }
+  ),
+  glass(
+    "glass-widget-calendar",
+    "Calendar Widget",
+    "Calendar widget showing today, what's next and a month at a glance.",
+    `import { GlassWidgetCalendar } from "@/components/ui/glass-widget-calendar"
+
+<GlassWidgetCalendar
+  size="medium"
+  events={[
+    { title: "Design review", time: "2:00 – 3:00 PM", color: "#ff9f0a" },
+    { title: "Gym", time: "6:30 PM", color: "#30d158" },
+  ]}
+/>`,
+    { internal: ["liquid-glass", "glass-widget"] }
+  ),
+  glass(
+    "glass-widget-battery",
+    "Battery Widget",
+    "Batteries widget with device rings that fill, turn red when low and show charging.",
+    `import { GlassWidgetBattery } from "@/components/ui/glass-widget-battery"
+
+<GlassWidgetBattery
+  size="medium"
+  devices={[
+    { name: "iPhone", level: 82, kind: "phone", charging: true },
+    { name: "Watch", level: 64, kind: "watch" },
+    { name: "AirPods", level: 18, kind: "headphones" },
+  ]}
+/>`,
+    { dependencies: ["lucide-react"], internal: ["liquid-glass", "glass-widget"] }
   ),
   glass(
     "glass-button",

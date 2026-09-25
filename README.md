@@ -57,7 +57,9 @@ Glass needs something to bend. Place components over imagery, gradients or conte
 
 ## Components
 
-**Liquid Glass**: Button · Card · Clock · Command · Control Center · Dialog · Dock · Input · Knob · Lens · Menu · Notification · Player · Popover · Select · Sheet · Sidebar · Slider · Stack · Switch · Tab Bar · Tabs · Text · Toast · Toolbar · Tooltip · Badge
+**Liquid Glass**: Badge · Button · Card · Clock · Command · Context Menu · Control Center · Date Picker · Dialog · Dock · Input · Knob · Lens · Menu · Notification · Player · Popover · Segmented · Select · Sheet · Sidebar · Slider · Stack · Stepper · Switch · Tab Bar · Tabs · Text · Toast · Toolbar · Tooltip
+
+**Widgets**: Weather · Calendar · Battery, in iOS small, medium and large sizes
 
 **Accents**: Activity Rings · Mesh Gradient · Rolling Number · Shimmer Text · Spinner
 
