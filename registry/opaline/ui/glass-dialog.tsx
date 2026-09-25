@@ -37,14 +37,14 @@ function GlassDialogContent({
         data-slot="glass-dialog-overlay"
         className="fixed inset-0 z-50 bg-black/20 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0"
       />
-      {/* Animate transform only — opacity would hide the refracted backdrop. */}
+      {/* Transform-only motion: filter/opacity animations would cut off the backdrop. */}
       <DialogPrimitive.Content asChild {...props}>
         <LiquidGlass
           data-slot="glass-dialog-content"
           variant="frosted"
           className={cn(
             "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-[32px] p-6 text-(--glass-foreground) outline-none sm:max-w-md",
-            "duration-400 ease-[cubic-bezier(0.34,1.35,0.64,1)] data-[state=closed]:animate-out data-[state=closed]:zoom-out-90 data-[state=closed]:duration-150 data-[state=open]:animate-in data-[state=open]:zoom-in-75",
+            "[--glass-enter-scale:0.75] [--glass-exit-scale:0.9] data-[state=open]:animate-[opaline-glass-in_420ms_cubic-bezier(0.34,1.35,0.64,1)] data-[state=closed]:animate-[opaline-glass-out_140ms_ease-in_forwards]",
             className
           )}
         >

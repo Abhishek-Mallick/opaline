@@ -1,28 +1,31 @@
-# Opaline
+<div align="center">
+  <a href="https://opaline.buildlab.in">
+    <img src="app/icon.svg" width="72" height="72" alt="Opaline" />
+  </a>
+  <h1>Opaline</h1>
+  <p>Liquid glass components for React.</p>
+  <p>
+    <a href="https://opaline.buildlab.in">Website</a> ·
+    <a href="https://opaline.buildlab.in/components">Components</a> ·
+    <a href="https://opaline.buildlab.in/llms.txt">llms.txt</a> ·
+    <a href=".github/CONTRIBUTING.md">Contributing</a>
+  </p>
+  <p>
+    <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-black" /></a>
+    <a href="https://ui.shadcn.com/docs/directory"><img alt="shadcn registry" src="https://img.shields.io/badge/shadcn-registry-black" /></a>
+    <a href="https://github.com/Abhishek-Mallick/opaline/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Abhishek-Mallick/opaline/actions/workflows/ci.yml/badge.svg" /></a>
+  </p>
+</div>
 
-Liquid glass and premium, minimal components for React. Built on Tailwind CSS v4 and Radix UI, and installed with the shadcn CLI. You get the source, not a package.
+<br />
 
-**[opaline.buildlab.in](https://opaline.buildlab.in)**
+![Opaline](public/og.png)
 
-## Requirements
-
-- React 19 and a framework the shadcn CLI supports (Next.js, Vite, React Router, Astro, TanStack Start…)
-- Tailwind CSS v4
-- A `components.json`. If you don't have one, run `npx shadcn@latest init`
+Opaline is a collection of liquid glass components built on Tailwind CSS v4 and Radix UI. Surfaces bend the backdrop through real displacement maps, not just blur. You install the source with the shadcn CLI, so every component is yours to edit.
 
 ## Installation
 
-### 1. Set up shadcn (skip if you already have it)
-
-```bash
-npx create-next-app@latest my-app
-cd my-app
-npx shadcn@latest init
-```
-
-### 2. Add the Opaline registry
-
-Add the `@opaline` namespace to `components.json`:
+In a project with [shadcn/ui](https://ui.shadcn.com/docs/installation) and Tailwind CSS v4 set up, add the registry to `components.json`:
 
 ```json
 {
@@ -32,163 +35,42 @@ Add the `@opaline` namespace to `components.json`:
 }
 ```
 
-After Opaline is listed in the shadcn registry directory, you can skip this step.
-
-### 3. Install the theme
+Then add the theme and any components:
 
 ```bash
-npx shadcn@latest add @opaline/theme
+npx shadcn@latest add @opaline/theme @opaline/glass-button
 ```
 
-This writes the Opaline colours, glass tokens and the Apple system font stack into your global CSS, for both light and dark mode. The theme is optional because glass components bring their own glass tokens, but components look their best with it.
-
-### 4. Add components
-
-```bash
-npx shadcn@latest add @opaline/glass-button @opaline/glass-card
-```
-
-Or install the theme and every component at once:
-
-```bash
-npx shadcn@latest add @opaline/all
-```
-
-Dependencies (`radix-ui`, `lucide-react`, `class-variance-authority`) and shared pieces such as the `liquid-glass` primitive are installed for you.
-
-### Other ways to install
-
-Without setting up the namespace, use the full URL:
-
-```bash
-npx shadcn@latest add https://opaline.buildlab.in/r/glass-button.json
-```
-
-Or install straight from GitHub:
-
-```bash
-npx shadcn@latest add abhishek-mallick/opaline/glass-button
-```
+To install everything at once, run `npx shadcn@latest add @opaline/all`.
 
 ## Usage
 
 ```tsx
 import { GlassButton } from "@/components/ui/glass-button"
-import { GlassCard, GlassCardHeader, GlassCardTitle } from "@/components/ui/glass-card"
 
 export default function Page() {
-  return (
-    <main className="grid min-h-screen place-items-center bg-[url(/wallpaper.jpg)] bg-cover">
-      <GlassCard className="w-80">
-        <GlassCardHeader>
-          <GlassCardTitle>Hello, glass</GlassCardTitle>
-        </GlassCardHeader>
-      </GlassCard>
-      <GlassButton variant="prominent">Get started</GlassButton>
-    </main>
-  )
+  return <GlassButton variant="prominent">Get started</GlassButton>
 }
 ```
 
-Glass needs something behind it to bend, such as a photo, gradient or content. On a flat background it looks like a plain surface.
-
-### Building your own glass surface
-
-Every glass component uses `LiquidGlass`, and you can use it directly:
-
-```tsx
-import { LiquidGlass } from "@/components/ui/liquid-glass"
-
-<LiquidGlass className="rounded-3xl p-6" bezel={24} refraction={40} dispersion={0.1}>
-  Anything
-</LiquidGlass>
-```
-
-| Prop | Default | Description |
-| --- | --- | --- |
-| `variant` | `"clear"` | `clear` refracts. `frosted` adds more blur and tint so text stays readable |
-| `bezel` | ~40% of the shortest side | Width in px of the refracting rim |
-| `refraction` | `bezel × 1.6` | How far the backdrop bends, in px |
-| `blur` | `1.5` (clear) / `10` (frosted) | Backdrop blur in px |
-| `saturation` | `1.6` | Backdrop saturation |
-| `dispersion` | `0.12` | Chromatic aberration at the rim, from 0 to 1 |
-| `tint` | `var(--glass-tint)` | Surface colour |
-| `shadow` | `true` | Outer drop shadow |
-| `asChild` | `false` | Render the glass onto the child element |
-
-The corner radius comes from your CSS (`rounded-*`), so the refraction always follows the shape.
+Glass needs something to bend. Place components over imagery, gradients or content.
 
 ## Components
 
-### Liquid Glass
+**Liquid Glass**: Button · Card · Clock · Command · Control Center · Dialog · Dock · Input · Knob · Lens · Menu · Notification · Player · Popover · Select · Sheet · Sidebar · Slider · Stack · Switch · Tab Bar · Tabs · Text · Toast · Toolbar · Tooltip · Badge
 
-| Name | Description |
-| --- | --- |
-| `liquid-glass` | The primitive behind every glass component |
-| `glass-button` | Pill button with a highlight that follows the pointer |
-| `glass-card` | Frosted card with header, content and footer slots |
-| `glass-dock` | macOS-style dock with magnification and hover labels |
-| `glass-switch` | iOS switch whose thumb turns into a glass lens while pressed |
-| `glass-slider` | Slider whose thumb becomes a refracting lens while dragging |
-| `glass-tabs` | Segmented control with a glass bubble that slides between tabs |
-| `glass-tab-bar` | Floating iOS 26 tab bar |
-| `glass-input` | Capsule text field with icon and adornment slots |
-| `glass-toolbar` | Floating capsule toolbar |
-| `glass-badge` | Small glass chip with an optional glowing status dot |
-| `glass-dialog` | Modal on a frosted glass sheet |
-| `glass-menu` | Dropdown menu on liquid glass |
-| `glass-tooltip` | Capsule tooltip |
-| `glass-player` | Now-playing widget |
-| `glass-notification` | iOS notification banner and a stack that fans out on hover |
-| `glass-lens` | Draggable magnifying lens |
+**Accents**: Activity Rings · Mesh Gradient · Rolling Number · Shimmer Text · Spinner
 
-### Essentials
-
-These keep the shadcn/ui API, so they replace the stock components directly.
-
-`button` · `input` · `textarea` · `label` · `card` · `badge` · `kbd` · `separator` · `switch` · `checkbox` · `radio-group` · `slider` · `tabs` · `tooltip` · `dialog` · `dropdown-menu` · `accordion` · `avatar` · `progress` · `skeleton` · `spinner` · `activity-rings` · `shimmer-text`
+Every component has a live preview, source code and install commands on the [website](https://opaline.buildlab.in/components).
 
 ## Browser support
 
-| Browser | Rendering |
-| --- | --- |
-| Chrome, Edge, Arc, Opera and other Chromium browsers | Full liquid glass with real backdrop refraction |
-| Safari, Firefox | Frosted glass fallback (blur + saturation) |
+Chromium browsers (Chrome, Edge, Arc, Brave, Opera) render true refraction. Safari and Firefox fall back to frosted glass.
 
-Opaline also uses the fallback when the user has turned on *Reduce transparency*.
+## Contributing
 
-## Theming
+Contributions are welcome. Read the [contributing guide](.github/CONTRIBUTING.md) to get started.
 
-Everything reads from CSS variables. Override them in your global CSS:
+## License
 
-```css
-:root {
-  --glass-tint: oklch(1 0 0 / 14%);          /* clear surface colour */
-  --glass-tint-frosted: oklch(1 0 0 / 52%);  /* frosted surface colour */
-  --glass-highlight: oklch(1 0 0 / 62%);     /* selected / hover states */
-  --glass-foreground: oklch(0.18 0 0);       /* text on glass */
-  --glass-rim: …;                            /* inset rim lighting */
-  --glass-shadow: …;                         /* outer shadow */
-}
-```
-
-## Development
-
-```bash
-pnpm install
-pnpm dev                 # showcase at http://localhost:3000
-pnpm build               # registry JSON in public/r + static site in out/
-pnpm registry:validate
-```
-
-| Path | What |
-| --- | --- |
-| `registry/opaline/` | Component, lib and hook sources |
-| `registry/index.ts` | Registry manifest (names, descriptions, dependencies) |
-| `registry/theme.ts` | Design tokens |
-| `registry.json` | Generated from the manifest. Run `pnpm registry:gen` after changes |
-| `components/site/` | Showcase site |
-
-To add a component, create it under `registry/opaline/ui`, add it to `registry/index.ts`, add a demo tile in `components/site`, then run `pnpm registry:gen`.
-
-Pushes to `main` deploy to GitHub Pages at `opaline.buildlab.in` through `.github/workflows/deploy.yml`.
+[MIT](./LICENSE) © Abhishek Mallick

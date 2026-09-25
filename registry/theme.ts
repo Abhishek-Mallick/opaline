@@ -27,7 +27,7 @@ export const light = {
   ring: "oklch(0.62 0.19 255)",
   radius: "0.875rem",
   "glass-tint": "oklch(1 0 0 / 14%)",
-  "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+  "glass-tint-frosted": "oklch(1 0 0 / 42%)",
   "glass-rim":
     "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
   "glass-shadow":
@@ -56,7 +56,7 @@ export const dark = {
   input: "oklch(1 0 0 / 13%)",
   ring: "oklch(0.68 0.16 255)",
   "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-  "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+  "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
   "glass-rim":
     "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
   "glass-shadow":

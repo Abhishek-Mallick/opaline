@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Build registry and site
+        run: pnpm build
+      - name: Validate registry
+        run: pnpm registry:validate
+      - name: registry.json is up to date
+        run: git diff --exit-code registry.json app/opaline.css
+      - name: llms.txt was generated
+        run: test -s out/llms.txt && test -s out/components/glass-button.md

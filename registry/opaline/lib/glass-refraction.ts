@@ -108,6 +108,30 @@ export function createDisplacementMap({
   return url
 }
 
+const decoded = new Set<string>()
+
+/**
+ * Resolves once the map image is decoded (and painted for one frame), so an
+ * SVG filter referencing it never renders before its input exists.
+ */
+export function preloadDisplacementMap(url: string): Promise<void> {
+  if (decoded.has(url)) return Promise.resolve()
+  const img = new Image()
+  img.src = url
+  return img
+    .decode()
+    .catch(() => undefined)
+    .then(
+      () =>
+        new Promise<void>((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(() => resolve()))
+        )
+    )
+    .then(() => {
+      decoded.add(url)
+    })
+}
+
 let support: boolean | undefined
 
 /** True when the browser can refract the backdrop with SVG filters (Chromium). */

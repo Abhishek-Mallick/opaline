@@ -41,7 +41,7 @@ function GlassTooltipContent({
           variant="frosted"
           className={cn(
             "z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-[-0.01em] text-(--glass-foreground)",
-            "duration-300 ease-[cubic-bezier(0.34,1.5,0.64,1)] data-[state=closed]:animate-out data-[state=closed]:zoom-out-75 data-[state=closed]:duration-100 data-[state=delayed-open]:animate-in data-[state=delayed-open]:zoom-in-50 data-[state=instant-open]:animate-in data-[state=instant-open]:zoom-in-50",
+            "[--glass-enter-scale:0.5] [--glass-exit-scale:0.75] data-[state=delayed-open]:animate-[opaline-glass-in_300ms_cubic-bezier(0.34,1.5,0.64,1)] data-[state=instant-open]:animate-[opaline-glass-in_300ms_cubic-bezier(0.34,1.5,0.64,1)] data-[state=closed]:animate-[opaline-glass-out_100ms_ease-in_forwards]",
             className
           )}
         >

@@ -53,3 +53,34 @@
     background: color-mix(in oklch, var(--ring) 25%, transparent);
   }
 }
+
+/* Shiki (dual theme via CSS variables) */
+.code-block pre {
+  background: transparent !important;
+  width: max-content;
+  min-width: 100%;
+}
+.code-block code {
+  display: grid;
+  counter-reset: line;
+}
+.code-block .line {
+  padding: 0 1.25rem;
+  min-height: 1lh;
+}
+.code-lines .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1.25rem;
+  text-align: right;
+  color: var(--muted-foreground);
+  opacity: 0.55;
+}
+.code-block span {
+  color: var(--shiki-light);
+}
+.dark .code-block span {
+  color: var(--shiki-dark);
+}

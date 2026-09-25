@@ -1,11 +1,22 @@
-// Generates registry.json (consumed by `shadcn build` and by GitHub-address
-// installs) and app/opaline.css (the site's copy of the theme tokens).
+// Generates, from registry/index.ts:
+//   registry.json                 consumed by `shadcn build` and GitHub-address installs
+//   app/opaline.css               the site's copy of the theme tokens
+//   public/llms.txt               index for LLMs and agents (llmstxt.org)
+//   public/llms-full.txt          every component's install + usage in one file
+//   public/components/<name>.md   per-component markdown (also "Copy page")
 //
 //   REGISTRY_URL  public URL where built items are served (no trailing slash)
 
-import { writeFileSync } from "node:fs"
+import { mkdirSync, writeFileSync } from "node:fs"
 
-import { items, keyframes, type Item } from "../registry/index.ts"
+import {
+  categoryLabels,
+  docItems,
+  items,
+  keyframes,
+  type Item,
+} from "../registry/index.ts"
+import { componentMarkdown } from "../registry/markdown.ts"
 import {
   dark,
   fontMono,
@@ -112,5 +123,74 @@ writeFileSync(
     "\n" +
     frames
 )
+
+// --- LLM-friendly docs --------------------------------------------------
+
+const md = (item: Item) =>
+  componentMarkdown(item, { homepage: HOMEPAGE, registryUrl: REGISTRY_URL })
+
+const setup = `## Setup
+
+Opaline is a shadcn registry. It needs React 19, Tailwind CSS v4 and a
+components.json (run \`npx shadcn@latest init\` first).
+
+Register the namespace once in components.json:
+
+\`\`\`json
+{ "registries": { "@opaline": "${REGISTRY_URL}/{name}.json" } }
+\`\`\`
+
+Then install the theme and any component:
+
+\`\`\`bash
+npx shadcn@latest add @opaline/theme @opaline/glass-button
+npx shadcn@latest add @opaline/all   # everything
+\`\`\`
+
+Components install to components/ui and import from "@/components/ui/<name>".
+Glass components refract the backdrop in Chromium browsers and fall back to
+frosted blur in Safari and Firefox. Place them over colourful content.
+`
+
+const sections = (Object.keys(categoryLabels) as (keyof typeof categoryLabels)[])
+  .map((cat) => {
+    const list = docItems.filter((i) => i.category === cat)
+    if (!list.length) return ""
+    return [
+      `## ${categoryLabels[cat]}`,
+      "",
+      ...list.map(
+        (i) => `- [${i.title}](${HOMEPAGE}/components/${i.name}.md): ${i.description}`
+      ),
+      "",
+    ].join("\n")
+  })
+  .join("\n")
+
+const llms = `# Opaline
+
+> Liquid glass and premium, minimal React components — Tailwind CSS v4 + Radix,
+> distributed as a shadcn registry. Install any item with
+> \`npx shadcn@latest add @opaline/<name>\`.
+
+${setup}
+${sections}
+## Optional
+
+- [Registry index](${REGISTRY_URL}/registry.json): machine-readable list of every item
+- [Full docs](${HOMEPAGE}/llms-full.txt): install and usage for every component in one file
+- [Source](https://github.com/Abhishek-Mallick/opaline)
+`
+
+writeFileSync("public/llms.txt", llms)
+writeFileSync(
+  "public/llms-full.txt",
+  `# Opaline — full reference\n\n${setup}\n` +
+    docItems.map((i) => md(i).replace(/^# /, "## ").replace(/\n## /g, "\n### ")).join("\n---\n\n")
+)
+mkdirSync("public/components", { recursive: true })
+for (const item of docItems) {
+  writeFileSync(`public/components/${item.name}.md`, md(item))
+}
 
 console.log(`registry.json: ${registry.items.length} items → ${REGISTRY_URL}`)

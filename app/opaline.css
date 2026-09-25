@@ -26,7 +26,7 @@
   --ring: oklch(0.62 0.19 255);
   --radius: 0.875rem;
   --glass-tint: oklch(1 0 0 / 14%);
-  --glass-tint-frosted: oklch(1 0 0 / 52%);
+  --glass-tint-frosted: oklch(1 0 0 / 42%);
   --glass-rim: inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%);
   --glass-shadow: 0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%);
   --glass-foreground: oklch(0.18 0.004 286);
@@ -53,24 +53,11 @@
   --input: oklch(1 0 0 / 13%);
   --ring: oklch(0.68 0.16 255);
   --glass-tint: oklch(0.2 0.004 286 / 22%);
-  --glass-tint-frosted: oklch(0.2 0.004 286 / 58%);
+  --glass-tint-frosted: oklch(0.2 0.004 286 / 50%);
   --glass-rim: inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%);
   --glass-shadow: 0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%);
   --glass-foreground: oklch(0.98 0 0);
   --glass-highlight: oklch(1 0 0 / 16%);
-}
-
-@keyframes opaline-check {
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes opaline-pop {
-  from { transform: scale(0); }
-  to { transform: scale(1); }
-}
-
-@keyframes opaline-shimmer {
-  to { transform: translateX(100%); }
 }
 
 @keyframes opaline-spoke {
@@ -81,4 +68,18 @@
 @keyframes opaline-sheen {
   from { background-position: 100% 0; }
   to { background-position: -150% 0; }
+}
+
+@keyframes opaline-glass-in {
+  from { transform: translate3d(var(--glass-enter-x, 0), var(--glass-enter-y, 0), 0) scale(var(--glass-enter-scale, 1)); }
+}
+
+@keyframes opaline-glass-out {
+  to { transform: translate3d(var(--glass-exit-x, 0), var(--glass-exit-y, 0), 0) scale(var(--glass-exit-scale, 1)); }
+}
+
+@keyframes opaline-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(var(--dx1), var(--dy1)) scale(1.18); }
+  100% { transform: translate(var(--dx2), var(--dy2)) scale(0.92); }
 }
