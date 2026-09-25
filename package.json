@@ -6,9 +6,9 @@
   "homepage": "https://opaline.buildlab.in",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Abhishek-Mallick/opaline"
+    "url": "https://github.com/deepraj21/opaline"
   },
-  "bugs": "https://github.com/Abhishek-Mallick/opaline/issues",
+  "bugs": "https://github.com/deepraj21/opaline/issues",
   "license": "MIT",
   "author": "Abhishek Mallick",
   "keywords": [

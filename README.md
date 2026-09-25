@@ -13,7 +13,7 @@
   <p>
     <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-black" /></a>
     <a href="https://ui.shadcn.com/docs/directory"><img alt="shadcn registry" src="https://img.shields.io/badge/shadcn-registry-black" /></a>
-    <a href="https://github.com/Abhishek-Mallick/opaline/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Abhishek-Mallick/opaline/actions/workflows/ci.yml/badge.svg" /></a>
+    <a href="https://github.com/deepraj21/opaline/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/deepraj21/opaline/actions/workflows/ci.yml/badge.svg" /></a>
   </p>
 </div>
 

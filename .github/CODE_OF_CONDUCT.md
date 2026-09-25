@@ -4,4 +4,4 @@ Opaline follows the [Contributor Covenant, version 2.1](https://www.contributor-
 
 In short: be welcoming, be respectful, assume good intent, and focus on what is best for the community. Harassment, discrimination and personal attacks are not tolerated in issues, pull requests or any other project space.
 
-Report unacceptable behaviour privately to the maintainers through a [GitHub security advisory](https://github.com/Abhishek-Mallick/opaline/security/advisories/new) or by contacting [@Abhishek-Mallick](https://github.com/Abhishek-Mallick). All reports are handled confidentially.
+Report unacceptable behaviour privately to the maintainers through a [GitHub security advisory](https://github.com/deepraj21/opaline/security/advisories/new) or by contacting [@Abhishek-Mallick](https://github.com/Abhishek-Mallick). All reports are handled confidentially.
