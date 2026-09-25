@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 
 import { siteConfig, withBase } from "@/lib/site"
+import { toggleTheme } from "@/lib/theme"
 import { categoryLabels, docItems, type Category } from "@/registry/index"
 import {
   GlassCommandDialog,
@@ -107,10 +108,7 @@ export function SearchCommand() {
             </GlassCommandItem>
             <GlassCommandItem
               onSelect={() => {
-                const dark = document.documentElement.classList.toggle("dark")
-                try {
-                  localStorage.setItem("opaline-theme", dark ? "dark" : "light")
-                } catch {}
+                toggleTheme()
                 setOpen(false)
               }}
             >

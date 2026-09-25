@@ -38,4 +38,12 @@ export const demoMeta: Record<string, DemoMeta> = {
   "glass-tooltip": { wallpaper: "ocean" },
   "glass-badge": { wallpaper: "sunset" },
   "mesh-gradient": { stage: "p-6" },
+  "glass-segmented": { wallpaper: "sunset" },
+  "glass-date-picker": { wallpaper: "aurora", tile: "tall" },
+  "glass-stepper": { wallpaper: "bloom" },
+  "glass-context-menu": { wallpaper: "grid" },
+  "glass-widget": { wallpaper: "ocean" },
+  "glass-widget-weather": { wallpaper: "dunes", tile: "wide" },
+  "glass-widget-calendar": { wallpaper: "aurora", tile: "wide" },
+  "glass-widget-battery": { wallpaper: "sunset", tile: "wide" },
 }

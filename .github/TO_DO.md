@@ -1,7 +1,7 @@
 # Opaline — TODO
 
 ## Done
-- [x] 33 components: 27 liquid glass + 5 accents + the `LiquidGlass` primitive
+- [x] 41 components: 31 liquid glass + 4 widgets + 5 accents + the `LiquidGlass` primitive
 - [x] Component pages with preview, code, install tabs and usage; ⌘K search
 - [x] `llms.txt`, `llms-full.txt`, per-component Markdown
 - [x] Transform-only glass animations (no empty frames); refraction from the first frame
@@ -18,8 +18,10 @@
 - [ ] Follow up on the shadcn directory PR until merged
 
 ## Next components
-- [ ] Glass: context menu, date picker, stepper, segmented picker with icons
-- [ ] Widgets: weather, calendar, battery (iOS widget sizes)
+- [x] Glass: context menu, date picker, stepper, segmented picker
+- [x] Widgets: weather, calendar, battery (iOS sizes)
+- [ ] Glass: date range picker, time picker, color picker, OTP input
+- [ ] Widgets: music, fitness, stocks, photos, reminders
 - [ ] Blocks: hero, pricing, auth, lock screen, full macOS desktop
 
 ## Site & docs
