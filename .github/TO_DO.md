@@ -9,7 +9,7 @@
 - [x] shadcn directory entry validated, logo fixed for their renderer
 
 ## Launch (now)
-- [ ] DNS: CNAME `opaline` → `abhishek-mallick.github.io`
+- [ ] Move Pages to `deepraj21/opaline`: unpublish the fork's site, then DNS CNAME `opaline` → `deepraj21.github.io`
 - [ ] Pages: Source = GitHub Actions, custom domain `opaline.buildlab.in`, enforce HTTPS
 - [ ] Repo settings: About (description, website, topics), enable Discussions
 - [ ] Protect `main`: require CI + code-owner review

@@ -4,8 +4,8 @@ Thanks for helping make Opaline better. This guide covers how to set up the proj
 
 ## Ways to contribute
 
-- **Report a bug:** open a [bug report](https://github.com/Abhishek-Mallick/opaline/issues/new?template=bug_report.yml).
-- **Propose a component:** open a [component request](https://github.com/Abhishek-Mallick/opaline/issues/new?template=component_request.yml) and describe the idea before you build it.
+- **Report a bug:** open a [bug report](https://github.com/deepraj21/opaline/issues/new?template=bug_report.yml).
+- **Propose a component:** open a [component request](https://github.com/deepraj21/opaline/issues/new?template=component_request.yml) and describe the idea before you build it.
 - **Improve docs, demos or accessibility:** small pull requests are always welcome.
 
 For anything larger than a small fix, please open an issue first so we can agree on the approach.
@@ -15,7 +15,7 @@ For anything larger than a small fix, please open an issue first so we can agree
 Requirements: Node.js 22+ and pnpm 10.
 
 ```bash
-git clone https://github.com/Abhishek-Mallick/opaline
+git clone https://github.com/deepraj21/opaline
 cd opaline
 pnpm install
 pnpm dev          # showcase at http://localhost:3000

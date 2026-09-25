@@ -179,7 +179,7 @@ ${sections}
 
 - [Registry index](${REGISTRY_URL}/registry.json): machine-readable list of every item
 - [Full docs](${HOMEPAGE}/llms-full.txt): install and usage for every component in one file
-- [Source](https://github.com/Abhishek-Mallick/opaline)
+- [Source](https://github.com/deepraj21/opaline)
 `
 
 writeFileSync("public/llms.txt", llms)

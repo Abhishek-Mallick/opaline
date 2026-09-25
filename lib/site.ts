@@ -4,7 +4,7 @@ export const siteConfig = {
   title: "Opaline — Interfaces that bend the light",
   description:
     "Liquid glass components for React. Real backdrop refraction, minimal and premium, installable with the shadcn CLI.",
-  github: "https://github.com/Abhishek-Mallick/opaline",
+  github: "https://github.com/deepraj21/opaline",
   registryUrl: (
     process.env.NEXT_PUBLIC_REGISTRY_URL ??
     "https://opaline.buildlab.in/r"
