@@ -1,5 +1,5 @@
 import { CodeBlock } from "@/components/site/code-block"
-import { siteConfig } from "@/lib/site"
+import { siteConfig, withBase } from "@/lib/site"
 
 const steps = [
   {
@@ -44,7 +44,7 @@ export function Setup() {
         <p className="max-w-xl text-[15px] leading-relaxed text-muted-foreground">
           Requires a shadcn project with Tailwind CSS v4. True refraction renders in Chromium; other
           browsers get a graceful frosted glass. Building with AI? Point your agent at{" "}
-          <a href="/llms.txt" className="text-foreground underline underline-offset-4">
+          <a href={withBase("/llms.txt")} className="text-foreground underline underline-offset-4">
             /llms.txt
           </a>
           .
