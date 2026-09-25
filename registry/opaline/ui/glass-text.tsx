@@ -8,17 +8,40 @@ import {
   supportsLiquidGlass,
 } from "@/registry/opaline/lib/glass-refraction"
 
+/** Canvas padding (CSS px) so the contact shadow isn't clipped. */
+const PAD = 18
+
 type GlyphMaps = {
   mask: string
   map: string
   light: string
+  shadow: string
   width: number
   height: number
 }
 
+function blurred(source: HTMLCanvasElement, radius: number) {
+  const c = document.createElement("canvas")
+  c.width = source.width
+  c.height = source.height
+  const ctx = c.getContext("2d", { willReadFrequently: true })!
+  ctx.filter = `blur(${radius}px)`
+  ctx.drawImage(source, 0, 0)
+  return ctx.getImageData(0, 0, c.width, c.height).data
+}
+
+function toUrl(data: ImageData) {
+  const c = document.createElement("canvas")
+  c.width = data.width
+  c.height = data.height
+  c.getContext("2d")!.putImageData(data, 0, 0)
+  return c.toDataURL()
+}
+
 /**
- * Rasterises the text with the element's own font, then derives from the
- * glyph shapes: an alpha mask, a bevel displacement map and a lighting pass.
+ * Rasterises the text in the element's own font and derives, from the glyph
+ * shapes: an alpha mask, a bevel displacement map, a lighting pass (rim light,
+ * body sheen, inner shade) and a contact shadow.
  */
 function buildGlyphMaps(
   el: HTMLElement,
@@ -26,9 +49,9 @@ function buildGlyphMaps(
   baseline: number,
   bevel: number
 ): GlyphMaps | null {
-  const width = el.offsetWidth
-  const height = el.offsetHeight
-  if (!width || !height) return null
+  const width = el.offsetWidth + PAD * 2
+  const height = el.offsetHeight + PAD * 2
+  if (width <= PAD * 2 || height <= PAD * 2) return null
 
   const style = getComputedStyle(el)
   const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -48,87 +71,110 @@ function buildGlyphMaps(
   }
   g.textBaseline = "alphabetic"
   g.fillStyle = "#fff"
-  g.fillText(text, 0, baseline)
+  g.fillText(text, PAD, PAD + baseline)
   const alpha = g.getImageData(0, 0, w, h).data
 
-  // Height field: the glyphs blurred by the bevel width.
-  const soft = document.createElement("canvas")
-  soft.width = w
-  soft.height = h
-  const s = soft.getContext("2d", { willReadFrequently: true })
-  if (!s) return null
-  s.filter = `blur(${bevel * dpr * 0.5}px)`
-  s.drawImage(glyphs, 0, 0)
-  const field = s.getImageData(0, 0, w, h).data
+  const soft = blurred(glyphs, bevel * dpr * 0.5) // bevel → refraction + shading
+  const sharp = blurred(glyphs, 1.1 * dpr) // crisp edge → rim light
+  const halo = blurred(glyphs, 7 * dpr) // contact shadow
 
-  const mapData = new ImageData(w, h)
-  const lightData = new ImageData(w, h)
-  const hAt = (x: number, y: number) => {
-    const cx = Math.min(w - 1, Math.max(0, x))
-    const cy = Math.min(h - 1, Math.max(0, y))
-    const v = field[(cy * w + cx) * 4 + 3] / 255
-    return v * v * (3 - 2 * v) // smoothstep — rounder shoulders
+  const at = (field: Uint8ClampedArray, x: number, y: number) => {
+    const v = field[(Math.min(h - 1, Math.max(0, y)) * w + Math.min(w - 1, Math.max(0, x))) * 4 + 3] / 255
+    return v * v * (3 - 2 * v)
   }
-  const lx = -0.62
-  const ly = -0.78
 
+  // Normalise gradients so the steepest point of each field maps to 1.
+  const gx = new Float32Array(w * h)
+  const gy = new Float32Array(w * h)
+  const rx = new Float32Array(w * h)
+  const ry = new Float32Array(w * h)
+  let maxSoft = 1e-6
+  let maxSharp = 1e-6
   for (let y = 0; y < h; y++) {
     for (let x = 0; x < w; x++) {
-      const i = (y * w + x) * 4
-      const a = alpha[i + 3] / 255
-      let dx = 0
-      let dy = 0
-      if (a > 0) {
-        const gx = (hAt(x + 1, y) - hAt(x - 1, y)) * bevel
-        const gy = (hAt(x, y + 1) - hAt(x, y - 1)) * bevel
-        dx = Math.max(-1, Math.min(1, -gx))
-        dy = Math.max(-1, Math.min(1, -gy))
-        const slope = Math.min(1, Math.hypot(gx, gy))
-        const facing = slope > 0 ? (-gx * lx + -gy * ly) / Math.hypot(gx, gy) : 0
-        if (facing > 0) {
-          lightData.data[i] = lightData.data[i + 1] = lightData.data[i + 2] = 255
-          lightData.data[i + 3] = 255 * a * Math.min(1, slope * (0.25 + 0.95 * facing))
-        } else {
-          lightData.data[i + 3] = 255 * a * slope * -facing * 0.28
-        }
-      }
-      mapData.data[i] = 128 + dx * 127
-      mapData.data[i + 1] = 128 + dy * 127
-      mapData.data[i + 2] = 128
-      mapData.data[i + 3] = 255
+      const i = y * w + x
+      if (alpha[i * 4 + 3] === 0) continue
+      gx[i] = at(soft, x + 1, y) - at(soft, x - 1, y)
+      gy[i] = at(soft, x, y + 1) - at(soft, x, y - 1)
+      rx[i] = at(sharp, x + 1, y) - at(sharp, x - 1, y)
+      ry[i] = at(sharp, x, y + 1) - at(sharp, x, y - 1)
+      maxSoft = Math.max(maxSoft, Math.hypot(gx[i], gy[i]))
+      maxSharp = Math.max(maxSharp, Math.hypot(rx[i], ry[i]))
     }
   }
 
-  const toUrl = (data: ImageData) => {
-    const c = document.createElement("canvas")
-    c.width = w
-    c.height = h
-    c.getContext("2d")!.putImageData(data, 0, 0)
-    return c.toDataURL()
+  const map = new ImageData(w, h)
+  const light = new ImageData(w, h)
+  const shadow = new ImageData(w, h)
+  // Light from the top-left; an edge is lit when its outward normal faces it.
+  const lx = -0.55
+  const ly = -0.835
+  const shadowOffset = Math.round(3 * dpr)
+
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const i = y * w + x
+      const p = i * 4
+      const a = alpha[p + 3] / 255
+
+      // Contact shadow: only outside the glyphs, nudged downwards.
+      const sy = Math.max(0, y - shadowOffset)
+      const s = halo[(sy * w + x) * 4 + 3] / 255
+      shadow.data[p + 3] = 255 * s * 0.22 * (1 - a)
+
+      let dx = 0
+      let dy = 0
+      if (a > 0) {
+        const softSlope = Math.hypot(gx[i], gy[i]) / maxSoft
+        const rimSlope = Math.hypot(rx[i], ry[i]) / maxSharp
+        dx = -gx[i] / maxSoft
+        dy = -gy[i] / maxSoft
+
+        const len = Math.hypot(rx[i], ry[i]) || 1
+        const facing = (-rx[i] / len) * lx + (-ry[i] / len) * ly
+        const rim = Math.pow(rimSlope, 1.4) * (0.3 + 0.7 * Math.max(0, facing))
+        const sheen = 0.16 * (1 - y / h) // body is lighter towards the top
+        const shade = softSlope * Math.max(0, -facing) * 0.2
+
+        const white = Math.min(1, rim * 0.95 + sheen)
+        if (white >= shade) {
+          light.data[p] = light.data[p + 1] = light.data[p + 2] = 255
+          light.data[p + 3] = 255 * a * white
+        } else {
+          light.data[p + 3] = 255 * a * shade
+        }
+      }
+      map.data[p] = 128 + dx * 127
+      map.data[p + 1] = 128 + dy * 127
+      map.data[p + 2] = 128
+      map.data[p + 3] = 255
+    }
   }
 
   return {
     mask: glyphs.toDataURL(),
-    map: toUrl(mapData),
-    light: toUrl(lightData),
+    map: toUrl(map),
+    light: toUrl(light),
+    shadow: toUrl(shadow),
     width,
     height,
   }
 }
 
 /**
- * Display text made of liquid glass: every glyph is a bevelled lens that
- * refracts whatever sits behind it, with rim lighting and a travelling sheen.
- * Best for single-line headlines over imagery.
+ * Display text cast in liquid glass. Each glyph is a bevelled lens that bends
+ * whatever sits behind it, with a crisp rim light, a soft top-lit body, an
+ * optional travelling sheen and a contact shadow. Best for single-line
+ * headlines over imagery or gradients.
  */
 function GlassText({
   children,
   className,
-  bevel = 10,
-  refraction = 28,
-  dispersion = 0.25,
+  bevel = 12,
+  refraction = 22,
+  dispersion = 0.06,
   shine = true,
-  tint = "oklch(1 0 0 / 0.1)",
+  tint = "oklch(1 0 0 / 0.08)",
   ...props
 }: Omit<React.ComponentProps<"span">, "children"> & {
   children: string
@@ -136,9 +182,9 @@ function GlassText({
   bevel?: number
   /** How strongly the glyphs bend the backdrop, in px. */
   refraction?: number
-  /** Chromatic dispersion at the glyph edges (0 – 1). */
+  /** Chromatic dispersion at the glyph edges (0 – 1). Keep it subtle. */
   dispersion?: number
-  /** Animate a specular sweep across the letters. */
+  /** Animate a soft specular sweep across the letters. */
   shine?: boolean
   /** Colour filling the glyphs. */
   tint?: string
@@ -155,23 +201,31 @@ function GlassText({
     const el = ref.current
     if (!el) return
     let cancelled = false
+    let frame = 0
     const build = () => {
-      const baseline = marker.current?.offsetTop ?? el.offsetHeight * 0.8
-      const next = buildGlyphMaps(el, children, baseline, bevel)
-      if (!next) return
-      preloadDisplacementMap(next.map).then(() => !cancelled && setMaps(next))
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const baseline = marker.current?.offsetTop ?? el.offsetHeight * 0.8
+        const next = buildGlyphMaps(el, children, baseline, bevel)
+        if (!next) return
+        preloadDisplacementMap(next.map).then(() => !cancelled && setMaps(next))
+      })
     }
     document.fonts?.ready.then(() => !cancelled && build())
-    const ro = new ResizeObserver(() => build())
+    const ro = new ResizeObserver(build)
     ro.observe(el)
     return () => {
       cancelled = true
+      cancelAnimationFrame(frame)
       ro.disconnect()
     }
   }, [children, bevel])
 
+  const layer = "pointer-events-none absolute"
+  const inset = { inset: -PAD } as const
   const masked: React.CSSProperties | undefined = maps
     ? {
+        ...inset,
         maskImage: `url(${maps.mask})`,
         WebkitMaskImage: `url(${maps.mask})`,
         maskSize: "100% 100%",
@@ -179,7 +233,7 @@ function GlassText({
       }
     : undefined
   const backdrop =
-    maps && refracts ? `url(#${id})` : "blur(6px) saturate(1.8) brightness(1.08)"
+    maps && refracts ? `url(#${id})` : "blur(8px) saturate(1.6) brightness(1.1)"
 
   return (
     <span
@@ -189,26 +243,32 @@ function GlassText({
       {...props}
     >
       {/* Real text: keeps layout, selection and accessibility. */}
-      <span className={cn("transition-colors duration-300", maps ? "text-transparent" : "opacity-30")}>
-        {children}
-      </span>
+      <span className={cn("relative", maps ? "text-transparent" : "opacity-40")}>{children}</span>
       <span ref={marker} aria-hidden className="inline-block h-0 w-0 align-baseline" />
       {maps ? (
         <>
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-0"
+            className={layer}
+            style={{ ...inset, backgroundImage: `url(${maps.shadow})`, backgroundSize: "100% 100%" }}
+          />
+          <span
+            aria-hidden
+            className={layer}
             style={{ ...masked, backdropFilter: backdrop, WebkitBackdropFilter: backdrop, background: tint }}
           />
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-0"
-            style={{ backgroundImage: `url(${maps.light})`, backgroundSize: "100% 100%" }}
+            className={layer}
+            style={{ ...inset, backgroundImage: `url(${maps.light})`, backgroundSize: "100% 100%" }}
           />
           {shine ? (
             <span
               aria-hidden
-              className="pointer-events-none absolute inset-0 animate-[opaline-sheen_4.5s_ease-in-out_infinite] bg-[linear-gradient(115deg,transparent_38%,oklch(1_0_0/0.55)_50%,transparent_62%)] bg-[length:250%_100%] mix-blend-overlay motion-reduce:hidden"
+              className={cn(
+                layer,
+                "animate-[opaline-sheen_5s_ease-in-out_infinite] bg-[linear-gradient(110deg,transparent_42%,oklch(1_0_0/0.4)_50%,transparent_58%)] bg-[length:260%_100%] motion-reduce:hidden"
+              )}
               style={masked}
             />
           ) : null}
@@ -223,6 +283,7 @@ function GlassText({
                 filterUnits="userSpaceOnUse"
                 colorInterpolationFilters="sRGB"
               >
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" result="soft" />
                 <feImage
                   href={maps.map}
                   x="0"
@@ -232,31 +293,28 @@ function GlassText({
                   preserveAspectRatio="none"
                   result="map"
                 />
-                {[
-                  [1, "1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0", "r"],
-                  [1 - dispersion, "0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0", "g"],
-                  [1 - dispersion * 2, "0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0", "b"],
-                ].map(([k, matrix, channel]) => (
-                  <React.Fragment key={channel as string}>
+                {(
+                  [
+                    [1, "1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0", "r"],
+                    [1 - dispersion, "0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0", "g"],
+                    [1 - dispersion * 2, "0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0", "b"],
+                  ] as const
+                ).map(([k, matrix, channel]) => (
+                  <React.Fragment key={channel}>
                     <feDisplacementMap
-                      in="SourceGraphic"
+                      in="soft"
                       in2="map"
-                      scale={refraction * (k as number)}
+                      scale={refraction * k}
                       xChannelSelector="R"
                       yChannelSelector="G"
                       result={`d${channel}`}
                     />
-                    <feColorMatrix
-                      in={`d${channel}`}
-                      type="matrix"
-                      values={matrix as string}
-                      result={channel as string}
-                    />
+                    <feColorMatrix in={`d${channel}`} type="matrix" values={matrix} result={channel} />
                   </React.Fragment>
                 ))}
                 <feBlend in="r" in2="g" mode="screen" result="rg" />
                 <feBlend in="rg" in2="b" mode="screen" result="rgb" />
-                <feColorMatrix in="rgb" type="saturate" values="1.5" />
+                <feColorMatrix in="rgb" type="saturate" values="1.25" />
               </filter>
             </svg>
           ) : null}
