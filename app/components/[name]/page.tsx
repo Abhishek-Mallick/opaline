@@ -31,7 +31,7 @@ export async function generateMetadata({
   return {
     title: item.title,
     description: item.description,
-    alternates: { types: { "text/markdown": `/components/${item.name}.md` } },
+    alternates: { types: { "text/markdown": `${siteConfig.url}/components/${item.name}.md` } },
   }
 }
 

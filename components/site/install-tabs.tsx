@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { TerminalIcon } from "lucide-react"
 
 import { CodeFrame } from "@/components/site/code"
@@ -118,9 +119,9 @@ export function InstallTabs({ data }: { data: InstallData }) {
               <>
                 First time using <code className="font-mono text-foreground">@opaline</code>? Add
                 the registry to your <code className="font-mono">components.json</code> (see{" "}
-                <a href="/#setup" className="text-foreground underline underline-offset-4">
+                <Link href="/#setup" className="text-foreground underline underline-offset-4">
                   Setup
-                </a>
+                </Link>
                 ) or{" "}
                 <button
                   type="button"
@@ -155,9 +156,9 @@ export function InstallTabs({ data }: { data: InstallData }) {
                 {data.requires.map((r, i) => (
                   <React.Fragment key={r.name}>
                     {i ? ", " : ""}
-                    <a href={`/components/${r.name}`} className="text-foreground underline underline-offset-4">
+                    <Link href={`/components/${r.name}`} className="text-foreground underline underline-offset-4">
                       {r.title}
-                    </a>
+                    </Link>
                   </React.Fragment>
                 ))}
                 . Install it first.

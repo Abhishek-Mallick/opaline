@@ -1,5 +1,16 @@
 name: Deploy
 
+# deepraj21/opaline deploys to https://opaline.buildlab.in on every push to main.
+#
+# Forks don't deploy unless they opt in (so contributors' forks stay quiet).
+# To publish a test copy from a fork, set these repository variables
+# (Settings → Secrets and variables → Actions → Variables):
+#   ENABLE_PAGES = true
+#   SITE_URL     = optional, e.g. https://opaline-dev.buildlab.in
+#                  (defaults to https://<owner>.github.io/<repo>)
+# and set Settings → Pages → Source to "GitHub Actions" (plus the custom
+# domain there, if you use one).
+
 on:
   push:
     branches: [main]
@@ -14,13 +25,9 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
-env:
-  # Served from the custom domain root (public/CNAME), so no BASE_PATH.
-  REGISTRY_URL: https://opaline.buildlab.in/r
-  NEXT_PUBLIC_REGISTRY_URL: https://opaline.buildlab.in/r
-
 jobs:
   build:
+    if: github.repository == 'deepraj21/opaline' || vars.ENABLE_PAGES == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,12 +36,40 @@ jobs:
         with:
           node-version: 24
           cache: pnpm
+
+      - name: Resolve site URL
+        env:
+          CUSTOM_SITE_URL: ${{ vars.SITE_URL }}
+        run: |
+          if [ "$GITHUB_REPOSITORY" = "deepraj21/opaline" ]; then
+            SITE_URL="https://opaline.buildlab.in"
+          elif [ -n "$CUSTOM_SITE_URL" ]; then
+            SITE_URL="$CUSTOM_SITE_URL"
+          else
+            OWNER="${GITHUB_REPOSITORY_OWNER,,}"
+            SITE_URL="https://$OWNER.github.io/${GITHUB_REPOSITORY#*/}"
+          fi
+          SITE_URL="${SITE_URL%/}"
+          REST="${SITE_URL#*://}"
+          case "$REST" in */*) BASE_PATH="/${REST#*/}" ;; *) BASE_PATH="" ;; esac
+          {
+            echo "SITE_URL=$SITE_URL"
+            echo "BASE_PATH=$BASE_PATH"
+            echo "REGISTRY_URL=$SITE_URL/r"
+            echo "NEXT_PUBLIC_SITE_URL=$SITE_URL"
+            echo "NEXT_PUBLIC_REGISTRY_URL=$SITE_URL/r"
+          } >> "$GITHUB_ENV"
+          echo "Deploying to $SITE_URL (base path: '${BASE_PATH:-/}')"
+
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
       - run: pnpm build
       - run: pnpm registry:validate
+
       - name: Check committed registry.json is up to date
+        if: github.repository == 'deepraj21/opaline'
         run: git diff --exit-code registry.json
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

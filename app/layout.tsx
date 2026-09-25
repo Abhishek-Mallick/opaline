@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next"
 
 import { GithubIcon, Header, Logo } from "@/components/site/header"
 import { InstallModeProvider } from "@/components/site/install-mode"
-import { siteConfig } from "@/lib/site"
+import { siteConfig, withBase } from "@/lib/site"
 import { GlassToaster } from "@/registry/opaline/ui/glass-toast"
 
 import "./globals.css"
@@ -18,15 +18,15 @@ export const metadata: Metadata = {
     siteName: "Opaline",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: siteConfig.title }],
+    images: [{ url: `${siteConfig.url}/og.png`, width: 1200, height: 630, alt: siteConfig.title }],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: ["/og.png"],
+    images: [`${siteConfig.url}/og.png`],
   },
-  alternates: { types: { "text/plain": "/llms.txt" } },
+  alternates: { types: { "text/plain": `${siteConfig.url}/llms.txt` } },
 }
 
 export const viewport: Viewport = {
@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <span>Opaline — interfaces that bend the light.</span>
               </div>
               <div className="flex items-center gap-5">
-                <a href="/llms.txt" className="transition-colors hover:text-foreground">
+                <a href={withBase("/llms.txt")} className="transition-colors hover:text-foreground">
                   llms.txt
                 </a>
                 <a
