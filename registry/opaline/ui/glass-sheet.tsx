@@ -50,11 +50,11 @@ function GlassSheetClose(props: React.ComponentProps<typeof DialogPrimitive.Clos
 
 const sides = {
   right:
-    "inset-y-3 right-3 w-[min(24rem,calc(100%-1.5rem))] data-[state=open]:slide-in-from-right-[110%] data-[state=closed]:slide-out-to-right-[110%]",
-  left: "inset-y-3 left-3 w-[min(24rem,calc(100%-1.5rem))] data-[state=open]:slide-in-from-left-[110%] data-[state=closed]:slide-out-to-left-[110%]",
-  top: "inset-x-3 top-3 mx-auto max-w-2xl data-[state=open]:slide-in-from-top-[110%] data-[state=closed]:slide-out-to-top-[110%]",
+    "inset-y-3 right-3 w-[min(24rem,calc(100%-1.5rem))] [--glass-enter-x:110%] [--glass-exit-x:110%]",
+  left: "inset-y-3 left-3 w-[min(24rem,calc(100%-1.5rem))] [--glass-enter-x:-110%] [--glass-exit-x:-110%]",
+  top: "inset-x-3 top-3 mx-auto max-w-2xl [--glass-enter-y:-110%] [--glass-exit-y:-110%]",
   bottom:
-    "inset-x-3 bottom-3 mx-auto max-h-[85vh] max-w-2xl data-[state=open]:slide-in-from-bottom-[110%] data-[state=closed]:slide-out-to-bottom-[110%]",
+    "inset-x-3 bottom-3 mx-auto max-h-[85vh] max-w-2xl [--glass-enter-y:110%] [--glass-exit-y:110%]",
 }
 
 function GlassSheetContent({
@@ -79,7 +79,7 @@ function GlassSheetContent({
         data-slot="glass-sheet-overlay"
         className="fixed inset-0 z-50 bg-black/20 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0"
       />
-      {/* Transform-only motion — opacity would hide the refracted backdrop. */}
+      {/* Transform-only motion: filter/opacity animations would cut off the backdrop. */}
       <DialogPrimitive.Content asChild {...props}>
         <LiquidGlass
           data-slot="glass-sheet-content"
@@ -87,7 +87,7 @@ function GlassSheetContent({
           variant="frosted"
           className={cn(
             "fixed z-50 flex flex-col gap-4 rounded-[32px] p-6 text-(--glass-foreground) outline-none",
-            "duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:animate-in",
+            "data-[state=open]:animate-[opaline-glass-in_500ms_cubic-bezier(0.32,0.72,0,1)] data-[state=closed]:animate-[opaline-glass-out_280ms_cubic-bezier(0.32,0.72,0,1)_forwards]",
             drawer && "pt-3",
             sides[side],
             className

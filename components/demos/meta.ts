@@ -12,6 +12,8 @@ export const demoMeta: Record<string, DemoMeta> = {
   "liquid-glass": { wallpaper: "stripes" },
   "glass-dock": { wallpaper: "sunset", tile: "wide" },
   "glass-button": { wallpaper: "aurora" },
+  "glass-text": { wallpaper: "stripes", tile: "wide" },
+  "glass-control-center": { wallpaper: "sunset", tile: "tall", stage: "p-5" },
   "glass-lens": { wallpaper: "type", stage: "p-4" },
   "glass-sidebar": { wallpaper: "dunes", tile: "tall" },
   "glass-command": { wallpaper: "grid" },

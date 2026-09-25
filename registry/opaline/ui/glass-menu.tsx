@@ -31,7 +31,7 @@ function GlassMenuContent({
           variant="frosted"
           className={cn(
             "z-50 min-w-52 origin-(--radix-dropdown-menu-content-transform-origin) rounded-[22px] p-1.5 text-(--glass-foreground) outline-none",
-            "duration-300 ease-[cubic-bezier(0.34,1.35,0.64,1)] data-[state=closed]:animate-out data-[state=closed]:zoom-out-90 data-[state=closed]:duration-100 data-[state=open]:animate-in data-[state=open]:zoom-in-50",
+            "[--glass-enter-scale:0.5] [--glass-exit-scale:0.9] data-[state=open]:animate-[opaline-glass-in_320ms_cubic-bezier(0.34,1.35,0.64,1)] data-[state=closed]:animate-[opaline-glass-out_140ms_ease-in_forwards]",
             className
           )}
         >

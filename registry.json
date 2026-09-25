@@ -34,7 +34,7 @@
           "ring": "oklch(0.62 0.19 255)",
           "radius": "0.875rem",
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -60,7 +60,7 @@
           "input": "oklch(1 0 0 / 13%)",
           "ring": "oklch(0.68 0.16 255)",
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -99,7 +99,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -107,11 +107,23 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
           "glass-highlight": "oklch(1 0 0 / 16%)"
+        }
+      },
+      "css": {
+        "@keyframes opaline-glass-in": {
+          "from": {
+            "transform": "translate3d(var(--glass-enter-x, 0), var(--glass-enter-y, 0), 0) scale(var(--glass-enter-scale, 1))"
+          }
+        },
+        "@keyframes opaline-glass-out": {
+          "to": {
+            "transform": "translate3d(var(--glass-exit-x, 0), var(--glass-exit-y, 0), 0) scale(var(--glass-exit-scale, 1))"
+          }
         }
       }
     },
@@ -144,7 +156,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -152,7 +164,83 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
+          "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
+          "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
+          "glass-foreground": "oklch(0.98 0 0)",
+          "glass-highlight": "oklch(1 0 0 / 16%)"
+        }
+      }
+    },
+    {
+      "name": "glass-text",
+      "type": "registry:ui",
+      "title": "Glass Text",
+      "description": "Headlines cast in liquid glass — every glyph is a bevelled lens with rim light and a travelling sheen.",
+      "registryDependencies": [
+        "https://opaline.buildlab.in/r/liquid-glass.json"
+      ],
+      "files": [
+        {
+          "path": "registry/opaline/ui/glass-text.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "glass-tint": "oklch(1 0 0 / 14%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
+          "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
+          "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
+          "glass-foreground": "oklch(0.18 0.004 286)",
+          "glass-highlight": "oklch(1 0 0 / 62%)"
+        },
+        "dark": {
+          "glass-tint": "oklch(0.2 0.004 286 / 22%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
+          "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
+          "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
+          "glass-foreground": "oklch(0.98 0 0)",
+          "glass-highlight": "oklch(1 0 0 / 16%)"
+        }
+      },
+      "css": {
+        "@keyframes opaline-sheen": {
+          "from": {
+            "background-position": "100% 0"
+          },
+          "to": {
+            "background-position": "-150% 0"
+          }
+        }
+      }
+    },
+    {
+      "name": "glass-control-center",
+      "type": "registry:ui",
+      "title": "Glass Control Center",
+      "description": "macOS-style Control Center kit — glass modules, toggles, light-filled sliders and buttons.",
+      "registryDependencies": [
+        "https://opaline.buildlab.in/r/liquid-glass.json"
+      ],
+      "files": [
+        {
+          "path": "registry/opaline/ui/glass-control-center.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "glass-tint": "oklch(1 0 0 / 14%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
+          "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
+          "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
+          "glass-foreground": "oklch(0.18 0.004 286)",
+          "glass-highlight": "oklch(1 0 0 / 62%)"
+        },
+        "dark": {
+          "glass-tint": "oklch(0.2 0.004 286 / 22%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -180,7 +268,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -188,7 +276,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -213,7 +301,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -221,7 +309,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -251,7 +339,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -259,7 +347,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -289,7 +377,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -297,7 +385,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -325,7 +413,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -333,7 +421,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -358,7 +446,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -366,7 +454,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -391,7 +479,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -399,7 +487,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -424,7 +512,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -432,7 +520,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -457,7 +545,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -465,7 +553,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -493,7 +581,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -501,7 +589,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -529,7 +617,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -537,7 +625,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -566,7 +654,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -574,7 +662,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -600,7 +688,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -608,7 +696,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -637,7 +725,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -645,7 +733,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -673,7 +761,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -681,7 +769,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -709,7 +797,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -717,7 +805,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -746,7 +834,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -754,7 +842,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -783,7 +871,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -791,7 +879,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -820,7 +908,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -828,7 +916,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -853,7 +941,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -861,7 +949,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -886,7 +974,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -894,7 +982,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -919,7 +1007,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -927,7 +1015,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -955,7 +1043,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -963,7 +1051,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -988,7 +1076,7 @@
       "cssVars": {
         "light": {
           "glass-tint": "oklch(1 0 0 / 14%)",
-          "glass-tint-frosted": "oklch(1 0 0 / 52%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
           "glass-foreground": "oklch(0.18 0.004 286)",
@@ -996,7 +1084,7 @@
         },
         "dark": {
           "glass-tint": "oklch(0.2 0.004 286 / 22%)",
-          "glass-tint-frosted": "oklch(0.2 0.004 286 / 58%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
           "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
           "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
           "glass-foreground": "oklch(0.98 0 0)",
@@ -1105,6 +1193,8 @@
       "registryDependencies": [
         "https://opaline.buildlab.in/r/theme.json",
         "https://opaline.buildlab.in/r/glass-dock.json",
+        "https://opaline.buildlab.in/r/glass-text.json",
+        "https://opaline.buildlab.in/r/glass-control-center.json",
         "https://opaline.buildlab.in/r/glass-button.json",
         "https://opaline.buildlab.in/r/glass-lens.json",
         "https://opaline.buildlab.in/r/glass-sidebar.json",

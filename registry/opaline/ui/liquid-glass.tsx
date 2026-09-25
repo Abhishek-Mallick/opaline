@@ -15,7 +15,7 @@ type LiquidGlassProps = React.ComponentProps<"div"> & {
   refraction?: number
   /** Width of the refracting rim in px. Defaults to ~40% of the shortest side. */
   bezel?: number
-  /** Backdrop blur in px. Liquid glass is mostly clear — keep this small. */
+  /** Backdrop blur in px. Liquid glass bends light rather than blurring it — keep this small. */
   blur?: number
   /** Backdrop saturation multiplier. */
   saturation?: number
@@ -23,7 +23,7 @@ type LiquidGlassProps = React.ComponentProps<"div"> & {
   dispersion?: number
   /** Overrides the surface tint colour (defaults to `--glass-tint`). */
   tint?: string
-  /** `clear` refracts, `frosted` adds a heavier blur for legibility. */
+  /** `clear` is fully transparent; `frosted` adds a light tint and a touch of blur for legible text. */
   variant?: "clear" | "frosted"
   /** Draw the soft outer shadow. */
   shadow?: boolean
@@ -172,41 +172,48 @@ function LiquidGlass({
 
   const id = "lg" + React.useId().replace(/[^a-zA-Z0-9_-]/g, "")
   const [enabled, setEnabled] = React.useState(false)
-  React.useEffect(() => setEnabled(supportsLiquidGlass()), [])
+  React.useLayoutEffect(() => setEnabled(supportsLiquidGlass()), [])
 
   const { width, height, radius } = useSize(innerRef)
-  const rim = bezel ?? Math.max(6, Math.min(Math.min(width, height) * 0.4, 32))
+  const rim = bezel ?? Math.max(6, Math.min(Math.min(width, height) * 0.4, 40))
   const scale = refraction ?? rim * 1.6
-  const blurPx = blur ?? (variant === "frosted" ? 10 : 1.5)
+  const blurPx = blur ?? (variant === "frosted" ? 2 : 0.5)
 
-  // Double-buffered maps: a new map is mounted in its own filter and only
-  // becomes the active backdrop once its image has decoded and painted, so the
-  // glass never flashes empty. While the element resizes, rebuilds are
-  // debounced and the current map is simply stretched to the new size.
+  // The first map is built synchronously before the first paint, so the
+  // surface is refracting from its very first frame. Later maps (on resize)
+  // are debounced and double-buffered: the new map is mounted in its own
+  // filter and only becomes active once decoded, while the current one is
+  // stretched to the new size — the glass never flashes empty.
   const [current, setCurrent] = React.useState<MapEntry | null>(null)
   const [next, setNext] = React.useState<MapEntry | null>(null)
   const counter = React.useRef(0)
   const currentUrl = React.useRef("")
   const hasMap = current !== null
 
+  React.useLayoutEffect(() => {
+    if (hasMap || !enabled || width === 0 || height === 0) return
+    const url = createDisplacementMap({ width, height, radius, bezel: rim })
+    if (!url) return
+    currentUrl.current = url
+    setCurrent({ url, key: ++counter.current })
+    void preloadDisplacementMap(url)
+  }, [enabled, width, height, radius, rim, hasMap])
+
   React.useEffect(() => {
-    if (!enabled || width === 0 || height === 0) return
+    if (!hasMap || !enabled || width === 0 || height === 0) return
     let cancelled = false
-    const timer = setTimeout(
-      () => {
-        const url = createDisplacementMap({ width, height, radius, bezel: rim })
-        if (!url || url === currentUrl.current) return
-        const entry = { url, key: ++counter.current }
-        setNext(entry)
-        preloadDisplacementMap(url).then(() => {
-          if (cancelled) return
-          currentUrl.current = url
-          setCurrent(entry)
-          setNext(null)
-        })
-      },
-      hasMap ? 140 : 0
-    )
+    const timer = setTimeout(() => {
+      const url = createDisplacementMap({ width, height, radius, bezel: rim })
+      if (!url || url === currentUrl.current) return
+      const entry = { url, key: ++counter.current }
+      setNext(entry)
+      preloadDisplacementMap(url).then(() => {
+        if (cancelled) return
+        currentUrl.current = url
+        setCurrent(entry)
+        setNext(null)
+      })
+    }, 140)
     return () => {
       cancelled = true
       clearTimeout(timer)
@@ -216,7 +223,9 @@ function LiquidGlass({
   const filterId = (entry: MapEntry) => `${id}-${entry.key}`
   const backdrop = current
     ? `url(#${filterId(current)})`
-    : `blur(${blur ?? (variant === "frosted" ? 14 : 8)}px) saturate(${saturation})`
+    : // Safari / Firefox can't refract the backdrop; a light, saturated
+      // frost is the closest match.
+      `blur(${blur ?? (variant === "frosted" ? 10 : 5)}px) saturate(${saturation + 0.2}) brightness(1.04)`
   const filters = [current, next].filter((e): e is MapEntry => e !== null)
 
   return (

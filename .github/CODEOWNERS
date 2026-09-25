@@ -1,0 +1,7 @@
+# Default owners for everything in the repository.
+*                       @Abhishek-Mallick
+
+# Glass engine and registry manifest.
+/registry/              @Abhishek-Mallick
+/scripts/               @Abhishek-Mallick
+/.github/               @Abhishek-Mallick

@@ -76,8 +76,10 @@ function ToastItem({ data, index }: { data: ToastData; index: number }) {
     <li
       className={cn(
         "pointer-events-auto w-full transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.34,1.3,0.64,1)]",
-        "animate-in slide-in-from-top-[140%] zoom-in-75 duration-500",
-        leaving && "animate-out slide-out-to-top-[140%] zoom-out-75 fill-mode-forwards duration-200"
+        "[--glass-enter-scale:0.75] [--glass-enter-y:-140%] [--glass-exit-scale:0.75] [--glass-exit-y:-140%]",
+        leaving
+          ? "animate-[opaline-glass-out_200ms_ease-in_forwards]"
+          : "animate-[opaline-glass-in_520ms_cubic-bezier(0.34,1.3,0.64,1)]"
       )}
       style={{ zIndex: 100 - index }}
       onPointerEnter={() => setPaused(true)}

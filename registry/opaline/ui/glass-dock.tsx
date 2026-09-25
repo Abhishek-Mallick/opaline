@@ -132,9 +132,14 @@ function GlassDockItem({
       {...props}
     >
       {label ? (
-        <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 translate-y-1 rounded-lg bg-(--glass-tint-frosted) px-2.5 py-1 text-xs font-medium whitespace-nowrap text-(--glass-foreground) opacity-0 shadow-(--glass-shadow) backdrop-blur-xl transition-[opacity,transform] duration-200 group-hover/dock-item:translate-y-0 group-hover/dock-item:opacity-100 group-focus-visible/dock-item:opacity-100">
+        <LiquidGlass
+          variant="frosted"
+          bezel={8}
+          refraction={10}
+          className="pointer-events-none absolute -top-10 left-1/2 origin-bottom -translate-x-1/2 scale-0 rounded-full px-2.5 py-1 text-xs font-medium whitespace-nowrap text-(--glass-foreground) transition-transform duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/dock-item:scale-100 group-focus-visible/dock-item:scale-100"
+        >
           {label}
-        </span>
+        </LiquidGlass>
       ) : null}
       <span className="flex size-full items-center justify-center overflow-hidden rounded-[22.5%] shadow-[0_2px_6px_rgb(0_0_0/0.15)] transition-transform duration-200 group-active/dock-item:scale-90 group-focus-visible/dock-item:ring-2 group-focus-visible/dock-item:ring-ring [&>*]:size-full">
         {children}

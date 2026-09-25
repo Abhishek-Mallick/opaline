@@ -34,7 +34,8 @@ export function DocsNav({ current }: { current?: string }) {
                 "aria-[current=page]:bg-foreground/[0.06] aria-[current=page]:font-medium aria-[current=page]:text-foreground"
               )}
             >
-              {i.title}
+              {/* The section heading already says "Liquid Glass". */}
+              {i.title.replace(/^Glass /, "")}
             </Link>
           ))}
         </div>

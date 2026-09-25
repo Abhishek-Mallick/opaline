@@ -61,7 +61,7 @@ function GlassSelectContent({
         sideOffset={sideOffset}
         className={cn(
           "z-50 min-w-(--radix-select-trigger-width) origin-(--radix-select-content-transform-origin)",
-          "duration-300 ease-[cubic-bezier(0.34,1.35,0.64,1)] data-[state=closed]:animate-out data-[state=closed]:zoom-out-90 data-[state=closed]:duration-100 data-[state=open]:animate-in data-[state=open]:zoom-in-75",
+          "[--glass-enter-scale:0.75] [--glass-exit-scale:0.9] data-[state=open]:animate-[opaline-glass-in_320ms_cubic-bezier(0.34,1.35,0.64,1)] data-[state=closed]:animate-[opaline-glass-out_140ms_ease-in_forwards]",
           className
         )}
         {...props}

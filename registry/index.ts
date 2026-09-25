@@ -34,6 +34,20 @@ export const keyframes: Record<string, Record<string, Record<string, string>>> =
     from: { "background-position": "100% 0" },
     to: { "background-position": "-150% 0" },
   },
+  // Glass surfaces animate transform only: a `filter` or `opacity` on an
+  // ancestor would cut the backdrop off and the glass would render empty.
+  "opaline-glass-in": {
+    from: {
+      transform:
+        "translate3d(var(--glass-enter-x, 0), var(--glass-enter-y, 0), 0) scale(var(--glass-enter-scale, 1))",
+    },
+  },
+  "opaline-glass-out": {
+    to: {
+      transform:
+        "translate3d(var(--glass-exit-x, 0), var(--glass-exit-y, 0), 0) scale(var(--glass-exit-scale, 1))",
+    },
+  },
   // Blobs are centred with the `translate` property, so this only drifts.
   "opaline-drift": {
     "0%": { transform: "translate(0, 0) scale(1)" },
@@ -107,6 +121,7 @@ export const items: Item[] = [
     ],
     dependencies: ["radix-ui"],
     glass: true,
+    keyframes: ["opaline-glass-in", "opaline-glass-out"],
     usage: `import { LiquidGlass } from "@/components/ui/liquid-glass"
 
 <LiquidGlass className="rounded-3xl p-6" bezel={24} refraction={40}>
@@ -142,6 +157,43 @@ export const items: Item[] = [
     <img src="/icons/trash.png" alt="" />
   </GlassDockItem>
 </GlassDock>`
+  ),
+  glass(
+    "glass-text",
+    "Glass Text",
+    "Headlines cast in liquid glass — every glyph is a bevelled lens with rim light and a travelling sheen.",
+    `import { GlassText } from "@/components/ui/glass-text"
+
+<GlassText className="text-8xl font-extrabold tracking-tight">Opaline</GlassText>
+<GlassText bevel={6} refraction={16} shine={false} className="text-4xl font-bold">
+  bends the light
+</GlassText>`,
+    { keyframes: ["opaline-sheen"] }
+  ),
+  glass(
+    "glass-control-center",
+    "Glass Control Center",
+    "macOS-style Control Center kit — glass modules, toggles, light-filled sliders and buttons.",
+    `import {
+  GlassControlButton,
+  GlassControlCenter,
+  GlassControlSlider,
+  GlassControlTile,
+  GlassControlToggle,
+} from "@/components/ui/glass-control-center"
+
+<GlassControlCenter>
+  <GlassControlTile rows={2}>
+    <GlassControlToggle icon={<WifiIcon />} label="Wi-Fi" defaultPressed />
+    <GlassControlToggle icon={<BluetoothIcon />} label="Bluetooth" />
+  </GlassControlTile>
+  <GlassControlTile cols={1}>
+    <GlassControlButton aria-label="Timer"><TimerIcon /></GlassControlButton>
+  </GlassControlTile>
+  <GlassControlTile cols={4}>
+    <GlassControlSlider label="Display" icon={<SunDimIcon />} defaultValue={70} />
+  </GlassControlTile>
+</GlassControlCenter>`
   ),
   glass(
     "glass-button",

@@ -1,15 +1,25 @@
 # Opaline — TODO
 
-## Launch
+## Done
+- [x] 33 components: 27 liquid glass + 5 accents + the `LiquidGlass` primitive
+- [x] Component pages with preview, code, install tabs and usage; ⌘K search
+- [x] `llms.txt`, `llms-full.txt`, per-component Markdown
+- [x] Transform-only glass animations (no empty frames); refraction from the first frame
+- [x] MIT license, CI on PRs, issue/PR templates, CONTRIBUTING, CODEOWNERS
+- [x] shadcn directory entry validated, logo fixed for their renderer
+
+## Launch (now)
 - [ ] DNS: CNAME `opaline` → `abhishek-mallick.github.io`
 - [ ] Pages: Source = GitHub Actions, custom domain `opaline.buildlab.in`, enforce HTTPS
-- [ ] Smoke test: `npx shadcn@latest add https://opaline.buildlab.in/r/all.json` in a fresh app
-- [ ] Submit `@opaline` to the shadcn directory (see `.github/shadcn-directory/`)
+- [ ] Repo settings: About (description, website, topics), enable Discussions
+- [ ] Protect `main`: require CI + code-owner review
+- [ ] Smoke test: `npx shadcn@latest add https://opaline.buildlab.in/r/all.json`
+- [ ] Open the shadcn directory PR (`.github/shadcn-directory/`)
 
-## Components
+## Next components
 - [ ] Glass: context menu, date picker, stepper, segmented picker with icons
 - [ ] Widgets: weather, calendar, battery (iOS widget sizes)
-- [ ] Blocks: hero, pricing, auth, control center, lock screen
+- [ ] Blocks: hero, pricing, auth, lock screen, full macOS desktop
 
 ## Site & docs
 - [ ] Props table on each component page
@@ -18,12 +28,14 @@
 
 ## Engineering
 - [ ] Pause refraction for off-screen elements (IntersectionObserver)
-- [ ] Better Safari/Firefox fallback, and respect `prefers-reduced-motion`
+- [ ] Better Safari/Firefox fallback; `prefers-reduced-motion` everywhere
 - [ ] Playwright visual tests (Chromium + WebKit, light/dark)
-- [ ] CI smoke test that installs `@opaline/all` into a fresh Next.js app
+- [ ] CI smoke test: install `@opaline/all` into a fresh Next.js app
+- [ ] Versioned releases + changelog
 
-## Marketing
+## Growth
 - [ ] Launch: X thread with screen recordings, Product Hunt, Show HN, r/reactjs
 - [ ] Write-up: "How liquid glass refraction works on the web"
 - [ ] List on awesome-shadcn-ui and freefrontend
+- [ ] `good first issue` labels to attract contributors
 - [ ] Analytics on copy-command clicks to decide which components to build next
