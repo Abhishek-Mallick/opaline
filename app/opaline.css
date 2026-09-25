@@ -60,19 +60,6 @@
   --glass-highlight: oklch(1 0 0 / 16%);
 }
 
-@keyframes opaline-check {
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes opaline-pop {
-  from { transform: scale(0); }
-  to { transform: scale(1); }
-}
-
-@keyframes opaline-shimmer {
-  to { transform: translateX(100%); }
-}
-
 @keyframes opaline-spoke {
   from { opacity: 1; }
   to { opacity: 0.15; }
@@ -81,4 +68,10 @@
 @keyframes opaline-sheen {
   from { background-position: 100% 0; }
   to { background-position: -150% 0; }
+}
+
+@keyframes opaline-drift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(var(--dx1), var(--dy1)) scale(1.18); }
+  100% { transform: translate(var(--dx2), var(--dy2)) scale(0.92); }
 }

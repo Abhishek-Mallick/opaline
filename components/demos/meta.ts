@@ -1,0 +1,39 @@
+import type { WallpaperName } from "@/components/site/wallpaper"
+
+type DemoMeta = {
+  wallpaper?: WallpaperName
+  /** Extra classes for the preview stage. */
+  stage?: string
+  /** Grid footprint on the overview. */
+  tile?: "wide" | "tall"
+}
+
+export const demoMeta: Record<string, DemoMeta> = {
+  "liquid-glass": { wallpaper: "stripes" },
+  "glass-dock": { wallpaper: "sunset", tile: "wide" },
+  "glass-button": { wallpaper: "aurora" },
+  "glass-lens": { wallpaper: "type", stage: "p-4" },
+  "glass-sidebar": { wallpaper: "dunes", tile: "tall" },
+  "glass-command": { wallpaper: "grid" },
+  "glass-player": { wallpaper: "bloom" },
+  "glass-card": { wallpaper: "ocean" },
+  "glass-knob": { wallpaper: "aurora" },
+  "glass-clock": { wallpaper: "sunset" },
+  "glass-stack": { wallpaper: "type" },
+  "glass-switch": { wallpaper: "grid" },
+  "glass-slider": { wallpaper: "stripes" },
+  "glass-tabs": { wallpaper: "mono" },
+  "glass-tab-bar": { wallpaper: "aurora" },
+  "glass-sheet": { wallpaper: "dunes" },
+  "glass-toast": { wallpaper: "dots" },
+  "glass-popover": { wallpaper: "stripes" },
+  "glass-select": { wallpaper: "ocean" },
+  "glass-menu": { wallpaper: "bloom" },
+  "glass-dialog": { wallpaper: "dunes" },
+  "glass-notification": { wallpaper: "grid", stage: "items-start" },
+  "glass-input": { wallpaper: "bloom" },
+  "glass-toolbar": { wallpaper: "dots" },
+  "glass-tooltip": { wallpaper: "ocean" },
+  "glass-badge": { wallpaper: "sunset" },
+  "mesh-gradient": { stage: "p-6" },
+}

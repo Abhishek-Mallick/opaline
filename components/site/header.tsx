@@ -3,6 +3,9 @@
 import * as React from "react"
 import { MoonIcon, SunIcon } from "lucide-react"
 
+import Link from "next/link"
+
+import { SearchCommand } from "@/components/site/search"
 import { siteConfig } from "@/lib/site"
 import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
 
@@ -65,25 +68,23 @@ export function Header() {
     <div className="pointer-events-none fixed inset-x-0 top-3 z-40 flex justify-center px-4">
       <LiquidGlass
         variant="frosted"
-        className="pointer-events-auto flex h-12 w-full max-w-3xl items-center gap-1 rounded-full pr-1.5 pl-4 text-foreground"
+        className="pointer-events-auto flex h-12 w-full max-w-4xl items-center gap-1 rounded-full pr-1.5 pl-4 text-foreground"
       >
-        <a href="#top" className="mr-auto flex items-center gap-2">
+        <Link href="/" className="mr-auto flex items-center gap-2">
           <Logo className="size-6" />
           <span className="text-[15px] font-semibold tracking-[-0.02em]">
             Opaline
           </span>
-        </a>
-        <nav className="hidden items-center text-[13px] font-medium text-muted-foreground sm:flex">
-          <a href="#glass" className="rounded-full px-3 py-1.5 transition-colors hover:text-foreground">
-            Liquid Glass
-          </a>
-          <a href="#essentials" className="rounded-full px-3 py-1.5 transition-colors hover:text-foreground">
-            Essentials
-          </a>
-          <a href="#setup" className="rounded-full px-3 py-1.5 transition-colors hover:text-foreground">
+        </Link>
+        <nav className="hidden items-center text-[13px] font-medium text-muted-foreground md:flex">
+          <Link href="/components" className="rounded-full px-3 py-1.5 transition-colors hover:text-foreground">
+            Components
+          </Link>
+          <Link href="/#setup" className="rounded-full px-3 py-1.5 transition-colors hover:text-foreground">
             Setup
-          </a>
+          </Link>
         </nav>
+        <SearchCommand />
         <a
           href={siteConfig.github}
           aria-label="GitHub"
