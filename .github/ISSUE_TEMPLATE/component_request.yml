@@ -1,0 +1,29 @@
+name: Component request
+description: Propose a new component or a new variant.
+labels: ["component", "triage"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Component name
+      placeholder: glass-date-picker
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What should it do?
+      description: Describe the component, how it behaves, and where you'd use it.
+    validations:
+      required: true
+  - type: textarea
+    id: reference
+    attributes:
+      label: References
+      description: Links or screenshots (Apple HIG, iOS / macOS, other sites).
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd like to build this myself.

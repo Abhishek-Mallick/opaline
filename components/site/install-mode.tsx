@@ -4,6 +4,7 @@ import * as React from "react"
 import { CheckIcon, CopyIcon } from "lucide-react"
 
 import { installCommand, type InstallMode } from "@/lib/site"
+import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
 import { cn } from "@/lib/utils"
 
 const ModeContext = React.createContext<{
@@ -117,17 +118,19 @@ export function InstallBar({ name = "all" }: { name?: string }) {
           </button>
         ))}
       </div>
-      <button
-        type="button"
-        onClick={() => copy(command)}
-        className="group/bar flex h-12 w-full cursor-pointer items-center gap-3 rounded-full border border-border bg-background/70 pr-1.5 pl-5 font-mono text-[13px] shadow-[0_1px_2px_rgb(0_0_0/0.04),0_8px_24px_-12px_rgb(0_0_0/0.12)] backdrop-blur-xl transition-colors hover:border-foreground/15"
+      <LiquidGlass
+        asChild
+        variant="frosted"
+        className="group/bar flex h-12 w-full cursor-pointer items-center gap-3 rounded-full pr-1.5 pl-5 font-mono text-[13px] text-foreground"
       >
-        <span className="text-muted-foreground select-none">$</span>
-        <span className="min-w-0 flex-1 truncate text-left">{command}</span>
-        <span className="grid size-9 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground transition-transform group-active/bar:scale-90">
-          <CopyIconSwap copied={copied} />
-        </span>
-      </button>
+        <button type="button" onClick={() => copy(command)}>
+          <span className="text-muted-foreground select-none">$</span>
+          <span className="min-w-0 flex-1 truncate text-left">{command}</span>
+          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground transition-transform group-active/bar:scale-90">
+            <CopyIconSwap copied={copied} />
+          </span>
+        </button>
+      </LiquidGlass>
     </div>
   )
 }
