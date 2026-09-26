@@ -6,12 +6,23 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 import {
   createDisplacementMap,
+  createSpecularMap,
+  DEFAULT_IOR,
+  DEFAULT_THICKNESS_RATIO,
   preloadDisplacementMap,
   supportsLiquidGlass,
+  type GlassSurface,
 } from "@/registry/opaline/lib/glass-refraction"
 
-type LiquidGlassProps = React.ComponentProps<"div"> & {
-  /** Refraction strength in px. Defaults to a value derived from the bezel. */
+/** Optical settings shared by every glass surface. */
+type GlassSettings = {
+  /** Index of refraction: 1 is air, 1.5 is window glass, 2.4 is diamond. */
+  ior?: number
+  /** Cross-section of the rim: `squircle` (Apple), `circle`, `concave` or `lip`. */
+  surface?: GlassSurface
+  /** Height of the glass as a multiple of the bezel width (default 1.4). Thicker glass bends light further. */
+  thickness?: number
+  /** Explicit refraction strength in px; overrides the value computed from the optics. */
   refraction?: number
   /** Width of the refracting rim in px. Defaults to ~40% of the shortest side. */
   bezel?: number
@@ -21,17 +32,61 @@ type LiquidGlassProps = React.ComponentProps<"div"> & {
   saturation?: number
   /** Chromatic dispersion at the rim (0 – 1). */
   dispersion?: number
+  /** Strength of the specular highlight along the rim (0 – 1). */
+  specular?: number
+  /** Direction the light comes from, in degrees (0 = right, -90 = top). */
+  lightAngle?: number
   /** Overrides the surface tint colour (defaults to `--glass-tint`). */
   tint?: string
   /** `clear` is fully transparent; `frosted` adds a light tint and a touch of blur for legible text. */
   variant?: "clear" | "frosted"
   /** Draw the soft outer shadow. */
   shadow?: boolean
-  /** Render the glass onto its only child element instead of a div. */
-  asChild?: boolean
 }
 
-type MapEntry = { url: string; key: number }
+type LiquidGlassProps = React.ComponentProps<"div"> &
+  GlassSettings & {
+    /** Render the glass onto its only child element instead of a div. */
+    asChild?: boolean
+  }
+
+const GlassContext = React.createContext<GlassSettings>({})
+
+/**
+ * Sets default optics for every glass surface inside it. Props set directly
+ * on a component still win.
+ *
+ * ```tsx
+ * <LiquidGlassProvider ior={1.8} surface="lip" specular={0.5}>
+ *   <App />
+ * </LiquidGlassProvider>
+ * ```
+ */
+function LiquidGlassProvider({
+  children,
+  ...settings
+}: GlassSettings & { children?: React.ReactNode }) {
+  const parent = React.useContext(GlassContext)
+  const value = React.useMemo(
+    () => ({ ...parent, ...stripUndefined(settings) }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [parent, ...Object.values(settings)]
+  )
+  return <GlassContext.Provider value={value}>{children}</GlassContext.Provider>
+}
+
+function stripUndefined<T extends object>(o: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(o).filter(([, v]) => v !== undefined)
+  ) as Partial<T>
+}
+
+/** The glass settings from the nearest `LiquidGlassProvider`. */
+function useGlassSettings() {
+  return React.useContext(GlassContext)
+}
+
+type MapEntry = { url: string; scale: number; specular: string; key: number }
 
 function useSize(ref: React.RefObject<HTMLElement | null>) {
   const [size, setSize] = React.useState({ width: 0, height: 0, radius: 0 })
@@ -71,9 +126,13 @@ function GlassFilter({
   scale,
   dispersion,
   saturation,
+  specularMap,
+  specular,
 }: {
   id: string
   map: string
+  specularMap: string
+  specular: number
   width: number
   height: number
   blur: number
@@ -145,7 +204,25 @@ function GlassFilter({
         in="refracted"
         type="saturate"
         values={String(saturation)}
+        result="saturated"
       />
+      {specular > 0 && specularMap ? (
+        <>
+          <feImage
+            href={specularMap}
+            x="0"
+            y="0"
+            width={width}
+            height={height}
+            preserveAspectRatio="none"
+            result="specularMap"
+          />
+          <feComponentTransfer in="specularMap" result="specular">
+            <feFuncA type="linear" slope={specular} />
+          </feComponentTransfer>
+          <feComposite in="specular" in2="saturated" operator="over" />
+        </>
+      ) : null}
     </filter>
   )
 }
@@ -155,17 +232,26 @@ function LiquidGlass({
   className,
   style,
   children,
-  refraction,
-  bezel,
-  blur,
-  saturation = 1.6,
-  dispersion = 0.12,
-  tint,
-  variant = "clear",
-  shadow = true,
   asChild = false,
-  ...props
+  ...rest
 }: LiquidGlassProps) {
+  const settings = useGlassSettings()
+  const {
+    ior = DEFAULT_IOR,
+    surface = "squircle",
+    thickness,
+    refraction,
+    bezel,
+    blur,
+    saturation = 1.6,
+    dispersion = 0.12,
+    specular = 0.2,
+    lightAngle = -60,
+    tint,
+    variant = "clear",
+    shadow = true,
+    ...props
+  } = { ...settings, ...stripUndefined(rest) }
   const Comp = asChild ? Slot.Root : "div"
   const innerRef = React.useRef<HTMLDivElement>(null)
   React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement)
@@ -176,7 +262,7 @@ function LiquidGlass({
 
   const { width, height, radius } = useSize(innerRef)
   const rim = bezel ?? Math.max(6, Math.min(Math.min(width, height) * 0.4, 40))
-  const scale = refraction ?? rim * 1.6
+  const depth = rim * (thickness ?? DEFAULT_THICKNESS_RATIO)
   const blurPx = blur ?? (variant === "frosted" ? 2 : 0.5)
 
   // The first map is built synchronously before the first paint, so the
@@ -190,26 +276,43 @@ function LiquidGlass({
   const currentUrl = React.useRef("")
   const hasMap = current !== null
 
+  const build = React.useCallback(() => {
+    const geometry = { width, height, radius, bezel: rim }
+    const map = createDisplacementMap({ ...geometry, surface, ior, thickness: depth })
+    if (!map.url) return null
+    const spec = specular > 0 ? createSpecularMap({ ...geometry, surface, angle: lightAngle }) : ""
+    return { ...map, specular: spec }
+  }, [width, height, radius, rim, surface, ior, depth, specular > 0, lightAngle]) // eslint-disable-line react-hooks/exhaustive-deps
+
   React.useLayoutEffect(() => {
     if (hasMap || !enabled || width === 0 || height === 0) return
-    const url = createDisplacementMap({ width, height, radius, bezel: rim })
-    if (!url) return
-    currentUrl.current = url
-    setCurrent({ url, key: ++counter.current })
-    void preloadDisplacementMap(url)
-  }, [enabled, width, height, radius, rim, hasMap])
+    const map = build()
+    if (!map) return
+    currentUrl.current = map.url + map.specular
+    setCurrent({ ...map, key: ++counter.current })
+    void preloadDisplacementMap(map.url)
+  }, [enabled, width, height, hasMap, build])
 
   React.useEffect(() => {
     if (!hasMap || !enabled || width === 0 || height === 0) return
     let cancelled = false
     const timer = setTimeout(() => {
-      const url = createDisplacementMap({ width, height, radius, bezel: rim })
-      if (!url || url === currentUrl.current) return
-      const entry = { url, key: ++counter.current }
+      const map = build()
+      if (!map) return
+      const id = map.url + map.specular
+      if (id === currentUrl.current) {
+        // Same image, but the scale may differ (e.g. an explicit refraction).
+        setCurrent((c) => (c && c.scale !== map.scale ? { ...c, scale: map.scale } : c))
+        return
+      }
+      const entry = { ...map, key: ++counter.current }
       setNext(entry)
-      preloadDisplacementMap(url).then(() => {
+      Promise.all([
+        preloadDisplacementMap(map.url),
+        map.specular ? preloadDisplacementMap(map.specular) : null,
+      ]).then(() => {
         if (cancelled) return
-        currentUrl.current = url
+        currentUrl.current = id
         setCurrent(entry)
         setNext(null)
       })
@@ -218,7 +321,7 @@ function LiquidGlass({
       cancelled = true
       clearTimeout(timer)
     }
-  }, [enabled, width, height, radius, rim, hasMap])
+  }, [enabled, width, height, hasMap, build])
 
   const filterId = (entry: MapEntry) => `${id}-${entry.key}`
   const backdrop = current
@@ -277,9 +380,11 @@ function LiquidGlass({
               width={width}
               height={height}
               blur={blurPx}
-              scale={scale}
+              scale={refraction ?? entry.scale}
               dispersion={dispersion}
               saturation={saturation}
+              specularMap={entry.specular}
+              specular={specular}
             />
           ))}
         </svg>
@@ -289,4 +394,10 @@ function LiquidGlass({
   )
 }
 
-export { LiquidGlass, type LiquidGlassProps }
+export {
+  LiquidGlass,
+  LiquidGlassProvider,
+  useGlassSettings,
+  type GlassSettings,
+  type LiquidGlassProps,
+}

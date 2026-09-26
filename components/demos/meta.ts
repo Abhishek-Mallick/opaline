@@ -46,4 +46,5 @@ export const demoMeta: Record<string, DemoMeta> = {
   "glass-widget-weather": { wallpaper: "dunes", tile: "wide" },
   "glass-widget-calendar": { wallpaper: "aurora", tile: "wide" },
   "glass-widget-battery": { wallpaper: "sunset", tile: "wide" },
+  "glass-otp": { wallpaper: "aurora" },
 }

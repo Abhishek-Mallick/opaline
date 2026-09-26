@@ -1439,6 +1439,72 @@
       }
     },
     {
+      "name": "glass-otp",
+      "type": "registry:ui",
+      "title": "OTP Input",
+      "description": "One-time code cells on glass with a gliding lens, paste and SMS autofill, and success / error states.",
+      "registryDependencies": [
+        "https://opaline.buildlab.in/r/liquid-glass.json",
+        "https://opaline.buildlab.in/r/use-active-indicator.json"
+      ],
+      "files": [
+        {
+          "path": "registry/opaline/ui/glass-otp.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "cssVars": {
+        "light": {
+          "glass-tint": "oklch(1 0 0 / 14%)",
+          "glass-tint-frosted": "oklch(1 0 0 / 42%)",
+          "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 85%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 55%), inset 0 0 0 0.5px oklch(1 0 0 / 40%), inset 0 0 12px -4px oklch(1 0 0 / 60%)",
+          "glass-shadow": "0 1px 2px oklch(0 0 0 / 6%), 0 10px 32px -8px oklch(0 0 0 / 22%)",
+          "glass-foreground": "oklch(0.18 0.004 286)",
+          "glass-highlight": "oklch(1 0 0 / 62%)"
+        },
+        "dark": {
+          "glass-tint": "oklch(0.2 0.004 286 / 22%)",
+          "glass-tint-frosted": "oklch(0.2 0.004 286 / 50%)",
+          "glass-rim": "inset 1px 1px 0 -0.5px oklch(1 0 0 / 45%), inset -1px -1px 0 -0.5px oklch(1 0 0 / 22%), inset 0 0 0 0.5px oklch(1 0 0 / 16%), inset 0 0 12px -4px oklch(1 0 0 / 22%)",
+          "glass-shadow": "0 1px 2px oklch(0 0 0 / 20%), 0 12px 36px -8px oklch(0 0 0 / 50%)",
+          "glass-foreground": "oklch(0.98 0 0)",
+          "glass-highlight": "oklch(1 0 0 / 16%)"
+        }
+      },
+      "css": {
+        "@keyframes opaline-glass-in": {
+          "from": {
+            "transform": "translate3d(var(--glass-enter-x, 0), var(--glass-enter-y, 0), 0) scale(var(--glass-enter-scale, 1))"
+          }
+        },
+        "@keyframes opaline-caret": {
+          "0%, 100%": {
+            "opacity": "1"
+          },
+          "50%": {
+            "opacity": "0"
+          }
+        },
+        "@keyframes opaline-shake": {
+          "0%, 100%": {
+            "transform": "translateX(0)"
+          },
+          "20%": {
+            "transform": "translateX(-5px)"
+          },
+          "40%": {
+            "transform": "translateX(5px)"
+          },
+          "60%": {
+            "transform": "translateX(-3px)"
+          },
+          "80%": {
+            "transform": "translateX(3px)"
+          }
+        }
+      }
+    },
+    {
       "name": "mesh-gradient",
       "type": "registry:ui",
       "title": "Mesh Gradient",
@@ -1573,6 +1639,7 @@
         "https://opaline.buildlab.in/r/glass-toolbar.json",
         "https://opaline.buildlab.in/r/glass-tooltip.json",
         "https://opaline.buildlab.in/r/glass-badge.json",
+        "https://opaline.buildlab.in/r/glass-otp.json",
         "https://opaline.buildlab.in/r/mesh-gradient.json",
         "https://opaline.buildlab.in/r/rolling-number.json",
         "https://opaline.buildlab.in/r/activity-rings.json",

@@ -16,7 +16,6 @@ function GlassBadge({
     <LiquidGlass
       data-slot="glass-badge"
       bezel={8}
-      refraction={12}
       className={cn(
         "inline-flex h-7 w-fit items-center gap-1.5 rounded-full px-3 text-xs font-medium tracking-[-0.005em] whitespace-nowrap text-(--glass-foreground) [&_svg]:size-3.5",
         className
