@@ -17,6 +17,7 @@ import GlassInputDemo from "./glass-input"
 import GlassKnobDemo from "./glass-knob"
 import GlassLensDemo from "./glass-lens"
 import GlassMenuDemo from "./glass-menu"
+import GlassOTPDemo from "./glass-otp"
 import GlassNotificationDemo from "./glass-notification"
 import GlassPlayerDemo from "./glass-player"
 import GlassPopoverDemo from "./glass-popover"
@@ -61,6 +62,7 @@ const demos: Record<string, React.ComponentType> = {
   "glass-lens": GlassLensDemo,
   "glass-menu": GlassMenuDemo,
   "glass-notification": GlassNotificationDemo,
+  "glass-otp": GlassOTPDemo,
   "glass-player": GlassPlayerDemo,
   "glass-popover": GlassPopoverDemo,
   "glass-segmented": GlassSegmentedDemo,

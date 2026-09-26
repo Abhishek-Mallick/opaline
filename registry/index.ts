@@ -58,6 +58,7 @@ export const keyframes: Record<string, Record<string, Record<string, string>>> =
     "60%": { transform: "translateX(-3px)" },
     "80%": { transform: "translateX(3px)" },
   },
+  "opaline-caret": { "0%, 100%": { opacity: "1" }, "50%": { opacity: "0" } },
   "opaline-cloud": {
     from: { transform: "translateX(-1.5px)" },
     to: { transform: "translateX(1.5px)" },
@@ -754,6 +755,19 @@ import {
     `import { GlassBadge } from "@/components/ui/glass-badge"
 
 <GlassBadge dot="#34c759">Live</GlassBadge>`
+  ),
+
+  glass(
+    "glass-otp",
+    "OTP Input",
+    "One-time code cells on glass with a gliding lens, paste and SMS autofill, and success / error states.",
+    `import { GlassOTP } from "@/components/ui/glass-otp"
+
+<GlassOTP length={6} group={3} onComplete={(code) => verify(code)} />`,
+    {
+      internal: ["liquid-glass", "use-active-indicator"],
+      keyframes: ["opaline-glass-in", "opaline-caret", "opaline-shake"],
+    }
   ),
 
   accent(

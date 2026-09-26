@@ -8,8 +8,7 @@ import { CopyPageButton } from "@/components/site/copy-page"
 import { CodeBlock } from "@/components/site/code-block"
 import { DocsNav } from "@/components/site/docs-nav"
 import { InstallTabs, type InstallData } from "@/components/site/install-tabs"
-import { Preview } from "@/components/site/preview"
-import { Stage } from "@/components/site/tile"
+import { Customizer, PropsTable } from "@/components/customize/customizer"
 import { highlight } from "@/lib/highlight"
 import { installCommand, siteConfig } from "@/lib/site"
 import { demoSource, itemFiles } from "@/lib/source"
@@ -131,11 +130,7 @@ export default async function ComponentPage({
           </p>
         </header>
 
-        <Preview
-          stage={<Stage name={name} className="min-h-[380px]" />}
-          html={demoHtml}
-          code={demo}
-        />
+        <Customizer name={name} demoCode={demo} demoHtml={demoHtml} />
 
         <section className="flex flex-col gap-4">
           <h2 className="text-xl font-semibold tracking-[-0.02em]">Installation</h2>
@@ -148,6 +143,8 @@ export default async function ComponentPage({
             <CodeBlock code={item.usage} />
           </section>
         ) : null}
+
+        <PropsTable name={name} />
 
         {item.glass ? (
           <p className="rounded-2xl border border-border bg-muted/40 px-4 py-3 text-[13.5px] leading-relaxed text-muted-foreground">
