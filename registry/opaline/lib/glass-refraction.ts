@@ -268,6 +268,40 @@ export function createSpecularMap(
   return url ? remember(specularCache, key, url) : ""
 }
 
+const rimCache = new Map<string, string>()
+
+/**
+ * For browsers that can't refract the backdrop (Safari, Firefox): an alpha
+ * mask that is opaque where the traced rays bend most. Used to mask a band of
+ * stronger blur and saturation, so the rim still reads as curved glass.
+ */
+export function createRimMask(options: GlassMapOptions): string {
+  const { width, height, radius, bezel } = options
+  const b = Math.max(1, Math.min(bezel, width / 2, height / 2))
+  const key = [
+    Math.round(width),
+    Math.round(height),
+    Math.round(radius),
+    Math.round(b),
+    options.surface ?? "squircle",
+    (options.ior ?? DEFAULT_IOR).toFixed(3),
+    Math.round(options.thickness ?? -1),
+  ].join(":")
+  const cached = rimCache.get(key)
+  if (cached) return cached
+
+  const { values, max } = displacementProfile({ ...options, bezel: b })
+  const url = paintRoundedRect({ width, height, radius }, (dist, _nx, _ny, data, i) => {
+    let a = 0
+    if (max > 0 && dist > 0 && dist < b) a = Math.pow(Math.abs(sample(values, dist / b)) / max, 1.4)
+    data[i] = 0
+    data[i + 1] = 0
+    data[i + 2] = 0
+    data[i + 3] = a * 255
+  })
+  return url ? remember(rimCache, key, url) : ""
+}
+
 const decoded = new Set<string>()
 
 /**

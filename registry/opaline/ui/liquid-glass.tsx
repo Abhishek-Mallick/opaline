@@ -6,6 +6,7 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 import {
   createDisplacementMap,
+  createRimMask,
   createSpecularMap,
   DEFAULT_IOR,
   DEFAULT_THICKNESS_RATIO,
@@ -258,7 +259,12 @@ function LiquidGlass({
 
   const id = "lg" + React.useId().replace(/[^a-zA-Z0-9_-]/g, "")
   const [enabled, setEnabled] = React.useState(false)
-  React.useLayoutEffect(() => setEnabled(supportsLiquidGlass()), [])
+  const [fallback, setFallback] = React.useState(false)
+  React.useLayoutEffect(() => {
+    const ok = supportsLiquidGlass()
+    setEnabled(ok)
+    setFallback(!ok)
+  }, [])
 
   const { width, height, radius } = useSize(innerRef)
   const rim = bezel ?? Math.max(6, Math.min(Math.min(width, height) * 0.4, 40))
@@ -323,12 +329,42 @@ function LiquidGlass({
     }
   }, [enabled, width, height, hasMap, build])
 
+  // Safari and Firefox can't refract the backdrop. Instead of a flat frost,
+  // mask a band of stronger blur to where the traced rays bend most, and lay
+  // the specular map on top, so the rim still reads as curved glass.
+  const [rimMaps, setRimMaps] = React.useState<{ mask: string; specular: string } | null>(null)
+  const hasRim = rimMaps !== null
+  const buildRim = React.useCallback(() => {
+    const geometry = { width, height, radius, bezel: rim }
+    return {
+      mask: createRimMask({ ...geometry, surface, ior, thickness: depth }),
+      specular: specular > 0 ? createSpecularMap({ ...geometry, surface, angle: lightAngle }) : "",
+    }
+  }, [width, height, radius, rim, surface, ior, depth, specular > 0, lightAngle]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useLayoutEffect(() => {
+    if (!fallback || hasRim || width === 0 || height === 0) return
+    setRimMaps(buildRim())
+  }, [fallback, hasRim, width, height, buildRim])
+
+  React.useEffect(() => {
+    if (!fallback || !hasRim || width === 0 || height === 0) return
+    const timer = setTimeout(() => {
+      const next = buildRim()
+      setRimMaps((m) => (m && m.mask === next.mask && m.specular === next.specular ? m : next))
+    }, 140)
+    return () => clearTimeout(timer)
+  }, [fallback, hasRim, width, height, buildRim])
+
   const filterId = (entry: MapEntry) => `${id}-${entry.key}`
   const backdrop = current
     ? `url(#${filterId(current)})`
-    : // Safari / Firefox can't refract the backdrop; a light, saturated
-      // frost is the closest match.
-      `blur(${blur ?? (variant === "frosted" ? 10 : 5)}px) saturate(${saturation + 0.2}) brightness(1.04)`
+    : // A light, saturated frost. Never fully clear: without refraction a
+      // zero-blur surface (like a lens) would be invisible.
+      `blur(${Math.max(3, blur ?? (variant === "frosted" ? 10 : 5))}px) saturate(${saturation + 0.2}) brightness(1.04)`
+  const rimBlur = Math.max(3, Math.min(8, rim * 0.15))
+  const rimFilter = `blur(${rimBlur}px) saturate(${saturation + 0.6}) brightness(1.12) contrast(1.06)`
+  const rimMask = rimMaps?.mask ? `url(${rimMaps.mask})` : undefined
   const filters = [current, next].filter((e): e is MapEntry => e !== null)
 
   return (
@@ -346,6 +382,29 @@ function LiquidGlass({
         className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-[inherit]"
         style={{ backdropFilter: backdrop, WebkitBackdropFilter: backdrop }}
       />
+      {fallback && rimMask ? (
+        <span
+          aria-hidden
+          data-slot="liquid-glass-rim-band"
+          className="pointer-events-none absolute inset-0 -z-10 rounded-[inherit]"
+          style={{
+            backdropFilter: rimFilter,
+            WebkitBackdropFilter: rimFilter,
+            maskImage: rimMask,
+            WebkitMaskImage: rimMask,
+            maskSize: "100% 100%",
+            WebkitMaskSize: "100% 100%",
+          }}
+        />
+      ) : null}
+      {fallback && rimMaps?.specular ? (
+        <span
+          aria-hidden
+          data-slot="liquid-glass-specular"
+          className="pointer-events-none absolute inset-0 -z-10 rounded-[inherit]"
+          style={{ backgroundImage: `url(${rimMaps.specular})`, backgroundSize: "100% 100%", opacity: specular }}
+        />
+      ) : null}
       <span
         aria-hidden
         data-slot="liquid-glass-tint"
