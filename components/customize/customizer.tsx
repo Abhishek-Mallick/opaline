@@ -5,7 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowDown01Icon, RefreshIcon } from "@hugeicons/core-free-icons"
 
 import { attrs, changed, parseUsage, render } from "@/components/customize/code"
-import { customizations } from "@/components/customize/configs"
+import { customizations, pinned } from "@/components/customize/configs"
 import { Field } from "@/components/customize/controls"
 import { glassControls, glassPresets } from "@/components/customize/glass"
 import { highlightTsx, plainHtml } from "@/components/customize/highlight"
@@ -28,10 +28,9 @@ export function useControls(name: string) {
   const item = itemsByName[name]
   const config: Customization = customizations[name] ?? {}
   const own = config.controls ?? []
+  const hidden = [...(pinned[name] ?? []), ...((config.glass && config.glass.exclude) || [])]
   const glass =
-    item?.glass && config.glass !== false
-      ? glassControls.filter((c) => !config.glass || !config.glass.exclude?.includes(c.key))
-      : []
+    item?.glass && config.glass !== false ? glassControls.filter((c) => !hidden.includes(c.key)) : []
   return { item, config, own, glass }
 }
 

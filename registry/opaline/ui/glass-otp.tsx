@@ -105,7 +105,7 @@ function GlassOTP({
         ref={row}
         onAnimationEnd={(e) => e.target === e.currentTarget && setShake(false)}
         className={cn(
-          "relative flex items-center gap-2",
+          "relative flex items-center gap-1.5 sm:gap-2",
           shake && "animate-[opaline-shake_0.4s_ease-in-out]"
         )}
       >
@@ -123,7 +123,7 @@ function GlassOTP({
                 bezel={12}
                 tint={tint}
                 className={cn(
-                  "grid h-14 w-12 place-items-center rounded-[18px] text-[24px] font-semibold tracking-[-0.02em] text-(--glass-foreground) tabular-nums transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+                  "grid h-12 w-10 place-items-center rounded-[16px] text-[20px] font-semibold sm:h-14 sm:w-12 sm:rounded-[18px] sm:text-[24px] tracking-[-0.02em] text-(--glass-foreground) tabular-nums transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
                   status === "success" && "scale-[1.04]",
                   className
                 )}
@@ -137,7 +137,7 @@ function GlassOTP({
                     {mask ? "•" : char}
                   </span>
                 ) : isActive ? (
-                  <span className="h-7 w-0.5 rounded-full bg-current motion-safe:animate-[opaline-caret_1s_steps(1)_infinite]" />
+                  <span className="h-6 w-0.5 rounded-full sm:h-7 bg-current motion-safe:animate-[opaline-caret_1s_steps(1)_infinite]" />
                 ) : null}
               </LiquidGlass>
             </React.Fragment>

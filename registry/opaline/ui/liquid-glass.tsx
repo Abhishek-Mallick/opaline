@@ -20,7 +20,7 @@ type GlassSettings = {
   ior?: number
   /** Cross-section of the rim: `squircle` (Apple), `circle`, `concave` or `lip`. */
   surface?: GlassSurface
-  /** Height of the glass as a multiple of the bezel width. Thicker glass bends light further. */
+  /** Height of the glass as a multiple of the bezel width (default 1.4). Thicker glass bends light further. */
   thickness?: number
   /** Explicit refraction strength in px; overrides the value computed from the optics. */
   refraction?: number

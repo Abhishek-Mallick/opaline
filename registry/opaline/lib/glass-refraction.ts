@@ -35,13 +35,16 @@ export type GlassMapOptions = GlassOptics & {
 export type DisplacementMap = {
   /** Data URL of the RG vector map (128 = no displacement). */
   url: string
-  /** Largest displacement in px — use it as `feDisplacementMap`'s `scale`. */
+  /**
+   * `feDisplacementMap` scale: 2 × the largest displacement in px, because the
+   * filter moves pixels by scale · (C / 255 − 0.5) and a full vector is ±0.5.
+   */
   scale: number
 }
 
 export const DEFAULT_IOR = 1.5
 /** Thickness relative to the bezel when none is given. */
-export const DEFAULT_THICKNESS_RATIO = 2.4
+export const DEFAULT_THICKNESS_RATIO = 1.4
 /** Samples taken across the bezel; one per 8-bit step of the encoded map. */
 export const PROFILE_SAMPLES = 128
 
@@ -195,8 +198,8 @@ function remember<T>(map: Map<string, T>, key: string, value: T) {
  *
  * Each pixel in the bezel looks up its ray's displacement, divides it by the
  * largest one so it fits in −1 … 1, and stores the vector as
- * R = 128 + x·127, G = 128 + y·127. `feDisplacementMap` multiplies it back by
- * `scale` (the returned maximum) to recover pixels.
+ * R = 128 + x·127, G = 128 + y·127. `feDisplacementMap` moves each pixel by
+ * scale · (C / 255 − 0.5), so the returned scale of 2 × max recovers pixels.
  */
 export function createDisplacementMap(options: GlassMapOptions): DisplacementMap {
   const { width, height, radius, bezel } = options
@@ -229,7 +232,7 @@ export function createDisplacementMap(options: GlassMapOptions): DisplacementMap
     data[i + 3] = 255
   })
   if (!url) return { url: "", scale: 0 }
-  return remember(cache, key, { url, scale: max })
+  return remember(cache, key, { url, scale: max * 2 })
 }
 
 /**
@@ -248,14 +251,12 @@ export function createSpecularMap(
 
   const lx = Math.cos((angle * Math.PI) / 180)
   const ly = Math.sin((angle * Math.PI) / 180)
-  // Normalise tilt so the steepest point of any profile is fully bright.
-  let peak = 0
-  for (let i = 0; i <= 64; i++) peak = Math.max(peak, Math.abs(surfaceSlope(surface, Math.max(i / 64, 1e-3))))
-
   const url = paintRoundedRect({ width, height, radius }, (dist, nx, ny, data, i) => {
     let a = 0
     if (dist > 0 && dist < b) {
-      const tilt = Math.abs(surfaceSlope(surface, Math.max(dist / b, 1e-3))) / (peak || 1)
+      // sin of the surface's tilt: 0 where flat, → 1 where vertical.
+      const slope = Math.abs(surfaceSlope(surface, Math.max(dist / b, 1e-3)))
+      const tilt = slope / Math.hypot(1, slope)
       const facing = Math.abs(nx * lx + ny * ly)
       a = Math.pow(facing, 3) * Math.pow(tilt, 0.6)
     }

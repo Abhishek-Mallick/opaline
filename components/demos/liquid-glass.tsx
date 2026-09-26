@@ -16,7 +16,7 @@ export default function LiquidGlassDemo() {
       </LiquidGlass>
       <LiquidGlass
         bezel={40}
-        thickness={3.2}
+        thickness={1.9}
         dispersion={0.2}
         className="grid h-36 w-24 place-items-center rounded-full text-sm font-medium"
       >

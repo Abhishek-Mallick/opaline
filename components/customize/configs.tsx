@@ -56,6 +56,40 @@ const s = (v: Values, k: string) => String(v[k] ?? "")
 const n = (v: Values, k: string) => Number(v[k])
 const b = (v: Values, k: string) => Boolean(v[k])
 
+/**
+ * Glass settings a component pins on its own surface (e.g. a widget is always
+ * frosted), so a provider can't change them. Their controls are hidden.
+ */
+export const pinned: Record<string, string[]> = {
+  "glass-badge": ["bezel"],
+  "glass-card": ["variant"],
+  "glass-clock": ["bezel"],
+  "glass-command": ["variant"],
+  "glass-context-menu": ["variant"],
+  "glass-control-center": ["bezel"],
+  "glass-date-picker": ["variant"],
+  "glass-dialog": ["variant"],
+  "glass-dock": ["bezel", "variant"],
+  "glass-knob": ["bezel"],
+  "glass-lens": ["bezel", "thickness"],
+  "glass-menu": ["variant"],
+  "glass-notification": ["variant"],
+  "glass-player": ["variant"],
+  "glass-popover": ["variant"],
+  "glass-select": ["variant"],
+  "glass-sheet": ["variant"],
+  "glass-sidebar": ["variant"],
+  "glass-slider": ["bezel", "thickness"],
+  "glass-stack": ["variant"],
+  "glass-switch": ["bezel", "thickness"],
+  "glass-toast": ["variant"],
+  "glass-tooltip": ["variant"],
+  "glass-widget": ["bezel", "variant"],
+  "glass-widget-battery": ["bezel", "variant"],
+  "glass-widget-calendar": ["bezel", "variant"],
+  "glass-widget-weather": ["bezel", "variant"],
+}
+
 export const customizations: Record<string, Customization> = {
   "liquid-glass": {
     glassMode: "props",
@@ -67,7 +101,7 @@ export const customizations: Record<string, Customization> = {
     ],
     presets: [
       { name: "Pill", values: { width: 260, height: 88, radius: 44 } },
-      { name: "Orb", values: { width: 180, height: 180, radius: 90, surface: "circle", thickness: 3 } },
+      { name: "Orb", values: { width: 180, height: 180, radius: 90, surface: "circle", thickness: 1.8 } },
       { name: "Tile", values: { width: 200, height: 200, radius: 48 } },
     ],
     render: (v, glass) => (
@@ -154,7 +188,6 @@ export const customizations: Record<string, Customization> = {
         type: "string",
       },
     ],
-    glass: { exclude: ["bezel"] },
     presets: [
       { name: "Recording", values: { children: "Recording", dot: "#ff3b30" } },
       { name: "Syncing", values: { children: "Syncing", dot: "#ff9f0a" } },
@@ -184,10 +217,9 @@ export const customizations: Record<string, Customization> = {
       text("title", "Title", "72°"),
       text("description", "Description", "Cupertino"),
     ],
-    glass: { exclude: ["variant"] },
     presets: [
       { name: "Clear", values: { variant: "clear" } },
-      { name: "Thick crystal", values: { ior: 1.9, thickness: 3.6, specular: 0.5 } },
+      { name: "Thick crystal", values: { ior: 1.9, thickness: 2.1, specular: 0.5 } },
     ],
     render: (v) => (
       <GlassCard variant={s(v, "variant") as "frosted"} className="w-full max-w-[280px]">
@@ -223,7 +255,7 @@ export const customizations: Record<string, Customization> = {
   "glass-lens": {
     controls: [num("size", "Size", 150, 60, 260, { unit: "px", step: 2, remount: true })],
     presets: [
-      { name: "Magnifier", values: { size: 190, ior: 1.8, thickness: 3.2 } },
+      { name: "Magnifier", values: { size: 190, ior: 1.9, dispersion: 0.25 } },
       { name: "Droplet", values: { size: 100, surface: "circle", ior: 1.33 } },
     ],
     render: (v) => (
@@ -366,7 +398,6 @@ export const customizations: Record<string, Customization> = {
         type: '"frosted" | "clear"',
       },
     ],
-    glass: { exclude: ["bezel", "variant"] },
     render: (v) => (
       <GlassWidget size={s(v, "size") as WidgetSize} variant={s(v, "variant") as "frosted"} className="justify-between">
         <span className="text-[12px] font-semibold tracking-wide uppercase opacity-60">{s(v, "size")}</span>

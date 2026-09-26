@@ -21,7 +21,7 @@
 
 ![Opaline](public/og.png)
 
-Opaline is a collection of liquid glass components built on Tailwind CSS v4 and Radix UI. Surfaces bend the backdrop through real displacement maps, not just blur. You install the source with the shadcn CLI, so every component is yours to edit.
+Opaline is a collection of liquid glass components built on Tailwind CSS v4 and Radix UI. Surfaces bend the backdrop through real displacement maps, not just blur: light is traced through the glass rim with Snell's law, using a surface profile, an index of refraction and a thickness you control. You install the source with the shadcn CLI, so every component is yours to edit.
 
 ## Installation
 
@@ -55,15 +55,37 @@ export default function Page() {
 
 Glass needs something to bend. Place components over imagery, gradients or content.
 
+Tune the optics for a whole subtree with `LiquidGlassProvider`. Props set directly on a component still win:
+
+```tsx
+import { LiquidGlassProvider } from "@/components/ui/liquid-glass"
+
+<LiquidGlassProvider ior={1.9} surface="lip" thickness={1.8} specular={0.5}>
+  <App />
+</LiquidGlassProvider>
+```
+
+| Prop | Default | |
+| --- | --- | --- |
+| `ior` | `1.5` | Index of refraction: 1.33 water, 1.5 glass, 2.42 diamond |
+| `surface` | `"squircle"` | Rim profile: `squircle`, `circle`, `concave` or `lip` |
+| `thickness` | `1.4` | Glass height as a multiple of the bezel width |
+| `bezel` | auto | Width of the refracting rim in px |
+| `dispersion` | `0.12` | Chromatic split at the rim |
+| `specular` | `0.2` | Light catching the rim, from `lightAngle` (default `-60`) |
+| `blur`, `saturation`, `tint`, `variant`, `shadow` | | Backdrop and surface finish |
+
+Every component page has a **Customize** panel to try these live and copy the code, and the [Liquid Glass page](https://opaline.buildlab.in/components/liquid-glass) walks through the maths with interactive figures.
+
 ## Components
 
-**Liquid Glass**: Badge · Button · Card · Clock · Command · Context Menu · Control Center · Date Picker · Dialog · Dock · Input · Knob · Lens · Menu · Notification · Player · Popover · Segmented · Select · Sheet · Sidebar · Slider · Stack · Stepper · Switch · Tab Bar · Tabs · Text · Toast · Toolbar · Tooltip
+**Liquid Glass**: Badge · Button · Card · Clock · Command · Context Menu · Control Center · Date Picker · Dialog · Dock · Input · Knob · Lens · Menu · Notification · OTP Input · Player · Popover · Segmented · Select · Sheet · Sidebar · Slider · Stack · Stepper · Switch · Tab Bar · Tabs · Text · Toast · Toolbar · Tooltip
 
 **Widgets**: Weather · Calendar · Battery, in iOS small, medium and large sizes
 
 **Accents**: Activity Rings · Mesh Gradient · Rolling Number · Shimmer Text · Spinner
 
-Every component has a live preview, source code and install commands on the [website](https://opaline.buildlab.in/components).
+Every component has a live preview with a Customize panel, a props table, source code and install commands on the [website](https://opaline.buildlab.in/components).
 
 ## Browser support
 
