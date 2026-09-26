@@ -122,7 +122,6 @@ function GlassKnob({
       </svg>
       <LiquidGlass
         bezel={size * 0.18}
-        refraction={size * 0.22}
         className="grid place-items-center rounded-full text-(--glass-foreground) transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-active/knob:scale-[1.04]"
         style={{ width: size * 0.66, height: size * 0.66 }}
       >

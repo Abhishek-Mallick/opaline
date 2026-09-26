@@ -31,7 +31,6 @@ function GlassControlTile({
     <LiquidGlass
       data-slot="glass-control-tile"
       bezel={14}
-      refraction={22}
       className={cn(
         "flex min-h-[68px] flex-col justify-center gap-2 rounded-[24px] p-3 transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] has-[button:active]:scale-[0.98]",
         cols === 1 && "aspect-square min-h-0 items-center justify-center p-0",

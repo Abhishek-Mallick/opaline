@@ -44,7 +44,6 @@ function GlassTabsList({
             aria-hidden
             shadow={false}
             bezel={12}
-            refraction={18}
             tint="var(--glass-highlight)"
             className="absolute rounded-full transition-[left,width] duration-500 ease-[cubic-bezier(0.34,1.3,0.64,1)]"
             style={{

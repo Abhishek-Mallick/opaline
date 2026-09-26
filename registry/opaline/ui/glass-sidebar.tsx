@@ -64,7 +64,6 @@ function GlassSidebar({
                 aria-hidden
                 shadow={false}
                 bezel={10}
-                refraction={14}
                 tint="var(--glass-highlight)"
                 className="absolute rounded-[14px] transition-[top,height,width] duration-400 ease-[cubic-bezier(0.34,1.25,0.64,1)]"
                 style={{ left: rect.left, top: rect.top, width: rect.width, height: rect.height }}

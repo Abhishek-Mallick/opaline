@@ -24,7 +24,6 @@ function GlassWidget({
       data-size={size}
       variant={variant}
       bezel={20}
-      refraction={30}
       className={cn(
         "flex shrink-0 flex-col overflow-hidden rounded-[28px] p-4 text-(--glass-foreground)",
         sizes[size],

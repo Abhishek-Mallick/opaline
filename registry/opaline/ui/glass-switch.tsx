@@ -27,7 +27,7 @@ function GlassSwitch({
         <LiquidGlass
           data-slot="glass-switch-thumb"
           bezel={10}
-          refraction={22}
+          thickness={3.6}
           className="pointer-events-none block h-[26px] w-[34px] rounded-full transition-[transform,width,height] duration-400 ease-[cubic-bezier(0.34,1.45,0.64,1)] group-active/switch:scale-[1.28] data-[state=checked]:translate-x-5"
         >
           <span className="absolute inset-0 rounded-full bg-white shadow-[0_2px_6px_rgb(0_0_0/0.2)] transition-opacity duration-300 group-active/switch:opacity-0" />
