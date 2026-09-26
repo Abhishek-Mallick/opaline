@@ -91,7 +91,7 @@ function GlassDock({
           onPointerLeave?.(e)
         }}
         className={cn(
-          "flex w-fit items-end gap-2 rounded-[24px] px-2 pb-2",
+          "flex w-fit items-end gap-2 rounded-[18px] px-2 pb-2",
           className
         )}
         style={{ height: size + 16, ...style }}

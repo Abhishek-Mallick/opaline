@@ -20,7 +20,7 @@ function AppIcon({ from, to, children }: { from: string; to: string; children: R
 
 export default function GlassNotificationDemo() {
   return (
-    <div className="flex h-[260px] w-full max-w-sm items-start pt-4">
+    <div className="flex h-[260px] w-full max-w-sm items-start">
       <GlassNotificationStack>
         <GlassNotification
           icon={<AppIcon from="#6ef08a" to="#1fbf4a"><MessageCircleIcon /></AppIcon>}

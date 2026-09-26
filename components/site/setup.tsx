@@ -18,7 +18,9 @@ const steps = [
     body: "Pull individual pieces, or the theme and everything at once.",
     label: "Terminal",
     lang: "bash" as const,
-    code: `npx shadcn@latest add @opaline/theme @opaline/glass-button
+    code: `# Install individual components
+npx shadcn@latest add @opaline/theme @opaline/glass-button
+
 # or everything
 npx shadcn@latest add @opaline/all`,
   },
