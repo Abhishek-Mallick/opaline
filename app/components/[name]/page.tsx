@@ -8,6 +8,7 @@ import { CopyPageButton } from "@/components/site/copy-page"
 import { CodeBlock } from "@/components/site/code-block"
 import { DocsNav } from "@/components/site/docs-nav"
 import { InstallTabs, type InstallData } from "@/components/site/install-tabs"
+import { GlassArticle } from "@/components/article/glass-article"
 import { Customizer, PropsTable } from "@/components/customize/customizer"
 import { highlight } from "@/lib/highlight"
 import { installCommand, siteConfig } from "@/lib/site"
@@ -145,6 +146,8 @@ export default async function ComponentPage({
         ) : null}
 
         <PropsTable name={name} />
+
+        {name === "liquid-glass" ? <GlassArticle /> : null}
 
         {item.glass ? (
           <p className="rounded-2xl border border-border bg-muted/40 px-4 py-3 text-[13.5px] leading-relaxed text-muted-foreground">
