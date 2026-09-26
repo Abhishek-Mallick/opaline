@@ -1,14 +1,8 @@
 "use client"
 
 import * as React from "react"
-import {
-  PauseIcon,
-  PlayIcon,
-  SkipBackIcon,
-  SkipForwardIcon,
-  Volume1Icon,
-  Volume2Icon,
-} from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { PauseIcon, PlayIcon, SkipBackIcon, SkipForwardIcon, VolumeHighIcon, VolumeLowIcon } from "@hugeicons/core-free-icons"
 
 import { cn } from "@/lib/utils"
 import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
@@ -148,7 +142,7 @@ function GlassPlayer({
           className="size-11 hover:bg-(--glass-highlight)"
           onClick={() => setProgress(0)}
         >
-          <SkipBackIcon className="size-6" />
+          <HugeiconsIcon icon={SkipBackIcon} className="size-6" />
         </button>
         <button
           type="button"
@@ -157,9 +151,9 @@ function GlassPlayer({
           onClick={() => setPlaying((p) => !p)}
         >
           {playing ? (
-            <PauseIcon className="size-9" strokeWidth={0} />
+            <HugeiconsIcon icon={PauseIcon} className="size-9" strokeWidth={0} />
           ) : (
-            <PlayIcon className="size-9" strokeWidth={0} />
+            <HugeiconsIcon icon={PlayIcon} className="size-9" strokeWidth={0} />
           )}
         </button>
         <button
@@ -168,19 +162,19 @@ function GlassPlayer({
           className="size-11 hover:bg-(--glass-highlight)"
           onClick={() => setProgress(0)}
         >
-          <SkipForwardIcon className="size-6" />
+          <HugeiconsIcon icon={SkipForwardIcon} className="size-6" />
         </button>
       </div>
 
       <div className="flex items-center gap-3 [&_svg]:size-4 [&_svg]:shrink-0 [&_svg]:opacity-55">
-        <Volume1Icon />
+        <HugeiconsIcon icon={VolumeLowIcon} />
         <Scrubber
           value={volume}
           onChange={setVolume}
           label="Volume"
           className="flex-1"
         />
-        <Volume2Icon />
+        <HugeiconsIcon icon={VolumeHighIcon} />
       </div>
     </LiquidGlass>
   )

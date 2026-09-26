@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { CheckIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { CheckIcon } from "@hugeicons/core-free-icons"
 import { DropdownMenu as MenuPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -79,7 +80,7 @@ function GlassMenuCheckboxItem({
     >
       <span className="absolute left-3 flex size-4 items-center justify-center">
         <MenuPrimitive.ItemIndicator>
-          <CheckIcon className="size-4 !opacity-100" strokeWidth={2.5} />
+          <HugeiconsIcon icon={CheckIcon} className="size-4 !opacity-100" strokeWidth={2.5} />
         </MenuPrimitive.ItemIndicator>
       </span>
       {children}

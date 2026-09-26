@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { XIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { XIcon } from "@hugeicons/core-free-icons"
 import { Dialog as DialogPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -121,7 +122,7 @@ function GlassSheetContent({
           {children}
           {showCloseButton && !drawer ? (
             <DialogPrimitive.Close className="absolute top-4 right-4 grid size-8 cursor-pointer place-items-center rounded-full bg-(--glass-highlight) opacity-80 transition-[opacity,transform] outline-none hover:opacity-100 focus-visible:ring-[3px] focus-visible:ring-ring/40 active:scale-90 [&_svg]:size-4">
-              <XIcon strokeWidth={2.25} />
+              <HugeiconsIcon icon={XIcon} strokeWidth={2.25} />
               <span className="sr-only">Close</span>
             </DialogPrimitive.Close>
           ) : null}

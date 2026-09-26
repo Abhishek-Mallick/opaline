@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRightIcon } from "lucide-react";
+import { HugeiconsIcon } from "@hugeicons/react"
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons"
 
 import { Demo } from "@/components/demos";
 import { demoMeta } from "@/components/demos/meta";
@@ -29,7 +30,7 @@ export function Tile({ name }: { name: string }) {
           className="group/link flex min-w-0 flex-1 items-center gap-1.5 text-[14px] font-medium tracking-[-0.01em]"
         >
           <span className="truncate">{item?.title ?? name}</span>
-          <ArrowUpRightIcon className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-foreground" />
+          <HugeiconsIcon icon={ArrowUpRight01Icon} className="size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 group-hover/link:text-foreground" />
         </Link>
         <InstallChip name={name} />
       </footer>

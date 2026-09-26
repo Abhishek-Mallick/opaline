@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { ArrowRightIcon, HeartIcon, MicIcon, PauseIcon, PlayIcon, SearchIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { ArrowRight01Icon, HeartIcon, Mic01Icon, PauseIcon, PlayIcon, Search01Icon } from "@hugeicons/core-free-icons"
 
 import { InstallBar } from "@/components/site/install-mode"
 import { Wallpaper } from "@/components/site/wallpaper"
@@ -64,20 +65,20 @@ export function Hero() {
             className="max-w-sm"
             placeholder="Search anything"
             aria-label="Search"
-            startIcon={<SearchIcon />}
-            endAdornment={<MicIcon />}
+            startIcon={<HugeiconsIcon icon={Search01Icon} />}
+            endAdornment={<HugeiconsIcon icon={Mic01Icon} />}
           /> */}
           <div className="flex items-center gap-2.5">
             <GlassButton size="icon" aria-label="Like">
-              <HeartIcon />
+              <HugeiconsIcon icon={HeartIcon} />
             </GlassButton>
             <GlassButton variant="prominent" asChild>
               <a href="#components">
-                Explore components <ArrowRightIcon />
+                Explore components <HugeiconsIcon icon={ArrowRight01Icon} />
               </a>
             </GlassButton>
             <GlassButton size="icon" aria-label={paused ? "Play" : "Pause"} aria-pressed={paused} onClick={toggleVideo}>
-              {paused ? <PlayIcon className="fill-current" /> : <PauseIcon className="fill-current" />}
+              {paused ? <HugeiconsIcon icon={PlayIcon} className="fill-current" /> : <HugeiconsIcon icon={PauseIcon} className="fill-current" />}
             </GlassButton>
           </div>
         </div>

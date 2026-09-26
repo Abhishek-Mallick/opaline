@@ -289,7 +289,8 @@
       "description": "Glass calendar with a gliding day bubble, and a capsule date picker.",
       "dependencies": [
         "radix-ui",
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json",
@@ -334,7 +335,8 @@
       "title": "Glass Stepper",
       "description": "Capsule stepper with rolling digits, hold-to-accelerate and a shake at the limits.",
       "dependencies": [
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json",
@@ -391,7 +393,8 @@
       "description": "Right-click menu that springs from the cursor, with a row of round quick actions.",
       "dependencies": [
         "radix-ui",
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json"
@@ -551,7 +554,8 @@
       "title": "Battery Widget",
       "description": "Batteries widget with device rings that fill, turn red when low and show charging.",
       "dependencies": [
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json",
@@ -658,7 +662,8 @@
       "description": "Floating source list with a sliding glass selection and icon-only mode.",
       "dependencies": [
         "radix-ui",
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json",
@@ -697,7 +702,8 @@
       "dependencies": [
         "cmdk",
         "radix-ui",
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json"
@@ -733,7 +739,8 @@
       "title": "Glass Player",
       "description": "Now-playing widget with scrubber, transport controls and volume.",
       "dependencies": [
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json"
@@ -1045,7 +1052,8 @@
       "description": "Floating side sheet, or a drag-to-dismiss bottom drawer with side=\"bottom\".",
       "dependencies": [
         "radix-ui",
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json"
@@ -1081,7 +1089,8 @@
       "title": "Glass Toast",
       "description": "Imperative toasts on glass that drop in from the top.",
       "dependencies": [
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json"
@@ -1154,7 +1163,8 @@
       "description": "Capsule select with a frosted glass option list.",
       "dependencies": [
         "radix-ui",
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json"
@@ -1191,7 +1201,8 @@
       "description": "Dropdown menu rendered on liquid glass.",
       "dependencies": [
         "radix-ui",
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json"
@@ -1228,7 +1239,8 @@
       "description": "Modal on a frosted glass sheet with springy transform-only motion.",
       "dependencies": [
         "radix-ui",
-        "lucide-react"
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
       ],
       "registryDependencies": [
         "https://opaline.buildlab.in/r/liquid-glass.json"

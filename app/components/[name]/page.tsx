@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { ArrowLeft01Icon, ArrowRight01Icon } from "@hugeicons/core-free-icons"
 
 import { CopyPageButton } from "@/components/site/copy-page"
 import { CodeBlock } from "@/components/site/code-block"
@@ -160,7 +161,7 @@ export default async function ComponentPage({
             <Link href={`/components/${prev.name}`} className="group flex flex-col gap-0.5 text-sm">
               <span className="text-muted-foreground">Previous</span>
               <span className="flex items-center gap-1 font-medium">
-                <ArrowLeftIcon className="size-4 transition-transform group-hover:-translate-x-0.5" />
+                <HugeiconsIcon icon={ArrowLeft01Icon} className="size-4 transition-transform group-hover:-translate-x-0.5" />
                 {prev.title}
               </span>
             </Link>
@@ -172,7 +173,7 @@ export default async function ComponentPage({
               <span className="text-muted-foreground">Next</span>
               <span className="flex items-center gap-1 font-medium">
                 {next.title}
-                <ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" />
+                <HugeiconsIcon icon={ArrowRight01Icon} className="size-4 transition-transform group-hover:translate-x-0.5" />
               </span>
             </Link>
           ) : null}
@@ -189,13 +190,13 @@ function NavArrow({
   item?: { name: string; title: string }
   dir: "prev" | "next"
 }) {
-  const Icon = dir === "prev" ? ArrowLeftIcon : ArrowRightIcon
+  const Icon = dir === "prev" ? ArrowLeft01Icon : ArrowRight01Icon
   const cls =
     "grid size-8 place-items-center rounded-lg border border-border bg-background text-muted-foreground transition-colors"
   if (!item)
     return (
       <span className={`${cls} opacity-40`} aria-hidden>
-        <Icon className="size-4" />
+        <HugeiconsIcon icon={Icon} className="size-4" />
       </span>
     )
   return (
@@ -204,7 +205,7 @@ function NavArrow({
       aria-label={`${dir === "prev" ? "Previous" : "Next"}: ${item.title}`}
       className={`${cls} hover:text-foreground`}
     >
-      <Icon className="size-4" />
+      <HugeiconsIcon icon={Icon} className="size-4" />
     </Link>
   )
 }

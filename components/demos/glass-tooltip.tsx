@@ -1,6 +1,7 @@
 "use client"
 
-import { BellIcon, HeartIcon, ShareIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { BellIcon, HeartIcon, Share01Icon } from "@hugeicons/core-free-icons"
 
 import { GlassButton } from "@/registry/opaline/ui/glass-button"
 import {
@@ -10,9 +11,9 @@ import {
 } from "@/registry/opaline/ui/glass-tooltip"
 
 const actions = [
-  { label: "Notifications", icon: <BellIcon /> },
-  { label: "Favourite", icon: <HeartIcon /> },
-  { label: "Share", icon: <ShareIcon /> },
+  { label: "Notifications", icon: <HugeiconsIcon icon={BellIcon} /> },
+  { label: "Favourite", icon: <HugeiconsIcon icon={HeartIcon} /> },
+  { label: "Share", icon: <HugeiconsIcon icon={Share01Icon} /> },
 ]
 
 export default function GlassTooltipDemo() {

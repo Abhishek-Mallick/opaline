@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { MinusIcon, PlusIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { MinusIcon, PlusIcon } from "@hugeicons/core-free-icons"
 
 import { cn } from "@/lib/utils"
 import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
@@ -111,7 +112,7 @@ function GlassStepper({
         onPointerLeave={stop}
         className={button}
       >
-        <MinusIcon strokeWidth={2.5} />
+        <HugeiconsIcon icon={MinusIcon} strokeWidth={2.5} />
       </button>
       <RollingNumber
         value={value}
@@ -128,7 +129,7 @@ function GlassStepper({
         onPointerLeave={stop}
         className={button}
       >
-        <PlusIcon strokeWidth={2.5} />
+        <HugeiconsIcon icon={PlusIcon} strokeWidth={2.5} />
       </button>
     </LiquidGlass>
   )

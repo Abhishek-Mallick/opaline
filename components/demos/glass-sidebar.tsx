@@ -1,15 +1,8 @@
 "use client"
 
 import * as React from "react"
-import {
-  ClockIcon,
-  CloudIcon,
-  FolderIcon,
-  HouseIcon,
-  InboxIcon,
-  SettingsIcon,
-  StarIcon,
-} from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Clock01Icon, CloudIcon, Folder01Icon, Home01Icon, InboxIcon, Settings01Icon, StarIcon } from "@hugeicons/core-free-icons"
 
 import {
   GlassSidebar,
@@ -24,17 +17,17 @@ const groups = [
   {
     label: "Favourites",
     items: [
-      { id: "home", label: "Home", icon: <HouseIcon /> },
-      { id: "inbox", label: "Inbox", icon: <InboxIcon />, badge: 4 },
-      { id: "recents", label: "Recents", icon: <ClockIcon /> },
+      { id: "home", label: "Home", icon: <HugeiconsIcon icon={Home01Icon} /> },
+      { id: "inbox", label: "Inbox", icon: <HugeiconsIcon icon={InboxIcon} />, badge: 4 },
+      { id: "recents", label: "Recents", icon: <HugeiconsIcon icon={Clock01Icon} /> },
     ],
   },
   {
     label: "Locations",
     items: [
-      { id: "cloud", label: "iCloud Drive", icon: <CloudIcon /> },
-      { id: "projects", label: "Projects", icon: <FolderIcon /> },
-      { id: "starred", label: "Starred", icon: <StarIcon /> },
+      { id: "cloud", label: "iCloud Drive", icon: <HugeiconsIcon icon={CloudIcon} /> },
+      { id: "projects", label: "Projects", icon: <HugeiconsIcon icon={Folder01Icon} /> },
+      { id: "starred", label: "Starred", icon: <HugeiconsIcon icon={StarIcon} /> },
     ],
   },
 ]
@@ -64,7 +57,7 @@ export default function GlassSidebarDemo() {
         ))}
         <GlassSidebarFooter>
           <GlassSidebarItem
-            icon={<SettingsIcon />}
+            icon={<HugeiconsIcon icon={Settings01Icon} />}
             active={active === "settings"}
             onClick={() => setActive("settings")}
           >

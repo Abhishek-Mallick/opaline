@@ -1,6 +1,7 @@
 "use client"
 
-import { BellIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { BellIcon } from "@hugeicons/core-free-icons"
 
 import { GlassButton } from "@/registry/opaline/ui/glass-button"
 import { toast } from "@/registry/opaline/ui/glass-toast"
@@ -9,7 +10,7 @@ import { toast } from "@/registry/opaline/ui/glass-toast"
 export default function GlassToastDemo() {
   return (
     <div className="flex flex-wrap justify-center gap-3">
-      <GlassButton onClick={() => toast("AirPods Pro connected", { icon: <BellIcon /> })}>
+      <GlassButton onClick={() => toast("AirPods Pro connected", { icon: <HugeiconsIcon icon={BellIcon} /> })}>
         Default
       </GlassButton>
       <GlassButton

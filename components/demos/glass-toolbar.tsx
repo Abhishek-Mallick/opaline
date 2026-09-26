@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { BoldIcon, HighlighterIcon, ItalicIcon, LinkIcon, UnderlineIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { BoldIcon, HighlighterIcon, ItalicIcon, LinkIcon, UnderlineIcon } from "@hugeicons/core-free-icons"
 
 import {
   GlassToolbar,
@@ -10,10 +11,10 @@ import {
 } from "@/registry/opaline/ui/glass-toolbar"
 
 const tools = [
-  { id: "bold", icon: <BoldIcon /> },
-  { id: "italic", icon: <ItalicIcon /> },
-  { id: "underline", icon: <UnderlineIcon /> },
-  { id: "highlight", icon: <HighlighterIcon /> },
+  { id: "bold", icon: <HugeiconsIcon icon={BoldIcon} /> },
+  { id: "italic", icon: <HugeiconsIcon icon={ItalicIcon} /> },
+  { id: "underline", icon: <HugeiconsIcon icon={UnderlineIcon} /> },
+  { id: "highlight", icon: <HugeiconsIcon icon={HighlighterIcon} /> },
 ]
 
 export default function GlassToolbarDemo() {
@@ -35,7 +36,7 @@ export default function GlassToolbarDemo() {
       ))}
       <GlassToolbarSeparator />
       <GlassToolbarButton aria-label="Link">
-        <LinkIcon />
+        <HugeiconsIcon icon={LinkIcon} />
       </GlassToolbarButton>
     </GlassToolbar>
   )

@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { MoonIcon, SunIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { MoonIcon, Sun01Icon } from "@hugeicons/core-free-icons"
 
 import Link from "next/link"
 
@@ -63,8 +64,8 @@ function ThemeToggle() {
       aria-label="Toggle theme"
       className="grid size-9 cursor-pointer place-items-center rounded-full transition-colors hover:bg-foreground/[0.06] active:scale-90"
     >
-      <SunIcon className="size-[18px] dark:hidden" />
-      <MoonIcon className="hidden size-[18px] dark:block" />
+      <HugeiconsIcon icon={Sun01Icon} className="size-[18px] dark:hidden" />
+      <HugeiconsIcon icon={MoonIcon} className="hidden size-[18px] dark:block" />
     </button>
   )
 }

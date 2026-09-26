@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { CheckIcon, ChevronRightIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { CheckIcon, ChevronRightIcon } from "@hugeicons/core-free-icons"
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -110,7 +111,7 @@ function GlassContextMenuCheckboxItem({
     >
       <span className="absolute left-3 flex size-4 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <CheckIcon className="size-4 !opacity-100" strokeWidth={2.5} />
+          <HugeiconsIcon icon={CheckIcon} className="size-4 !opacity-100" strokeWidth={2.5} />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -134,7 +135,7 @@ function GlassContextMenuSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto size-4" />
+      <HugeiconsIcon icon={ChevronRightIcon} className="ml-auto size-4" />
     </ContextMenuPrimitive.SubTrigger>
   )
 }

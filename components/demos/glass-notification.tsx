@@ -1,6 +1,7 @@
 "use client"
 
-import { MailIcon, MessageCircleIcon, MusicIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Mail01Icon, MessageCircleIcon, MusicIcon } from "@hugeicons/core-free-icons"
 
 import {
   GlassNotification,
@@ -23,21 +24,21 @@ export default function GlassNotificationDemo() {
     <div className="flex h-[260px] w-full max-w-sm items-start">
       <GlassNotificationStack>
         <GlassNotification
-          icon={<AppIcon from="#6ef08a" to="#1fbf4a"><MessageCircleIcon /></AppIcon>}
+          icon={<AppIcon from="#6ef08a" to="#1fbf4a"><HugeiconsIcon icon={MessageCircleIcon} /></AppIcon>}
           title="Ava"
           time="now"
         >
           Dinner at 8? I found a place with a view of the bay.
         </GlassNotification>
         <GlassNotification
-          icon={<AppIcon from="#6cc6ff" to="#1666e0"><MailIcon /></AppIcon>}
+          icon={<AppIcon from="#6cc6ff" to="#1666e0"><HugeiconsIcon icon={Mail01Icon} /></AppIcon>}
           title="Design Review"
           time="5m ago"
         >
           The new glass tokens are approved for release.
         </GlassNotification>
         <GlassNotification
-          icon={<AppIcon from="#ff6b8a" to="#fa2d48"><MusicIcon /></AppIcon>}
+          icon={<AppIcon from="#ff6b8a" to="#fa2d48"><HugeiconsIcon icon={MusicIcon} /></AppIcon>}
           title="New Music"
           time="1h ago"
         >

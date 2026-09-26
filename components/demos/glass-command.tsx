@@ -1,15 +1,8 @@
 "use client"
 
 import * as React from "react"
-import {
-  CalendarIcon,
-  CalculatorIcon,
-  MoonIcon,
-  SearchIcon,
-  SettingsIcon,
-  SmileIcon,
-  UserIcon,
-} from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { CalculatorIcon, Calendar01Icon, MoonIcon, Search01Icon, Settings01Icon, SmileIcon, UserIcon } from "@hugeicons/core-free-icons"
 
 import { GlassButton } from "@/registry/opaline/ui/glass-button"
 import {
@@ -29,7 +22,7 @@ export default function GlassCommandDemo() {
   return (
     <>
       <GlassButton onClick={() => setOpen(true)}>
-        <SearchIcon /> Open palette
+        <HugeiconsIcon icon={Search01Icon} /> Open palette
       </GlassButton>
       <GlassCommandDialog open={open} onOpenChange={setOpen}>
         <GlassCommandInput placeholder="Type a command or search…" />
@@ -37,25 +30,25 @@ export default function GlassCommandDemo() {
           <GlassCommandEmpty>No results found.</GlassCommandEmpty>
           <GlassCommandGroup heading="Suggestions">
             <GlassCommandItem>
-              <CalendarIcon /> Calendar
+              <HugeiconsIcon icon={Calendar01Icon} /> Calendar
             </GlassCommandItem>
             <GlassCommandItem>
-              <SmileIcon /> Search emoji
+              <HugeiconsIcon icon={SmileIcon} /> Search emoji
             </GlassCommandItem>
             <GlassCommandItem>
-              <CalculatorIcon /> Calculator
+              <HugeiconsIcon icon={CalculatorIcon} /> Calculator
             </GlassCommandItem>
           </GlassCommandGroup>
           <GlassCommandSeparator />
           <GlassCommandGroup heading="Settings">
             <GlassCommandItem>
-              <UserIcon /> Profile <GlassCommandShortcut>⌘P</GlassCommandShortcut>
+              <HugeiconsIcon icon={UserIcon} /> Profile <GlassCommandShortcut>⌘P</GlassCommandShortcut>
             </GlassCommandItem>
             <GlassCommandItem>
-              <MoonIcon /> Toggle dark mode <GlassCommandShortcut>⌘D</GlassCommandShortcut>
+              <HugeiconsIcon icon={MoonIcon} /> Toggle dark mode <GlassCommandShortcut>⌘D</GlassCommandShortcut>
             </GlassCommandItem>
             <GlassCommandItem>
-              <SettingsIcon /> Settings <GlassCommandShortcut>⌘,</GlassCommandShortcut>
+              <HugeiconsIcon icon={Settings01Icon} /> Settings <GlassCommandShortcut>⌘,</GlassCommandShortcut>
             </GlassCommandItem>
           </GlassCommandGroup>
         </GlassCommandList>

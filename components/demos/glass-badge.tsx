@@ -1,6 +1,7 @@
 "use client"
 
-import { SparklesIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { SparklesIcon } from "@hugeicons/core-free-icons"
 
 import { GlassBadge } from "@/registry/opaline/ui/glass-badge"
 
@@ -10,7 +11,7 @@ export default function GlassBadgeDemo() {
       <GlassBadge dot="#34c759">Live</GlassBadge>
       <GlassBadge dot="#ff9f0a">Syncing</GlassBadge>
       <GlassBadge>
-        <SparklesIcon /> New
+        <HugeiconsIcon icon={SparklesIcon} /> New
       </GlassBadge>
       <GlassBadge dot="#ff3b30">Recording</GlassBadge>
       <GlassBadge>v1.0</GlassBadge>

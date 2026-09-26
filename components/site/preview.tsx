@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { ChevronDownIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { ChevronDownIcon } from "@hugeicons/core-free-icons"
 
 import { CodeFrame } from "@/components/site/code"
 import { cn } from "@/lib/utils"
@@ -35,7 +36,7 @@ export function Preview({
                 onClick={() => setOpen(true)}
                 className="flex h-9 cursor-pointer items-center gap-1.5 rounded-full border border-border bg-background px-4 text-[13px] font-medium shadow-[0_2px_8px_-2px_rgb(0_0_0/0.12)] transition-transform active:scale-95"
               >
-                View code <ChevronDownIcon className="size-4" />
+                View code <HugeiconsIcon icon={ChevronDownIcon} className="size-4" />
               </button>
             </div>
           ) : null}

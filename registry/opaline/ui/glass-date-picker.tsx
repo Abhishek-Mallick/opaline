@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Calendar01Icon, ChevronLeftIcon, ChevronRightIcon } from "@hugeicons/core-free-icons"
 import { Popover as PopoverPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -98,10 +99,10 @@ function GlassCalendar({
         </div>
         <div className="flex gap-0.5 [&_button]:grid [&_button]:size-8 [&_button]:cursor-pointer [&_button]:place-items-center [&_button]:rounded-full [&_button]:outline-none [&_button]:transition-[background-color,transform] [&_button]:hover:bg-(--glass-highlight) [&_button]:focus-visible:ring-[3px] [&_button]:focus-visible:ring-ring/40 [&_button]:active:scale-90 [&_svg]:size-[18px]">
           <button type="button" aria-label="Previous month" onClick={() => go(-1)}>
-            <ChevronLeftIcon />
+            <HugeiconsIcon icon={ChevronLeftIcon} />
           </button>
           <button type="button" aria-label="Next month" onClick={() => go(1)}>
-            <ChevronRightIcon />
+            <HugeiconsIcon icon={ChevronRightIcon} />
           </button>
         </div>
       </div>
@@ -216,7 +217,7 @@ function GlassDatePicker({
         )}
       >
         <PopoverPrimitive.Trigger data-slot="glass-date-picker">
-          <CalendarIcon />
+          <HugeiconsIcon icon={Calendar01Icon} />
           <span className={cn(!value && "opacity-55")}>
             {value ? new Intl.DateTimeFormat(locale, format).format(value) : placeholder}
           </span>

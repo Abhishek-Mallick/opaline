@@ -193,7 +193,9 @@ export const items: Item[] = [
     "glass-control-center",
     "Glass Control Center",
     "macOS-style Control Center kit — glass modules, toggles, light-filled sliders and buttons.",
-    `import {
+    `import { HugeiconsIcon } from "@hugeicons/react"
+import { BluetoothIcon, SunDimIcon, Timer01Icon, Wifi01Icon } from "@hugeicons/core-free-icons"
+import {
   GlassControlButton,
   GlassControlCenter,
   GlassControlSlider,
@@ -203,14 +205,14 @@ export const items: Item[] = [
 
 <GlassControlCenter>
   <GlassControlTile rows={2}>
-    <GlassControlToggle icon={<WifiIcon />} label="Wi-Fi" defaultPressed />
-    <GlassControlToggle icon={<BluetoothIcon />} label="Bluetooth" />
+    <GlassControlToggle icon={<HugeiconsIcon icon={Wifi01Icon} />} label="Wi-Fi" defaultPressed />
+    <GlassControlToggle icon={<HugeiconsIcon icon={BluetoothIcon} />} label="Bluetooth" />
   </GlassControlTile>
   <GlassControlTile cols={1}>
-    <GlassControlButton aria-label="Timer"><TimerIcon /></GlassControlButton>
+    <GlassControlButton aria-label="Timer"><HugeiconsIcon icon={Timer01Icon} /></GlassControlButton>
   </GlassControlTile>
   <GlassControlTile cols={4}>
-    <GlassControlSlider label="Display" icon={<SunDimIcon />} defaultValue={70} />
+    <GlassControlSlider label="Display" icon={<HugeiconsIcon icon={SunDimIcon} />} defaultValue={70} />
   </GlassControlTile>
 </GlassControlCenter>`
   ),
@@ -218,12 +220,14 @@ export const items: Item[] = [
     "glass-segmented",
     "Glass Segmented",
     "Icon segmented picker whose glass bubble stretches like liquid as it travels.",
-    `import { GlassSegmented, GlassSegmentedItem } from "@/components/ui/glass-segmented"
+    `import { HugeiconsIcon } from "@hugeicons/react"
+import { Folder01Icon, Image01Icon, Search01Icon } from "@hugeicons/core-free-icons"
+import { GlassSegmented, GlassSegmentedItem } from "@/components/ui/glass-segmented"
 
 <GlassSegmented defaultValue="photos" aria-label="Library">
-  <GlassSegmentedItem value="photos" icon={<ImageIcon />} label="Photos" />
-  <GlassSegmentedItem value="albums" icon={<FolderIcon />} label="Albums" />
-  <GlassSegmentedItem value="search" icon={<SearchIcon />} label="Search" />
+  <GlassSegmentedItem value="photos" icon={<HugeiconsIcon icon={Image01Icon} />} label="Photos" />
+  <GlassSegmentedItem value="albums" icon={<HugeiconsIcon icon={Folder01Icon} />} label="Albums" />
+  <GlassSegmentedItem value="search" icon={<HugeiconsIcon icon={Search01Icon} />} label="Search" />
 </GlassSegmented>`,
     { internal: ["liquid-glass", "use-active-indicator"] }
   ),
@@ -238,7 +242,7 @@ export const items: Item[] = [
 // or inline
 <GlassCalendar value={date} onValueChange={setDate} weekStartsOn={1} />`,
     {
-      dependencies: ["radix-ui", "lucide-react"],
+      dependencies: ["radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"],
       internal: ["liquid-glass", "use-active-indicator"],
       keyframes: ["opaline-slide-in"],
     }
@@ -257,7 +261,7 @@ export const items: Item[] = [
   label="Temperature"
 />`,
     {
-      dependencies: ["lucide-react"],
+      dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"],
       internal: ["liquid-glass", "rolling-number"],
       keyframes: ["opaline-shake"],
     }
@@ -266,7 +270,9 @@ export const items: Item[] = [
     "glass-context-menu",
     "Glass Context Menu",
     "Right-click menu that springs from the cursor, with a row of round quick actions.",
-    `import {
+    `import { HugeiconsIcon } from "@hugeicons/react"
+import { CopyIcon, Share01Icon, TrashIcon } from "@hugeicons/core-free-icons"
+import {
   GlassContextMenu,
   GlassContextMenuAction,
   GlassContextMenuActions,
@@ -279,15 +285,15 @@ export const items: Item[] = [
   <GlassContextMenuTrigger>Right-click me</GlassContextMenuTrigger>
   <GlassContextMenuContent>
     <GlassContextMenuActions>
-      <GlassContextMenuAction icon={<CopyIcon />} label="Copy" />
-      <GlassContextMenuAction icon={<ShareIcon />} label="Share" />
-      <GlassContextMenuAction icon={<TrashIcon />} label="Delete" variant="destructive" />
+      <GlassContextMenuAction icon={<HugeiconsIcon icon={CopyIcon} />} label="Copy" />
+      <GlassContextMenuAction icon={<HugeiconsIcon icon={Share01Icon} />} label="Share" />
+      <GlassContextMenuAction icon={<HugeiconsIcon icon={TrashIcon} />} label="Delete" variant="destructive" />
     </GlassContextMenuActions>
     <GlassContextMenuItem>Get Info</GlassContextMenuItem>
     <GlassContextMenuItem>Rename</GlassContextMenuItem>
   </GlassContextMenuContent>
 </GlassContextMenu>`,
-    { dependencies: ["radix-ui", "lucide-react"] }
+    { dependencies: ["radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
     "glass-widget",
@@ -347,18 +353,20 @@ export const items: Item[] = [
     { name: "AirPods", level: 18, kind: "headphones" },
   ]}
 />`,
-    { dependencies: ["lucide-react"], internal: ["liquid-glass", "glass-widget"] }
+    { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"], internal: ["liquid-glass", "glass-widget"] }
   ),
   glass(
     "glass-button",
     "Glass Button",
     "Pill button made of liquid glass with a pointer-tracked highlight.",
-    `import { GlassButton } from "@/components/ui/glass-button"
+    `import { HugeiconsIcon } from "@hugeicons/react"
+import { HeartIcon } from "@hugeicons/core-free-icons"
+import { GlassButton } from "@/components/ui/glass-button"
 
 <GlassButton>Continue</GlassButton>
 <GlassButton variant="prominent">Get started</GlassButton>
 <GlassButton size="icon" aria-label="Like">
-  <HeartIcon />
+  <HugeiconsIcon icon={HeartIcon} />
 </GlassButton>`,
     { dependencies: ["class-variance-authority"] }
   ),
@@ -377,7 +385,9 @@ export const items: Item[] = [
     "glass-sidebar",
     "Glass Sidebar",
     "Floating source list with a sliding glass selection and icon-only mode.",
-    `import {
+    `import { HugeiconsIcon } from "@hugeicons/react"
+import { Home01Icon, InboxIcon } from "@hugeicons/core-free-icons"
+import {
   GlassSidebar,
   GlassSidebarGroup,
   GlassSidebarHeader,
@@ -390,11 +400,11 @@ export const items: Item[] = [
     <GlassSidebarToggle />
   </GlassSidebarHeader>
   <GlassSidebarGroup label="Library">
-    <GlassSidebarItem icon={<HouseIcon />} active>Home</GlassSidebarItem>
-    <GlassSidebarItem icon={<InboxIcon />} badge={4}>Inbox</GlassSidebarItem>
+    <GlassSidebarItem icon={<HugeiconsIcon icon={Home01Icon} />} active>Home</GlassSidebarItem>
+    <GlassSidebarItem icon={<HugeiconsIcon icon={InboxIcon} />} badge={4}>Inbox</GlassSidebarItem>
   </GlassSidebarGroup>
 </GlassSidebar>`,
-    { dependencies: ["radix-ui", "lucide-react"], internal: ["liquid-glass", "use-active-indicator"] }
+    { dependencies: ["radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"], internal: ["liquid-glass", "use-active-indicator"] }
   ),
   glass(
     "glass-command",
@@ -432,7 +442,7 @@ React.useEffect(() => {
     </GlassCommandGroup>
   </GlassCommandList>
 </GlassCommandDialog>`,
-    { dependencies: ["cmdk", "radix-ui", "lucide-react"] }
+    { dependencies: ["cmdk", "radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
     "glass-player",
@@ -441,7 +451,7 @@ React.useEffect(() => {
     `import { GlassPlayer } from "@/components/ui/glass-player"
 
 <GlassPlayer title="Midnight City" artist="M83" duration={243} artwork="/cover.jpg" />`,
-    { dependencies: ["lucide-react"] }
+    { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
     "glass-card",
@@ -542,11 +552,13 @@ React.useEffect(() => {
     "glass-tab-bar",
     "Glass Tab Bar",
     "Floating iOS 26 tab bar with a sliding liquid selection.",
-    `import { GlassTabBar, GlassTabBarItem } from "@/components/ui/glass-tab-bar"
+    `import { HugeiconsIcon } from "@hugeicons/react"
+import { Home01Icon, Search01Icon } from "@hugeicons/core-free-icons"
+import { GlassTabBar, GlassTabBarItem } from "@/components/ui/glass-tab-bar"
 
 <GlassTabBar defaultValue="home" onValueChange={console.log}>
-  <GlassTabBarItem value="home" icon={<HouseIcon />} label="Home" />
-  <GlassTabBarItem value="search" icon={<SearchIcon />} label="Search" />
+  <GlassTabBarItem value="home" icon={<HugeiconsIcon icon={Home01Icon} />} label="Home" />
+  <GlassTabBarItem value="search" icon={<HugeiconsIcon icon={Search01Icon} />} label="Search" />
 </GlassTabBar>`,
     { internal: ["liquid-glass", "use-active-indicator"] }
   ),
@@ -572,7 +584,7 @@ React.useEffect(() => {
     </GlassSheetHeader>
   </GlassSheetContent>
 </GlassSheet>`,
-    { dependencies: ["radix-ui", "lucide-react"] }
+    { dependencies: ["radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
     "glass-toast",
@@ -587,7 +599,7 @@ React.useEffect(() => {
 toast("Message sent")
 toast.success("Saved", { description: "Your changes are live." })
 toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
-    { dependencies: ["lucide-react"] }
+    { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
     "glass-popover",
@@ -627,7 +639,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
     <GlassSelectItem value="system">System</GlassSelectItem>
   </GlassSelectContent>
 </GlassSelect>`,
-    { dependencies: ["radix-ui", "lucide-react"] }
+    { dependencies: ["radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
     "glass-menu",
@@ -650,7 +662,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
     <GlassMenuItem variant="destructive">Delete</GlassMenuItem>
   </GlassMenuContent>
 </GlassMenu>`,
-    { dependencies: ["radix-ui", "lucide-react"] }
+    { dependencies: ["radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
     "glass-dialog",
@@ -674,7 +686,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
     </GlassDialogHeader>
   </GlassDialogContent>
 </GlassDialog>`,
-    { dependencies: ["radix-ui", "lucide-react"] }
+    { dependencies: ["radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
     "glass-notification",
@@ -694,25 +706,29 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
     "glass-input",
     "Glass Input",
     "Capsule text field with icon and adornment slots — made for search.",
-    `import { GlassInput } from "@/components/ui/glass-input"
+    `import { HugeiconsIcon } from "@hugeicons/react"
+import { Mic01Icon, Search01Icon } from "@hugeicons/core-free-icons"
+import { GlassInput } from "@/components/ui/glass-input"
 
-<GlassInput placeholder="Search" startIcon={<SearchIcon />} endAdornment={<MicIcon />} />`
+<GlassInput placeholder="Search" startIcon={<HugeiconsIcon icon={Search01Icon} />} endAdornment={<HugeiconsIcon icon={Mic01Icon} />} />`
   ),
   glass(
     "glass-toolbar",
     "Glass Toolbar",
     "Floating capsule toolbar that groups icon actions.",
-    `import {
+    `import { HugeiconsIcon } from "@hugeicons/react"
+import { BoldIcon, ItalicIcon, LinkIcon } from "@hugeicons/core-free-icons"
+import {
   GlassToolbar,
   GlassToolbarButton,
   GlassToolbarSeparator,
 } from "@/components/ui/glass-toolbar"
 
 <GlassToolbar>
-  <GlassToolbarButton aria-label="Bold" active><BoldIcon /></GlassToolbarButton>
-  <GlassToolbarButton aria-label="Italic"><ItalicIcon /></GlassToolbarButton>
+  <GlassToolbarButton aria-label="Bold" active><HugeiconsIcon icon={BoldIcon} /></GlassToolbarButton>
+  <GlassToolbarButton aria-label="Italic"><HugeiconsIcon icon={ItalicIcon} /></GlassToolbarButton>
   <GlassToolbarSeparator />
-  <GlassToolbarButton aria-label="Link"><LinkIcon /></GlassToolbarButton>
+  <GlassToolbarButton aria-label="Link"><HugeiconsIcon icon={LinkIcon} /></GlassToolbarButton>
 </GlassToolbar>`
   ),
   glass(

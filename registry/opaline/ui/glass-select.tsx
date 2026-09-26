@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { CheckIcon, ChevronsUpDownIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { CheckIcon, UnfoldMoreIcon } from "@hugeicons/core-free-icons"
 import { Select as SelectPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -39,7 +40,7 @@ function GlassSelectTrigger({
       <SelectPrimitive.Trigger data-slot="glass-select-trigger" {...props}>
         {children}
         <SelectPrimitive.Icon asChild>
-          <ChevronsUpDownIcon className="size-4 shrink-0 opacity-50" />
+          <HugeiconsIcon icon={UnfoldMoreIcon} className="size-4 shrink-0 opacity-50" />
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
     </LiquidGlass>
@@ -109,7 +110,7 @@ function GlassSelectItem({
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
       <span className="absolute right-3 flex size-4 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" strokeWidth={2.5} />
+          <HugeiconsIcon icon={CheckIcon} className="size-4" strokeWidth={2.5} />
         </SelectPrimitive.ItemIndicator>
       </span>
     </SelectPrimitive.Item>

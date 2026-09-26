@@ -1,14 +1,8 @@
 "use client"
 
 import * as React from "react"
-import {
-  HeadphonesIcon,
-  LaptopIcon,
-  SmartphoneIcon,
-  TabletIcon,
-  WatchIcon,
-  ZapIcon,
-} from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { HeadphonesIcon, LaptopIcon, SmartphoneIcon, Tablet01Icon, Watch01Icon, ZapIcon } from "@hugeicons/core-free-icons"
 
 import { cn } from "@/lib/utils"
 import { GlassWidget, type WidgetSize } from "@/registry/opaline/ui/glass-widget"
@@ -23,11 +17,11 @@ type Device = {
 }
 
 const icons = {
-  phone: <SmartphoneIcon />,
-  watch: <WatchIcon />,
-  headphones: <HeadphonesIcon />,
-  tablet: <TabletIcon />,
-  laptop: <LaptopIcon />,
+  phone: <HugeiconsIcon icon={SmartphoneIcon} />,
+  watch: <HugeiconsIcon icon={Watch01Icon} />,
+  headphones: <HugeiconsIcon icon={HeadphonesIcon} />,
+  tablet: <HugeiconsIcon icon={Tablet01Icon} />,
+  laptop: <HugeiconsIcon icon={LaptopIcon} />,
 }
 
 const colorFor = (d: Device) =>
@@ -62,7 +56,7 @@ function Ring({ device, size = 58 }: { device: Device; size?: number }) {
       <span className="[&_svg]:size-[22px] [&_svg]:opacity-85">{device.icon ?? icons[device.kind ?? "phone"]}</span>
       {device.charging ? (
         <span className="absolute -top-0.5 -right-0.5 grid size-5 place-items-center rounded-full bg-[#30d158] text-white shadow-sm motion-safe:animate-pulse [&_svg]:size-3 [&_svg]:fill-current">
-          <ZapIcon />
+          <HugeiconsIcon icon={ZapIcon} />
         </span>
       ) : null}
     </div>

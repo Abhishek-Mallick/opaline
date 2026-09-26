@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { PanelLeftIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { PanelLeftIcon } from "@hugeicons/core-free-icons"
 import { Slot } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -186,7 +187,7 @@ function GlassSidebarToggle({ className, ...props }: React.ComponentProps<"butto
       )}
       {...props}
     >
-      <PanelLeftIcon />
+      <HugeiconsIcon icon={PanelLeftIcon} />
     </button>
   )
 }

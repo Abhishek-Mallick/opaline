@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { CircleAlertIcon, CircleCheckIcon, InfoIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { AlertCircleIcon, CircleCheckIcon, InfoIcon } from "@hugeicons/core-free-icons"
 
 import { cn } from "@/lib/utils"
 import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
@@ -54,9 +55,9 @@ toast.dismiss = dismiss
 
 const icons: Record<ToastVariant, React.ReactNode> = {
   default: null,
-  success: <CircleCheckIcon className="text-[#34c759]" />,
-  error: <CircleAlertIcon className="text-[#ff3b30]" />,
-  info: <InfoIcon className="text-[#0a84ff]" />,
+  success: <HugeiconsIcon icon={CircleCheckIcon} className="text-[#34c759]" />,
+  error: <HugeiconsIcon icon={AlertCircleIcon} className="text-[#ff3b30]" />,
+  info: <HugeiconsIcon icon={InfoIcon} className="text-[#0a84ff]" />,
 }
 
 function ToastItem({ data, index }: { data: ToastData; index: number }) {

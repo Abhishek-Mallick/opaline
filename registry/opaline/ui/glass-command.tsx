@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { Command as CommandPrimitive } from "cmdk"
-import { SearchIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Search01Icon } from "@hugeicons/core-free-icons"
 import { Dialog as DialogPrimitive } from "radix-ui"
 
 import { cn } from "@/lib/utils"
@@ -70,7 +71,7 @@ function GlassCommandInput({
       data-slot="glass-command-input-wrapper"
       className="flex h-14 items-center gap-3 border-b border-current/10 px-5"
     >
-      <SearchIcon className="size-5 shrink-0 opacity-50" />
+      <HugeiconsIcon icon={Search01Icon} className="size-5 shrink-0 opacity-50" />
       <CommandPrimitive.Input
         data-slot="glass-command-input"
         className={cn(

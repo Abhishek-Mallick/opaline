@@ -1,16 +1,8 @@
 "use client"
 
 import * as React from "react"
-import {
-  CopyIcon,
-  FolderIcon,
-  InfoIcon,
-  PencilIcon,
-  ShareIcon,
-  StarIcon,
-  TagIcon,
-  TrashIcon,
-} from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { CopyIcon, Folder01Icon, InfoIcon, PencilIcon, Share01Icon, StarIcon, Tag01Icon, TrashIcon } from "@hugeicons/core-free-icons"
 
 import {
   GlassContextMenu,
@@ -43,20 +35,20 @@ export default function GlassContextMenuDemo() {
       </GlassContextMenuTrigger>
       <GlassContextMenuContent>
         <GlassContextMenuActions>
-          <GlassContextMenuAction icon={<CopyIcon />} label="Copy" />
-          <GlassContextMenuAction icon={<ShareIcon />} label="Share" />
-          <GlassContextMenuAction icon={<PencilIcon />} label="Edit" />
-          <GlassContextMenuAction icon={<TrashIcon />} label="Delete" variant="destructive" />
+          <GlassContextMenuAction icon={<HugeiconsIcon icon={CopyIcon} />} label="Copy" />
+          <GlassContextMenuAction icon={<HugeiconsIcon icon={Share01Icon} />} label="Share" />
+          <GlassContextMenuAction icon={<HugeiconsIcon icon={PencilIcon} />} label="Edit" />
+          <GlassContextMenuAction icon={<HugeiconsIcon icon={TrashIcon} />} label="Delete" variant="destructive" />
         </GlassContextMenuActions>
         <GlassContextMenuItem>
-          <InfoIcon /> Get Info <GlassContextMenuShortcut>⌘I</GlassContextMenuShortcut>
+          <HugeiconsIcon icon={InfoIcon} /> Get Info <GlassContextMenuShortcut>⌘I</GlassContextMenuShortcut>
         </GlassContextMenuItem>
         <GlassContextMenuItem>
-          <FolderIcon /> Move to…
+          <HugeiconsIcon icon={Folder01Icon} /> Move to…
         </GlassContextMenuItem>
         <GlassContextMenuSub>
           <GlassContextMenuSubTrigger>
-            <TagIcon /> Tags
+            <HugeiconsIcon icon={Tag01Icon} /> Tags
           </GlassContextMenuSubTrigger>
           <GlassContextMenuSubContent>
             {tags.map((t) => (
@@ -68,7 +60,7 @@ export default function GlassContextMenuDemo() {
         </GlassContextMenuSub>
         <GlassContextMenuSeparator />
         <GlassContextMenuCheckboxItem checked={favourite} onCheckedChange={setFavourite}>
-          <StarIcon /> Favourite
+          <HugeiconsIcon icon={StarIcon} /> Favourite
         </GlassContextMenuCheckboxItem>
       </GlassContextMenuContent>
     </GlassContextMenu>

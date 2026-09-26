@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { ArchiveIcon, CopyIcon, PencilIcon, TrashIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { ArchiveIcon, CopyIcon, PencilIcon, TrashIcon } from "@hugeicons/core-free-icons"
 
 import { GlassButton } from "@/registry/opaline/ui/glass-button"
 import {
@@ -25,20 +26,20 @@ export default function GlassMenuDemo() {
       <GlassMenuContent>
         <GlassMenuLabel>Document</GlassMenuLabel>
         <GlassMenuItem>
-          <PencilIcon /> Rename <GlassMenuShortcut>⌘R</GlassMenuShortcut>
+          <HugeiconsIcon icon={PencilIcon} /> Rename <GlassMenuShortcut>⌘R</GlassMenuShortcut>
         </GlassMenuItem>
         <GlassMenuItem>
-          <CopyIcon /> Duplicate <GlassMenuShortcut>⌘D</GlassMenuShortcut>
+          <HugeiconsIcon icon={CopyIcon} /> Duplicate <GlassMenuShortcut>⌘D</GlassMenuShortcut>
         </GlassMenuItem>
         <GlassMenuItem>
-          <ArchiveIcon /> Archive
+          <HugeiconsIcon icon={ArchiveIcon} /> Archive
         </GlassMenuItem>
         <GlassMenuCheckboxItem checked={pinned} onCheckedChange={setPinned}>
           Pin to top
         </GlassMenuCheckboxItem>
         <GlassMenuSeparator />
         <GlassMenuItem variant="destructive">
-          <TrashIcon /> Delete
+          <HugeiconsIcon icon={TrashIcon} /> Delete
         </GlassMenuItem>
       </GlassMenuContent>
     </GlassMenu>

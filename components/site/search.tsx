@@ -2,13 +2,8 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
-import {
-  BookOpenIcon,
-  FileTextIcon,
-  MoonIcon,
-  SearchIcon,
-  SparklesIcon,
-} from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { BookOpen01Icon, FileTextIcon, MoonIcon, Search01Icon, SparklesIcon } from "@hugeicons/core-free-icons"
 
 import { siteConfig, withBase } from "@/lib/site"
 import { toggleTheme } from "@/lib/theme"
@@ -62,7 +57,7 @@ export function SearchCommand() {
         aria-label="Search components"
         className="flex h-9 cursor-pointer items-center gap-2 rounded-full pr-1.5 pl-3 text-[13px] text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground sm:w-48 sm:bg-foreground/[0.05]"
       >
-        <SearchIcon className="size-4 shrink-0" />
+        <HugeiconsIcon icon={Search01Icon} className="size-4 shrink-0" />
         <span className="hidden flex-1 text-left sm:inline">Search…</span>
         <kbd className="hidden h-6 items-center rounded-full bg-background px-2 font-sans text-[11px] font-medium shadow-[0_0_0_1px_var(--border)] sm:flex">
           {mac ? "⌘" : "Ctrl "}K
@@ -88,7 +83,7 @@ export function SearchCommand() {
                     value={`${i.title} ${i.name} ${i.description}`}
                     onSelect={() => go(`/components/${i.name}`)}
                   >
-                    {cat === "glass" ? <SparklesIcon /> : <FileTextIcon />}
+                    {cat === "glass" ? <HugeiconsIcon icon={SparklesIcon} /> : <HugeiconsIcon icon={FileTextIcon} />}
                     <span className="shrink-0">{i.title}</span>
                     <span className="ml-auto hidden min-w-0 truncate pl-4 text-xs opacity-45 sm:block">
                       {i.description}
@@ -101,10 +96,10 @@ export function SearchCommand() {
           <GlassCommandSeparator />
           <GlassCommandGroup heading="General">
             <GlassCommandItem onSelect={() => go("/#setup")}>
-              <BookOpenIcon /> Installation
+              <HugeiconsIcon icon={BookOpen01Icon} /> Installation
             </GlassCommandItem>
             <GlassCommandItem onSelect={() => go("/llms.txt")}>
-              <FileTextIcon /> llms.txt
+              <HugeiconsIcon icon={FileTextIcon} /> llms.txt
             </GlassCommandItem>
             <GlassCommandItem
               onSelect={() => {
@@ -112,10 +107,10 @@ export function SearchCommand() {
                 setOpen(false)
               }}
             >
-              <MoonIcon /> Toggle theme
+              <HugeiconsIcon icon={MoonIcon} /> Toggle theme
             </GlassCommandItem>
             <GlassCommandItem onSelect={() => go(siteConfig.github)}>
-              <FileTextIcon /> GitHub repository
+              <HugeiconsIcon icon={FileTextIcon} /> GitHub repository
             </GlassCommandItem>
           </GlassCommandGroup>
         </GlassCommandList>

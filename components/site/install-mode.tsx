@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { CheckIcon, CopyIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { CheckIcon, CopyIcon } from "@hugeicons/core-free-icons"
 
 import { installCommand, type InstallMode } from "@/lib/site"
 import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
@@ -55,13 +56,13 @@ export function useCopy() {
 export function CopyIconSwap({ copied }: { copied: boolean }) {
   return (
     <span className="relative grid size-3.5 place-items-center">
-      <CopyIcon
+      <HugeiconsIcon icon={CopyIcon}
         className={cn(
           "absolute size-3.5 transition-all duration-300",
           copied ? "scale-50 opacity-0" : "scale-100 opacity-100"
         )}
       />
-      <CheckIcon
+      <HugeiconsIcon icon={CheckIcon}
         strokeWidth={2.75}
         className={cn(
           "absolute size-3.5 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]",

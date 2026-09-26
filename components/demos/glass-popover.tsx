@@ -1,6 +1,7 @@
 "use client"
 
-import { SlidersHorizontalIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { SlidersHorizontalIcon } from "@hugeicons/core-free-icons"
 
 import { GlassButton } from "@/registry/opaline/ui/glass-button"
 import {
@@ -15,7 +16,7 @@ export default function GlassPopoverDemo() {
     <GlassPopover>
       <GlassPopoverTrigger asChild>
         <GlassButton>
-          <SlidersHorizontalIcon /> Adjust
+          <HugeiconsIcon icon={SlidersHorizontalIcon} /> Adjust
         </GlassButton>
       </GlassPopoverTrigger>
       <GlassPopoverContent className="flex flex-col gap-4">

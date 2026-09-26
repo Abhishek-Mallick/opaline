@@ -1,6 +1,7 @@
 "use client"
 
-import { Share2Icon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Share08Icon } from "@hugeicons/core-free-icons"
 
 import { GlassButton } from "@/registry/opaline/ui/glass-button"
 import {
@@ -33,7 +34,7 @@ export default function GlassDialogDemo() {
           </GlassDialogClose>
           <GlassDialogClose asChild>
             <GlassButton size="sm" variant="prominent">
-              <Share2Icon /> Copy link
+              <HugeiconsIcon icon={Share08Icon} /> Copy link
             </GlassButton>
           </GlassDialogClose>
         </GlassDialogFooter>

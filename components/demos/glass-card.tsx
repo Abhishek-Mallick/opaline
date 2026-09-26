@@ -1,6 +1,7 @@
 "use client"
 
-import { CloudSunIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { SunCloud01Icon } from "@hugeicons/core-free-icons"
 
 import {
   GlassCard,
@@ -23,7 +24,7 @@ export default function GlassCardDemo() {
     <GlassCard className="w-full max-w-[280px]">
       <GlassCardHeader>
         <GlassCardDescription className="flex items-center gap-1.5 font-medium">
-          <CloudSunIcon className="size-4" /> Cupertino
+          <HugeiconsIcon icon={SunCloud01Icon} className="size-4" /> Cupertino
         </GlassCardDescription>
         <GlassCardTitle className="text-5xl font-light tracking-[-0.04em]">72°</GlassCardTitle>
       </GlassCardHeader>

@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { TerminalIcon } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { TerminalIcon } from "@hugeicons/core-free-icons"
 
 import { CodeFrame } from "@/components/site/code"
 import { useInstallMode } from "@/components/site/install-mode"
@@ -53,7 +54,7 @@ function Tabs<T extends string>({
 function ManagerSwitch({ value, onChange }: { value: Manager; onChange: (m: Manager) => void }) {
   return (
     <div className="flex items-center gap-0.5">
-      <TerminalIcon className="mr-1.5 size-4" />
+      <HugeiconsIcon icon={TerminalIcon} className="mr-1.5 size-4" />
       {managers.map((m) => (
         <button
           key={m}
