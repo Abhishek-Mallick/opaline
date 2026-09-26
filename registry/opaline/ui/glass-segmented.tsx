@@ -78,7 +78,6 @@ function GlassSegmented({
               aria-hidden
               shadow={false}
               bezel={12}
-              refraction={16}
               tint="var(--glass-highlight)"
               className="absolute rounded-[18px]"
               style={{

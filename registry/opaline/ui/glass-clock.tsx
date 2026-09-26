@@ -74,7 +74,6 @@ function GlassClock({
       role="img"
       aria-label={time ? `${h}:${String(m).padStart(2, "0")}${label ? ` in ${label}` : ""}` : "Clock"}
       bezel={size * 0.14}
-      refraction={size * 0.2}
       className={cn("relative shrink-0 rounded-full text-(--glass-foreground)", className)}
       style={{ width: size, height: size }}
       {...props}

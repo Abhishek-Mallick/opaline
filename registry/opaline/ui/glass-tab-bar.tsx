@@ -48,7 +48,6 @@ function GlassTabBar({
               aria-hidden
               shadow={false}
               bezel={14}
-              refraction={20}
               tint="var(--glass-highlight)"
               className="absolute rounded-full transition-[left,width] duration-500 ease-[cubic-bezier(0.34,1.3,0.64,1)]"
               style={{

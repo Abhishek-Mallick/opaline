@@ -139,7 +139,6 @@ function GlassCalendar({
             aria-hidden
             shadow={false}
             bezel={10}
-            refraction={14}
             tint="oklch(0.62 0.19 255 / 0.85)"
             className="absolute rounded-full transition-[left,top] duration-500 ease-[cubic-bezier(0.34,1.3,0.64,1)]"
             style={{

@@ -135,7 +135,6 @@ function GlassDockItem({
         <LiquidGlass
           variant="frosted"
           bezel={8}
-          refraction={10}
           className="pointer-events-none absolute -top-10 left-1/2 origin-bottom -translate-x-1/2 scale-0 rounded-full px-2.5 py-1 text-xs font-medium whitespace-nowrap text-(--glass-foreground) transition-transform duration-200 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/dock-item:scale-100 group-focus-visible/dock-item:scale-100"
         >
           {label}

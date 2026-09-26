@@ -1,7 +1,10 @@
 # Opaline — TODO
 
 ## Done
-- [x] 41 components: 31 liquid glass + 4 widgets + 5 accents + the `LiquidGlass` primitive
+- [x] 42 components: 32 liquid glass + 4 widgets + 5 accents + the `LiquidGlass` primitive
+- [x] Physically based refraction (Snell's law, surface profiles, IOR, thickness, specular) + `LiquidGlassProvider`
+- [x] Customize panel with presets, generated code and props table on every component page
+- [x] Interactive "How the glass bends light" article on the Liquid Glass page
 - [x] Component pages with preview, code, install tabs and usage; ⌘K search
 - [x] `llms.txt`, `llms-full.txt`, per-component Markdown
 - [x] Transform-only glass animations (no empty frames); refraction from the first frame
@@ -20,13 +23,12 @@
 ## Next components
 - [x] Glass: context menu, date picker, stepper, segmented picker
 - [x] Widgets: weather, calendar, battery (iOS sizes)
-- [ ] Glass: date range picker, time picker, color picker, OTP input
+- [x] Glass: OTP input
+- [ ] Glass: date range picker, time picker, color picker
 - [ ] Widgets: music, fitness, stocks, photos, reminders
 - [ ] Blocks: hero, pricing, auth, lock screen, full macOS desktop
 
 ## Site & docs
-- [ ] Props table on each component page
-- [ ] Glass playground (bezel / refraction / blur / dispersion sliders)
 - [ ] Let visitors drop in their own wallpaper behind the demos
 
 ## Engineering
@@ -38,7 +40,7 @@
 
 ## Growth
 - [ ] Launch: X thread with screen recordings, Product Hunt, Show HN, r/reactjs
-- [ ] Write-up: "How liquid glass refraction works on the web"
+- [ ] Share the refraction write-up (Liquid Glass page) as a blog post
 - [ ] List on awesome-shadcn-ui and freefrontend
 - [ ] `good first issue` labels to attract contributors
 - [ ] Analytics on copy-command clicks to decide which components to build next

@@ -55,7 +55,7 @@ function GlassSlider({
           <LiquidGlass
             data-slot="glass-slider-thumb"
             bezel={10}
-            refraction={24}
+            thickness={2.1}
             className="group/thumb block h-6 w-10 cursor-grab rounded-full outline-none transition-transform duration-300 ease-[cubic-bezier(0.34,1.45,0.64,1)] focus-visible:ring-[3px] focus-visible:ring-ring/40 active:scale-[1.45] active:cursor-grabbing"
           >
             <span className="absolute inset-0 rounded-full bg-white shadow-[0_2px_8px_rgb(0_0_0/0.18)] transition-opacity duration-300 group-active/thumb:opacity-0" />

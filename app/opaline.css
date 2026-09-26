@@ -90,6 +90,11 @@
   80% { transform: translateX(3px); }
 }
 
+@keyframes opaline-caret {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @keyframes opaline-cloud {
   from { transform: translateX(-1.5px); }
   to { transform: translateX(1.5px); }

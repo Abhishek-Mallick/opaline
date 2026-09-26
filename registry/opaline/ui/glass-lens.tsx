@@ -57,7 +57,7 @@ function GlassLens({
       data-slot="glass-lens"
       role="presentation"
       bezel={size * 0.5}
-      refraction={size * 0.4}
+      thickness={1}
       blur={0}
       dispersion={0.05}
       tint="transparent"
