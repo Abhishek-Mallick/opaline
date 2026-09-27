@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { RefreshIcon } from "@hugeicons/core-free-icons"
+import { Image01Icon, RefreshIcon } from "@hugeicons/core-free-icons"
 
 import { attrs, changed, parseUsage, render } from "@/components/customize/code"
 import { customizations, pinned } from "@/components/customize/configs"
@@ -13,7 +13,8 @@ import type { Control, Customization, Preset, Values } from "@/components/custom
 import { Demo } from "@/components/demos"
 import { demoMeta } from "@/components/demos/meta"
 import { CodeFrame } from "@/components/site/code"
-import { Wallpaper } from "@/components/site/wallpaper"
+import { WALLPAPER_NAMES, Wallpaper } from "@/components/site/wallpaper"
+import type { WallpaperName } from "@/components/site/wallpaper"
 import { GlassSelect, GlassSelectContent, GlassSelectGroup, GlassSelectItem, GlassSelectLabel, GlassSelectTrigger, GlassSelectValue } from "@/registry/opaline/ui/glass-select"
 import { cn } from "@/lib/utils"
 import { itemsByName } from "@/registry/index"
@@ -110,19 +111,47 @@ export function Customizer({
   const [tab, setTab] = React.useState<"code" | "demo">("code")
   const meta = demoMeta[name] ?? {}
 
+  // Momentary wallpaper override — local state only, no storage. Each click
+  // on Change advances to the next wallpaper for this preview.
+  const [wallpaperOverride, setWallpaperOverride] = React.useState<WallpaperName | null>(null)
+  React.useEffect(() => {
+    setWallpaperOverride(null)
+  }, [name])
+  const activeWallpaper = wallpaperOverride ?? meta.wallpaper ?? null
+  const cycleWallpaper = () => {
+    setWallpaperOverride((prev) => {
+      const current = prev ?? meta.wallpaper
+      const idx = current ? WALLPAPER_NAMES.indexOf(current as (typeof WALLPAPER_NAMES)[number]) : -1
+      return WALLPAPER_NAMES[(idx + 1) % WALLPAPER_NAMES.length]
+    })
+  }
+
   return (
     <div className="overflow-hidden rounded-[28px] border border-border bg-card">
       <div
         className={cn(
           "relative isolate flex min-h-[380px] items-center justify-center overflow-hidden p-8",
-          !meta.wallpaper &&
+          !activeWallpaper &&
             "bg-[radial-gradient(circle,var(--border)_1px,transparent_1px)] [background-size:16px_16px]",
           meta.stage
         )}
       >
-        {meta.wallpaper ? (
-          <Wallpaper name={meta.wallpaper} className="-z-10 dark:brightness-[0.8]" />
+        {activeWallpaper ? (
+          <Wallpaper name={activeWallpaper} className="-z-10 dark:brightness-[0.8]" />
         ) : null}
+        <div className="absolute right-3 bottom-3 z-10 flex items-center gap-2 rounded-full border border-white/25 bg-black/35 py-1 pr-1 pl-3 text-white backdrop-blur-md">
+          <span className="text-[12px] font-medium capitalize tabular-nums">
+            {activeWallpaper ?? "Default"}
+          </span>
+          <button
+            type="button"
+            onClick={cycleWallpaper}
+            className="flex h-7 cursor-pointer items-center gap-1.5 rounded-full bg-white/90 px-2.5 text-[12.5px] font-medium text-black transition-colors hover:bg-white"
+          >
+            <HugeiconsIcon icon={Image01Icon} className="size-3.5" />
+            Change
+          </button>
+        </div>
         <LiquidGlassProvider {...(viaProps ? {} : glassProps)}>
           <React.Fragment key={remountKey}>{preview}</React.Fragment>
         </LiquidGlassProvider>

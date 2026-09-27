@@ -15,6 +15,22 @@ export type WallpaperName =
   | "hero"
   | "ice"
 
+/** Wallpapers users can cycle through in the customizer preview (`hero` excluded — it's a video). */
+export const WALLPAPER_NAMES: Exclude<WallpaperName, "hero">[] = [
+  "aurora",
+  "sunset",
+  "stripes",
+  "dots",
+  "type",
+  "ocean",
+  "mono",
+  "dunes",
+  "bloom",
+  "grid",
+  "dusk",
+  "ice",
+]
+
 const svg = (markup: string) =>
   `url("data:image/svg+xml,${encodeURIComponent(markup)}")`
 
