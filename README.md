@@ -24,7 +24,7 @@
 ![Opaline](public/og.png)
 -->
 
-https://github.com/user-attachments/assets/71a1d65f-0e71-4b8e-8394-0b1cef0e0620
+https://github.com/user-attachments/assets/70ddd15d-d4be-4b85-9328-3842e4bcbf8f
 
 Opaline is a collection of liquid glass components built on Tailwind CSS v4 and Radix UI. Surfaces bend the backdrop through real displacement maps, not just blur: light is traced through the glass rim with Snell's law, using a surface profile, an index of refraction and a thickness you control. You install the source with the shadcn CLI, so every component is yours to edit.
 
