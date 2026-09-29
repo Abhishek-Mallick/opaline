@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Documentation
+    url: https://opaline.buildlab.in/components
+    about: Live previews, props and install commands for every component.
   - name: Question or idea
     url: https://github.com/deepraj21/opaline/discussions
     about: Ask questions and share what you've built.
