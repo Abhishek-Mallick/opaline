@@ -18,7 +18,7 @@ npx shadcn@latest add @opaline/all`,
     body: "Glass looks best over something colourful — photos, gradients, content.",
     label: "app/page.tsx",
     lang: "tsx" as const,
-    code: `import { GlassButton } from "@/components/ui/glass-button"
+    code: `import { GlassButton } from "@/components/ui/opaline/glass-button"
 
 export default function Page() {
   return <GlassButton variant="prominent">Get started</GlassButton>
@@ -29,7 +29,7 @@ export default function Page() {
     body: "Set the optics once for everything inside, or per component.",
     label: "app/layout.tsx",
     lang: "tsx" as const,
-    code: `import { LiquidGlassProvider } from "@/components/ui/liquid-glass"
+    code: `import { LiquidGlassProvider } from "@/components/ui/opaline/liquid-glass"
 
 <LiquidGlassProvider ior={1.9} surface="lip" specular={0.5}>
   {children}

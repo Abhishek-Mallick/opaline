@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassWidgetBattery } from "@/registry/opaline/ui/glass-widget-battery"
+import { GlassWidgetBattery } from "@/registry/opaline/ui/opaline/glass-widget-battery"
 
 const devices = [
   { name: "iPhone", level: 82, kind: "phone" as const, charging: true },

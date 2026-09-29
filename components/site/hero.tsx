@@ -6,10 +6,10 @@ import { ArrowRight01Icon, HeartIcon, Mic01Icon, PauseIcon, PlayIcon, Search01Ic
 
 import { InstallBar } from "@/components/site/install-mode"
 import { Wallpaper } from "@/components/site/wallpaper"
-import { GlassBadge } from "@/registry/opaline/ui/glass-badge"
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
-import { GlassInput } from "@/registry/opaline/ui/glass-input"
-import { GlassLens } from "@/registry/opaline/ui/glass-lens"
+import { GlassBadge } from "@/registry/opaline/ui/opaline/glass-badge"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
+import { GlassInput } from "@/registry/opaline/ui/opaline/glass-input"
+import { GlassLens } from "@/registry/opaline/ui/opaline/glass-lens"
 
 export function Hero() {
   const videoRef = React.useRef<HTMLVideoElement>(null)

@@ -5,7 +5,7 @@ import { ArrowRight01Icon } from "@hugeicons/core-free-icons"
 
 import { ComponentGrid } from "@/components/site/grid"
 import { Tile } from "@/components/site/tile"
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import { categoryLabels, docItems, type Category } from "@/registry/index"
 
 export const metadata: Metadata = {

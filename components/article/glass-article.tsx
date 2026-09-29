@@ -185,7 +185,7 @@ export function GlassArticle() {
         <code>LiquidGlassProvider</code>:
       </p>
       <CodeBlock
-        code={`import { LiquidGlassProvider } from "@/components/ui/liquid-glass"
+        code={`import { LiquidGlassProvider } from "@/components/ui/opaline/liquid-glass"
 
 <LiquidGlassProvider ior={1.9} surface="lip" thickness={1.8} specular={0.5}>
   <App />

@@ -77,7 +77,7 @@ Requirements: Node.js 22+ (see [`.nvmrc`](../.nvmrc)) and pnpm 10.
 
 | Path | Contents |
 | --- | --- |
-| `registry/opaline/ui/` | Component source. This is what users install |
+| `registry/opaline/ui/opaline/` | Component source. This is what users install. The shadcn CLI keeps the folders after `ui/`, so these land in `components/ui/opaline/` |
 | `registry/opaline/lib/glass-refraction.ts` | The refraction engine: surface profiles, Snell's law, displacement and specular maps |
 | `registry/opaline/hooks/` | Shared hooks, e.g. `use-active-indicator` for gliding glass bubbles |
 | `registry/index.ts` | The manifest: name, description, dependencies, keyframes and usage for every item |
@@ -92,7 +92,7 @@ Requirements: Node.js 22+ (see [`.nvmrc`](../.nvmrc)) and pnpm 10.
 
 ## Adding a component
 
-1. **Source:** create `registry/opaline/ui/<name>.tsx`. Glass components are named `glass-*` and build on `LiquidGlass`.
+1. **Source:** create `registry/opaline/ui/opaline/<name>.tsx`. Glass components are named `glass-*` and build on `LiquidGlass`.
 2. **Manifest:** add an entry to `registry/index.ts` with the `glass()` helper. Include a short `usage` snippet, npm `dependencies`, other Opaline items in `internal`, and any `keyframes` the component uses.
 3. **Demo:** add `components/demos/<name>.tsx` (a default export), import it in `components/demos/index.tsx`, and pick a wallpaper in `components/demos/meta.ts`.
 4. **Customize panel:** add an entry to `customizations` in `components/customize/configs.tsx`:

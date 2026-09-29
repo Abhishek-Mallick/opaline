@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { GlassOTP } from "@/registry/opaline/ui/glass-otp"
+import { GlassOTP } from "@/registry/opaline/ui/opaline/glass-otp"
 
 export default function GlassOTPDemo() {
   const [code, setCode] = React.useState("")

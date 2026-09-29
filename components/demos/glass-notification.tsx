@@ -6,7 +6,7 @@ import { Mail01Icon, MessageCircleIcon, MusicIcon } from "@hugeicons/core-free-i
 import {
   GlassNotification,
   GlassNotificationStack,
-} from "@/registry/opaline/ui/glass-notification"
+} from "@/registry/opaline/ui/opaline/glass-notification"
 
 function AppIcon({ from, to, children }: { from: string; to: string; children: React.ReactNode }) {
   return (

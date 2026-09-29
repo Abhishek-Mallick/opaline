@@ -3,8 +3,8 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { BellIcon } from "@hugeicons/core-free-icons"
 
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
-import { toast } from "@/registry/opaline/ui/glass-toast"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
+import { toast } from "@/registry/opaline/ui/opaline/glass-toast"
 
 // <GlassToaster /> is mounted once in the root layout.
 export default function GlassToastDemo() {

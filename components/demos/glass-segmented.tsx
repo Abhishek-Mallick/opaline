@@ -3,7 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Folder01Icon, HeartIcon, Image01Icon, Search01Icon } from "@hugeicons/core-free-icons"
 
-import { GlassSegmented, GlassSegmentedItem } from "@/registry/opaline/ui/glass-segmented"
+import { GlassSegmented, GlassSegmentedItem } from "@/registry/opaline/ui/opaline/glass-segmented"
 
 export default function GlassSegmentedDemo() {
   return (

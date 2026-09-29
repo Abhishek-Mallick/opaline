@@ -1,7 +1,7 @@
 "use client"
 
-import { GlassBadge } from "@/registry/opaline/ui/glass-badge"
-import { GlassLens } from "@/registry/opaline/ui/glass-lens"
+import { GlassBadge } from "@/registry/opaline/ui/opaline/glass-badge"
+import { GlassLens } from "@/registry/opaline/ui/opaline/glass-lens"
 
 export default function GlassLensDemo() {
   return (

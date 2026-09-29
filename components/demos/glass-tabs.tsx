@@ -4,7 +4,7 @@ import {
   GlassTabs,
   GlassTabsList,
   GlassTabsTrigger,
-} from "@/registry/opaline/ui/glass-tabs"
+} from "@/registry/opaline/ui/opaline/glass-tabs"
 
 export default function GlassTabsDemo() {
   return (

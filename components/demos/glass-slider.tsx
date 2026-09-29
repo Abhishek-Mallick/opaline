@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassSlider } from "@/registry/opaline/ui/glass-slider"
+import { GlassSlider } from "@/registry/opaline/ui/opaline/glass-slider"
 
 export default function GlassSliderDemo() {
   return (

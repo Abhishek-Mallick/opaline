@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassWidgetWeather } from "@/registry/opaline/ui/glass-widget-weather"
+import { GlassWidgetWeather } from "@/registry/opaline/ui/opaline/glass-widget-weather"
 
 export default function GlassWidgetWeatherDemo() {
   return (

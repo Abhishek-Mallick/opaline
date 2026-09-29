@@ -6,7 +6,7 @@ import {
   GlassDock,
   GlassDockItem,
   GlassDockSeparator,
-} from "@/registry/opaline/ui/glass-dock"
+} from "@/registry/opaline/ui/opaline/glass-dock"
 
 const apps = [
   { label: "Finder", src: "/assets/finder.png" },

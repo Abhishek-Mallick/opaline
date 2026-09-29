@@ -4,7 +4,7 @@ import * as React from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArchiveIcon, CopyIcon, PencilIcon, TrashIcon } from "@hugeicons/core-free-icons"
 
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import {
   GlassMenu,
   GlassMenuCheckboxItem,
@@ -14,7 +14,7 @@ import {
   GlassMenuSeparator,
   GlassMenuShortcut,
   GlassMenuTrigger,
-} from "@/registry/opaline/ui/glass-menu"
+} from "@/registry/opaline/ui/opaline/glass-menu"
 
 export default function GlassMenuDemo() {
   const [pinned, setPinned] = React.useState(true)

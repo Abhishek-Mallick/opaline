@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { GlassCalendar, GlassDatePicker } from "@/registry/opaline/ui/glass-date-picker"
+import { GlassCalendar, GlassDatePicker } from "@/registry/opaline/ui/opaline/glass-date-picker"
 
 export default function GlassDatePickerDemo() {
   const [date, setDate] = React.useState<Date>()

@@ -3,12 +3,12 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { BellIcon, HeartIcon, Share01Icon } from "@hugeicons/core-free-icons"
 
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import {
   GlassTooltip,
   GlassTooltipContent,
   GlassTooltipTrigger,
-} from "@/registry/opaline/ui/glass-tooltip"
+} from "@/registry/opaline/ui/opaline/glass-tooltip"
 
 const actions = [
   { label: "Notifications", icon: <HugeiconsIcon icon={BellIcon} /> },

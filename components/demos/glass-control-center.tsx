@@ -9,8 +9,8 @@ import {
   GlassControlCenter,
   GlassControlTile,
   GlassControlToggle,
-} from "@/registry/opaline/ui/glass-control-center"
-import { GlassSlider } from "@/registry/opaline/ui/glass-slider"
+} from "@/registry/opaline/ui/opaline/glass-control-center"
+import { GlassSlider } from "@/registry/opaline/ui/opaline/glass-slider"
 
 function Transport({
   playing,

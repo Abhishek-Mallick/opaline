@@ -45,6 +45,7 @@ npx shadcn@latest add @opaline/all
 
 - shadcn registry at `https://opaline.buildlab.in/r`, with the `@opaline` namespace listed in the shadcn directory
 - `@opaline/all` installs every component and the theme in one command
+- Components install into their own folder, `components/ui/opaline/`, and import from `@/components/ui/opaline/<name>`, so they never clash with your shadcn/ui components. The engine goes to `lib/glass-refraction.ts` and shared hooks to `hooks/`
 
 [Unreleased]: https://github.com/deepraj21/opaline/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/deepraj21/opaline/releases/tag/v0.1.0

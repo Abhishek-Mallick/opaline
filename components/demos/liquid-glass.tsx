@@ -1,6 +1,6 @@
 "use client"
 
-import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
+import { LiquidGlass } from "@/registry/opaline/ui/opaline/liquid-glass"
 
 export default function LiquidGlassDemo() {
   return (

@@ -7,7 +7,7 @@ import { Cancel01Icon } from "@hugeicons/core-free-icons"
 import type { Control, Value } from "@/components/customize/types"
 import { ColorPopover } from "@/components/customize/color-picker"
 import { cn } from "@/lib/utils"
-import { GlassSlider } from "@/registry/opaline/ui/glass-slider"
+import { GlassSlider } from "@/registry/opaline/ui/opaline/glass-slider"
 import { AnimatePresence } from "motion/react"
 import {
   GlassSelect,
@@ -15,7 +15,7 @@ import {
   GlassSelectItem,
   GlassSelectTrigger,
   GlassSelectValue,
-} from "@/registry/opaline/ui/glass-select"
+} from "@/registry/opaline/ui/opaline/glass-select"
 
 const round = (v: number, step = 1) => {
   const digits = Math.max(0, -Math.floor(Math.log10(step)))

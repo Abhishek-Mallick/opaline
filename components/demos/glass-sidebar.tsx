@@ -11,7 +11,7 @@ import {
   GlassSidebarHeader,
   GlassSidebarItem,
   GlassSidebarToggle,
-} from "@/registry/opaline/ui/glass-sidebar"
+} from "@/registry/opaline/ui/opaline/glass-sidebar"
 
 const groups = [
   {

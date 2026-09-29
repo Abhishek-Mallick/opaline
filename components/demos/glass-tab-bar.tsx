@@ -3,7 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Home01Icon, LibraryIcon, RadioIcon, SparklesIcon } from "@hugeicons/core-free-icons"
 
-import { GlassTabBar, GlassTabBarItem } from "@/registry/opaline/ui/glass-tab-bar"
+import { GlassTabBar, GlassTabBarItem } from "@/registry/opaline/ui/opaline/glass-tab-bar"
 
 export default function GlassTabBarDemo() {
   return (

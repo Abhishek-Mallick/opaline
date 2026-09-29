@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { GlassKnob } from "@/registry/opaline/ui/glass-knob"
+import { GlassKnob } from "@/registry/opaline/ui/opaline/glass-knob"
 
 export default function GlassKnobDemo() {
   const [temp, setTemp] = React.useState(22)

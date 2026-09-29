@@ -64,7 +64,7 @@ Or install from a URL: `npx shadcn@latest add https://opaline.buildlab.in/r/glas
 ## Usage
 
 ```tsx
-import { GlassButton } from "@/components/ui/glass-button"
+import { GlassButton } from "@/components/ui/opaline/glass-button"
 
 export default function Page() {
   return <GlassButton variant="prominent">Get started</GlassButton>
@@ -76,7 +76,7 @@ Glass needs something to bend. Place components over imagery, gradients or conte
 Tune the optics for a whole subtree with `LiquidGlassProvider`. Props set directly on a component still win:
 
 ```tsx
-import { LiquidGlassProvider } from "@/components/ui/liquid-glass"
+import { LiquidGlassProvider } from "@/components/ui/opaline/liquid-glass"
 
 <LiquidGlassProvider ior={1.9} surface="lip" thickness={1.8} specular={0.5}>
   <App />
