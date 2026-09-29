@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassClock } from "@/registry/opaline/ui/glass-clock"
+import { GlassClock } from "@/registry/opaline/ui/opaline/glass-clock"
 
 export default function GlassClockDemo() {
   return (

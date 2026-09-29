@@ -5,7 +5,7 @@ import { GithubIcon, Header, Logo } from "@/components/site/header"
 import { InstallModeProvider } from "@/components/site/install-mode"
 import { siteConfig, withBase } from "@/lib/site"
 import { THEME_COLORS, themeScript } from "@/lib/theme"
-import { GlassToaster } from "@/registry/opaline/ui/glass-toast"
+import { GlassToaster } from "@/registry/opaline/ui/opaline/glass-toast"
 
 import "./globals.css"
 

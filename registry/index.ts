@@ -76,7 +76,7 @@ export const keyframes: Record<string, Record<string, Record<string, string>>> =
 }
 
 const ui = (name: string) => ({
-  path: `registry/opaline/ui/${name}.tsx`,
+  path: `registry/opaline/ui/opaline/${name}.tsx`,
   type: "registry:ui",
 })
 
@@ -124,7 +124,7 @@ export const items: Item[] = [
     dependencies: ["radix-ui"],
     glass: true,
     keyframes: ["opaline-glass-in", "opaline-glass-out"],
-    usage: `import { LiquidGlass } from "@/components/ui/liquid-glass"
+    usage: `import { LiquidGlass } from "@/components/ui/opaline/liquid-glass"
 
 <LiquidGlass className="rounded-3xl p-6" bezel={24} refraction={40}>
   Anything you like
@@ -145,7 +145,7 @@ export const items: Item[] = [
     "glass-dock",
     "Glass Dock",
     "macOS-style dock with smooth magnification and hover labels.",
-    `import { GlassDock, GlassDockItem, GlassDockSeparator } from "@/components/ui/glass-dock"
+    `import { GlassDock, GlassDockItem, GlassDockSeparator } from "@/components/ui/opaline/glass-dock"
 
 <GlassDock>
   <GlassDockItem label="Finder" active>
@@ -164,7 +164,7 @@ export const items: Item[] = [
     "glass-text",
     "Glass Text",
     "Headlines cast in liquid glass — every glyph is a bevelled lens with rim light and a travelling sheen.",
-    `import { GlassText } from "@/components/ui/glass-text"
+    `import { GlassText } from "@/components/ui/opaline/glass-text"
 
 <GlassText className="text-8xl font-extrabold tracking-tight">Opaline</GlassText>
 <GlassText bevel={6} refraction={16} shine={false} className="text-4xl font-bold">
@@ -184,7 +184,7 @@ import {
   GlassControlSlider,
   GlassControlTile,
   GlassControlToggle,
-} from "@/components/ui/glass-control-center"
+} from "@/components/ui/opaline/glass-control-center"
 
 <GlassControlCenter>
   <GlassControlTile rows={2}>
@@ -205,7 +205,7 @@ import {
     "Icon segmented picker whose glass bubble stretches like liquid as it travels.",
     `import { HugeiconsIcon } from "@hugeicons/react"
 import { Folder01Icon, Image01Icon, Search01Icon } from "@hugeicons/core-free-icons"
-import { GlassSegmented, GlassSegmentedItem } from "@/components/ui/glass-segmented"
+import { GlassSegmented, GlassSegmentedItem } from "@/components/ui/opaline/glass-segmented"
 
 <GlassSegmented defaultValue="photos" aria-label="Library">
   <GlassSegmentedItem value="photos" icon={<HugeiconsIcon icon={Image01Icon} />} label="Photos" />
@@ -218,7 +218,7 @@ import { GlassSegmented, GlassSegmentedItem } from "@/components/ui/glass-segmen
     "glass-date-picker",
     "Glass Date Picker",
     "Glass calendar with a gliding day bubble, and a capsule date picker.",
-    `import { GlassCalendar, GlassDatePicker } from "@/components/ui/glass-date-picker"
+    `import { GlassCalendar, GlassDatePicker } from "@/components/ui/opaline/glass-date-picker"
 
 <GlassDatePicker onValueChange={setDate} />
 
@@ -234,7 +234,7 @@ import { GlassSegmented, GlassSegmentedItem } from "@/components/ui/glass-segmen
     "glass-stepper",
     "Glass Stepper",
     "Capsule stepper with rolling digits, hold-to-accelerate and a shake at the limits.",
-    `import { GlassStepper } from "@/components/ui/glass-stepper"
+    `import { GlassStepper } from "@/components/ui/opaline/glass-stepper"
 
 <GlassStepper defaultValue={2} min={1} max={10} label="Guests" />
 <GlassStepper
@@ -262,7 +262,7 @@ import {
   GlassContextMenuContent,
   GlassContextMenuItem,
   GlassContextMenuTrigger,
-} from "@/components/ui/glass-context-menu"
+} from "@/components/ui/opaline/glass-context-menu"
 
 <GlassContextMenu>
   <GlassContextMenuTrigger>Right-click me</GlassContextMenuTrigger>
@@ -282,7 +282,7 @@ import {
     "glass-widget",
     "Glass Widget",
     "iOS home-screen widget frame on liquid glass — small, medium and large.",
-    `import { GlassWidget } from "@/components/ui/glass-widget"
+    `import { GlassWidget } from "@/components/ui/opaline/glass-widget"
 
 <GlassWidget size="small">…</GlassWidget>
 <GlassWidget size="medium">…</GlassWidget>`
@@ -291,7 +291,7 @@ import {
     "glass-widget-weather",
     "Weather Widget",
     "Weather widget with animated condition art and an hourly forecast.",
-    `import { GlassWidgetWeather } from "@/components/ui/glass-widget-weather"
+    `import { GlassWidgetWeather } from "@/components/ui/opaline/glass-widget-weather"
 
 <GlassWidgetWeather
   size="medium"
@@ -311,7 +311,7 @@ import {
     "glass-widget-calendar",
     "Calendar Widget",
     "Calendar widget showing today, what's next and a month at a glance.",
-    `import { GlassWidgetCalendar } from "@/components/ui/glass-widget-calendar"
+    `import { GlassWidgetCalendar } from "@/components/ui/opaline/glass-widget-calendar"
 
 <GlassWidgetCalendar
   size="medium"
@@ -326,7 +326,7 @@ import {
     "glass-widget-battery",
     "Battery Widget",
     "Batteries widget with device rings that fill, turn red when low and show charging.",
-    `import { GlassWidgetBattery } from "@/components/ui/glass-widget-battery"
+    `import { GlassWidgetBattery } from "@/components/ui/opaline/glass-widget-battery"
 
 <GlassWidgetBattery
   size="medium"
@@ -344,7 +344,7 @@ import {
     "Pill button made of liquid glass with a pointer-tracked highlight.",
     `import { HugeiconsIcon } from "@hugeicons/react"
 import { HeartIcon } from "@hugeicons/core-free-icons"
-import { GlassButton } from "@/components/ui/glass-button"
+import { GlassButton } from "@/components/ui/opaline/glass-button"
 
 <GlassButton>Continue</GlassButton>
 <GlassButton variant="prominent">Get started</GlassButton>
@@ -357,7 +357,7 @@ import { GlassButton } from "@/components/ui/glass-button"
     "glass-lens",
     "Glass Lens",
     "Draggable magnifying lens that bends whatever is beneath it.",
-    `import { GlassLens } from "@/components/ui/glass-lens"
+    `import { GlassLens } from "@/components/ui/opaline/glass-lens"
 
 <div className="relative h-80">
   <h1 className="text-8xl font-bold">Opaline</h1>
@@ -376,7 +376,7 @@ import {
   GlassSidebarHeader,
   GlassSidebarItem,
   GlassSidebarToggle,
-} from "@/components/ui/glass-sidebar"
+} from "@/components/ui/opaline/glass-sidebar"
 
 <GlassSidebar>
   <GlassSidebarHeader>
@@ -400,7 +400,7 @@ import {
   GlassCommandInput,
   GlassCommandItem,
   GlassCommandList,
-} from "@/components/ui/glass-command"
+} from "@/components/ui/opaline/glass-command"
 
 const [open, setOpen] = React.useState(false)
 
@@ -431,7 +431,7 @@ React.useEffect(() => {
     "glass-player",
     "Glass Player",
     "Now-playing widget with scrubber, transport controls and volume.",
-    `import { GlassPlayer } from "@/components/ui/glass-player"
+    `import { GlassPlayer } from "@/components/ui/opaline/glass-player"
 
 <GlassPlayer title="Midnight City" artist="M83" duration={243} artwork="/cover.jpg" />`,
     { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"] }
@@ -446,7 +446,7 @@ React.useEffect(() => {
   GlassCardDescription,
   GlassCardHeader,
   GlassCardTitle,
-} from "@/components/ui/glass-card"
+} from "@/components/ui/opaline/glass-card"
 
 <GlassCard className="w-80">
   <GlassCardHeader>
@@ -460,7 +460,7 @@ React.useEffect(() => {
     "glass-knob",
     "Glass Knob",
     "Rotary dial with a glass cap — drag around it or use the arrow keys.",
-    `import { GlassKnob } from "@/components/ui/glass-knob"
+    `import { GlassKnob } from "@/components/ui/opaline/glass-knob"
 
 <GlassKnob defaultValue={64} label="Volume" />
 <GlassKnob
@@ -475,7 +475,7 @@ React.useEffect(() => {
     "glass-clock",
     "Glass Clock",
     "Analog clock on a liquid glass face with a sweeping second hand.",
-    `import { GlassClock } from "@/components/ui/glass-clock"
+    `import { GlassClock } from "@/components/ui/opaline/glass-clock"
 
 <GlassClock />
 <GlassClock timeZone="Asia/Tokyo" label="Tokyo" size={140} />`
@@ -484,7 +484,7 @@ React.useEffect(() => {
     "glass-stack",
     "Glass Stack",
     "A deck of glass cards — swipe the top one away to reveal the next.",
-    `import { GlassStack, GlassStackCard } from "@/components/ui/glass-stack"
+    `import { GlassStack, GlassStackCard } from "@/components/ui/opaline/glass-stack"
 
 <GlassStack className="h-52 w-80">
   <GlassStackCard>Apple Card</GlassStackCard>
@@ -496,7 +496,7 @@ React.useEffect(() => {
     "glass-switch",
     "Glass Switch",
     "iOS switch whose thumb turns into a glass lens while pressed.",
-    `import { GlassSwitch } from "@/components/ui/glass-switch"
+    `import { GlassSwitch } from "@/components/ui/opaline/glass-switch"
 
 <GlassSwitch defaultChecked aria-label="Wi-Fi" />`,
     { dependencies: ["radix-ui"] }
@@ -505,7 +505,7 @@ React.useEffect(() => {
     "glass-slider",
     "Glass Slider",
     "Slider whose thumb becomes a refracting lens while dragging.",
-    `import { GlassSlider } from "@/components/ui/glass-slider"
+    `import { GlassSlider } from "@/components/ui/opaline/glass-slider"
 
 <GlassSlider defaultValue={[60]} aria-label="Volume" />`,
     { dependencies: ["radix-ui"] }
@@ -519,7 +519,7 @@ React.useEffect(() => {
   GlassTabsContent,
   GlassTabsList,
   GlassTabsTrigger,
-} from "@/components/ui/glass-tabs"
+} from "@/components/ui/opaline/glass-tabs"
 
 <GlassTabs defaultValue="week">
   <GlassTabsList>
@@ -537,7 +537,7 @@ React.useEffect(() => {
     "Floating iOS 26 tab bar with a sliding liquid selection.",
     `import { HugeiconsIcon } from "@hugeicons/react"
 import { Home01Icon, Search01Icon } from "@hugeicons/core-free-icons"
-import { GlassTabBar, GlassTabBarItem } from "@/components/ui/glass-tab-bar"
+import { GlassTabBar, GlassTabBarItem } from "@/components/ui/opaline/glass-tab-bar"
 
 <GlassTabBar defaultValue="home" onValueChange={console.log}>
   <GlassTabBarItem value="home" icon={<HugeiconsIcon icon={Home01Icon} />} label="Home" />
@@ -556,7 +556,7 @@ import { GlassTabBar, GlassTabBarItem } from "@/components/ui/glass-tab-bar"
   GlassSheetHeader,
   GlassSheetTitle,
   GlassSheetTrigger,
-} from "@/components/ui/glass-sheet"
+} from "@/components/ui/opaline/glass-sheet"
 
 <GlassSheet>
   <GlassSheetTrigger>Open</GlassSheetTrigger>
@@ -573,7 +573,7 @@ import { GlassTabBar, GlassTabBarItem } from "@/components/ui/glass-tab-bar"
     "glass-toast",
     "Glass Toast",
     "Imperative toasts on glass that drop in from the top.",
-    `import { GlassToaster, toast } from "@/components/ui/glass-toast"
+    `import { GlassToaster, toast } from "@/components/ui/opaline/glass-toast"
 
 // once, in your root layout
 <GlassToaster />
@@ -592,7 +592,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
   GlassPopover,
   GlassPopoverContent,
   GlassPopoverTrigger,
-} from "@/components/ui/glass-popover"
+} from "@/components/ui/opaline/glass-popover"
 
 <GlassPopover>
   <GlassPopoverTrigger>Details</GlassPopoverTrigger>
@@ -610,7 +610,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
   GlassSelectItem,
   GlassSelectTrigger,
   GlassSelectValue,
-} from "@/components/ui/glass-select"
+} from "@/components/ui/opaline/glass-select"
 
 <GlassSelect defaultValue="system">
   <GlassSelectTrigger className="w-48">
@@ -634,7 +634,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
   GlassMenuItem,
   GlassMenuSeparator,
   GlassMenuTrigger,
-} from "@/components/ui/glass-menu"
+} from "@/components/ui/opaline/glass-menu"
 
 <GlassMenu>
   <GlassMenuTrigger>Actions</GlassMenuTrigger>
@@ -658,7 +658,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
   GlassDialogHeader,
   GlassDialogTitle,
   GlassDialogTrigger,
-} from "@/components/ui/glass-dialog"
+} from "@/components/ui/opaline/glass-dialog"
 
 <GlassDialog>
   <GlassDialogTrigger>Open</GlassDialogTrigger>
@@ -678,7 +678,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
     `import {
   GlassNotification,
   GlassNotificationStack,
-} from "@/components/ui/glass-notification"
+} from "@/components/ui/opaline/glass-notification"
 
 <GlassNotificationStack>
   <GlassNotification title="Ava" time="now">Dinner at 8?</GlassNotification>
@@ -691,7 +691,7 @@ toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
     "Capsule text field with icon and adornment slots — made for search.",
     `import { HugeiconsIcon } from "@hugeicons/react"
 import { Mic01Icon, Search01Icon } from "@hugeicons/core-free-icons"
-import { GlassInput } from "@/components/ui/glass-input"
+import { GlassInput } from "@/components/ui/opaline/glass-input"
 
 <GlassInput placeholder="Search" startIcon={<HugeiconsIcon icon={Search01Icon} />} endAdornment={<HugeiconsIcon icon={Mic01Icon} />} />`
   ),
@@ -705,7 +705,7 @@ import {
   GlassToolbar,
   GlassToolbarButton,
   GlassToolbarSeparator,
-} from "@/components/ui/glass-toolbar"
+} from "@/components/ui/opaline/glass-toolbar"
 
 <GlassToolbar>
   <GlassToolbarButton aria-label="Bold" active><HugeiconsIcon icon={BoldIcon} /></GlassToolbarButton>
@@ -722,7 +722,7 @@ import {
   GlassTooltip,
   GlassTooltipContent,
   GlassTooltipTrigger,
-} from "@/components/ui/glass-tooltip"
+} from "@/components/ui/opaline/glass-tooltip"
 
 <GlassTooltip>
   <GlassTooltipTrigger>Hover me</GlassTooltipTrigger>
@@ -734,7 +734,7 @@ import {
     "glass-badge",
     "Glass Badge",
     "Small glass chip with an optional glowing status dot.",
-    `import { GlassBadge } from "@/components/ui/glass-badge"
+    `import { GlassBadge } from "@/components/ui/opaline/glass-badge"
 
 <GlassBadge dot="#34c759">Live</GlassBadge>`
   ),
@@ -743,7 +743,7 @@ import {
     "glass-otp",
     "OTP Input",
     "One-time code cells on glass with a gliding lens, paste and SMS autofill, and success / error states.",
-    `import { GlassOTP } from "@/components/ui/glass-otp"
+    `import { GlassOTP } from "@/components/ui/opaline/glass-otp"
 
 <GlassOTP length={6} group={3} onComplete={(code) => verify(code)} />`,
     {

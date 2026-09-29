@@ -6,10 +6,10 @@ import { ArrowRight01Icon, HeartIcon, Mic01Icon, PauseIcon, PlayIcon, Search01Ic
 
 import { InstallBar } from "@/components/site/install-mode"
 import { Wallpaper } from "@/components/site/wallpaper"
-import { GlassBadge } from "@/registry/opaline/ui/glass-badge"
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
-import { GlassInput } from "@/registry/opaline/ui/glass-input"
-import { GlassLens } from "@/registry/opaline/ui/glass-lens"
+import { GlassBadge } from "@/registry/opaline/ui/opaline/glass-badge"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
+import { GlassInput } from "@/registry/opaline/ui/opaline/glass-input"
+import { GlassLens } from "@/registry/opaline/ui/opaline/glass-lens"
 
 export function Hero() {
   const videoRef = React.useRef<HTMLVideoElement>(null)
@@ -28,13 +28,20 @@ export function Hero() {
 
   return (
     <section className="flex flex-col items-center pt-32 text-center sm:pt-40">
-      <GlassBadge
-        dot="#34c759"
-        className="mb-7 text-foreground"
-        tint="color-mix(in oklch, var(--foreground) 4%, transparent)"
+      <a
+        href="https://ui.shadcn.com/docs/directory?q=opaline"
+        target="_blank"
+        rel="noreferrer"
+        className="mb-7 rounded-full outline-none transition-transform hover:scale-[1.03] focus-visible:ring-[3px] focus-visible:ring-ring/40"
       >
-        Now with Liquid Glass
-      </GlassBadge>
+        <GlassBadge
+          dot="#34c759"
+          className="text-foreground"
+          tint="color-mix(in oklch, var(--foreground) 4%, transparent)"
+        >
+          Now in the shadcn directory
+        </GlassBadge>
+      </a>
       <h1 className="max-w-3xl text-[44px] leading-[1.02] font-semibold tracking-[-0.045em] text-balance sm:text-7xl">
         Interfaces that
         <br />

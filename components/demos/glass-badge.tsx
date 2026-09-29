@@ -3,7 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { SparklesIcon } from "@hugeicons/core-free-icons"
 
-import { GlassBadge } from "@/registry/opaline/ui/glass-badge"
+import { GlassBadge } from "@/registry/opaline/ui/opaline/glass-badge"
 
 export default function GlassBadgeDemo() {
   return (

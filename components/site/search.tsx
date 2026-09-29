@@ -17,7 +17,7 @@ import {
   GlassCommandList,
   GlassCommandSeparator,
   GlassCommandShortcut,
-} from "@/registry/opaline/ui/glass-command"
+} from "@/registry/opaline/ui/opaline/glass-command"
 
 /** Site-wide ⌘K / Ctrl+K search over every component and doc page. */
 export function SearchCommand() {

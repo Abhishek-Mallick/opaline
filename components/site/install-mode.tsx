@@ -5,8 +5,8 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { CheckIcon, CopyIcon } from "@hugeicons/core-free-icons"
 
 import { installCommand, type InstallMode } from "@/lib/site"
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
-import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
+import { LiquidGlass } from "@/registry/opaline/ui/opaline/liquid-glass"
 import { cn } from "@/lib/utils"
 
 const ModeContext = React.createContext<{

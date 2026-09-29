@@ -3,7 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Mic01Icon, Search01Icon } from "@hugeicons/core-free-icons"
 
-import { GlassInput } from "@/registry/opaline/ui/glass-input"
+import { GlassInput } from "@/registry/opaline/ui/opaline/glass-input"
 
 export default function GlassInputDemo() {
   return (

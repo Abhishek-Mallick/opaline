@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassStepper } from "@/registry/opaline/ui/glass-stepper"
+import { GlassStepper } from "@/registry/opaline/ui/opaline/glass-stepper"
 
 export default function GlassStepperDemo() {
   return (

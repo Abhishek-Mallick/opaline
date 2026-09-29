@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassText } from "@/registry/opaline/ui/glass-text"
+import { GlassText } from "@/registry/opaline/ui/opaline/glass-text"
 
 export default function GlassTextDemo() {
   return (

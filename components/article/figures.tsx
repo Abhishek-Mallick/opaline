@@ -16,7 +16,7 @@ import {
   surfaceSlope,
   type GlassSurface,
 } from "@/registry/opaline/lib/glass-refraction"
-import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
+import { LiquidGlass } from "@/registry/opaline/ui/opaline/liquid-glass"
 
 const BLUE = "oklch(0.62 0.19 255)"
 const ORANGE = "oklch(0.72 0.18 50)"

@@ -3,7 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Share08Icon } from "@hugeicons/core-free-icons"
 
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import {
   GlassDialog,
   GlassDialogClose,
@@ -13,7 +13,7 @@ import {
   GlassDialogHeader,
   GlassDialogTitle,
   GlassDialogTrigger,
-} from "@/registry/opaline/ui/glass-dialog"
+} from "@/registry/opaline/ui/opaline/glass-dialog"
 
 export default function GlassDialogDemo() {
   return (

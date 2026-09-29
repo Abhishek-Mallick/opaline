@@ -134,20 +134,23 @@ const setup = `## Setup
 Opaline is a shadcn registry. It needs React 19, Tailwind CSS v4 and a
 components.json (run \`npx shadcn@latest init\` first).
 
-Register the namespace once in components.json:
-
-\`\`\`json
-{ "registries": { "@opaline": "${REGISTRY_URL}/{name}.json" } }
-\`\`\`
-
-Then install the theme and any component:
+@opaline is listed in the shadcn registry directory, so no configuration is
+needed. Install the theme and any component:
 
 \`\`\`bash
 npx shadcn@latest add @opaline/theme @opaline/glass-button
 npx shadcn@latest add @opaline/all   # everything
 \`\`\`
 
-Components install to components/ui and import from "@/components/ui/<name>".
+With an older shadcn CLI, register the namespace in components.json first:
+
+\`\`\`json
+{ "registries": { "@opaline": "${REGISTRY_URL}/{name}.json" } }
+\`\`\`
+
+Components install to components/ui/opaline and import from
+"@/components/ui/opaline/<name>". The engine goes to lib/glass-refraction.ts
+and shared hooks to hooks/.
 Glass components refract the backdrop in Chromium browsers and fall back to
 frosted blur in Safari and Firefox. Place them over colourful content.
 `

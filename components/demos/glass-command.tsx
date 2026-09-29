@@ -4,7 +4,7 @@ import * as React from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { CalculatorIcon, Calendar01Icon, MoonIcon, Search01Icon, Settings01Icon, SmileIcon, UserIcon } from "@hugeicons/core-free-icons"
 
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import {
   GlassCommandDialog,
   GlassCommandEmpty,
@@ -14,7 +14,7 @@ import {
   GlassCommandList,
   GlassCommandSeparator,
   GlassCommandShortcut,
-} from "@/registry/opaline/ui/glass-command"
+} from "@/registry/opaline/ui/opaline/glass-command"
 
 export default function GlassCommandDemo() {
   const [open, setOpen] = React.useState(false)

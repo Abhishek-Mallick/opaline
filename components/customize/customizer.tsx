@@ -15,10 +15,10 @@ import { demoMeta } from "@/components/demos/meta"
 import { CodeFrame } from "@/components/site/code"
 import { WALLPAPER_NAMES, Wallpaper } from "@/components/site/wallpaper"
 import type { WallpaperName } from "@/components/site/wallpaper"
-import { GlassSelect, GlassSelectContent, GlassSelectGroup, GlassSelectItem, GlassSelectLabel, GlassSelectTrigger, GlassSelectValue } from "@/registry/opaline/ui/glass-select"
+import { GlassSelect, GlassSelectContent, GlassSelectGroup, GlassSelectItem, GlassSelectLabel, GlassSelectTrigger, GlassSelectValue } from "@/registry/opaline/ui/opaline/glass-select"
 import { cn } from "@/lib/utils"
 import { itemsByName } from "@/registry/index"
-import { LiquidGlassProvider } from "@/registry/opaline/ui/liquid-glass"
+import { LiquidGlassProvider } from "@/registry/opaline/ui/opaline/liquid-glass"
 
 const CUSTOM = "Custom"
 

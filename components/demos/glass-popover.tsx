@@ -3,13 +3,13 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { SlidersHorizontalIcon } from "@hugeicons/core-free-icons"
 
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import {
   GlassPopover,
   GlassPopoverContent,
   GlassPopoverTrigger,
-} from "@/registry/opaline/ui/glass-popover"
-import { GlassSlider } from "@/registry/opaline/ui/glass-slider"
+} from "@/registry/opaline/ui/opaline/glass-popover"
+import { GlassSlider } from "@/registry/opaline/ui/opaline/glass-slider"
 
 export default function GlassPopoverDemo() {
   return (

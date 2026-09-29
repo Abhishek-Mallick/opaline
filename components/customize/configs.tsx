@@ -5,29 +5,29 @@ import { ArrowRight01Icon, Mic01Icon, Search01Icon } from "@hugeicons/core-free-
 
 import { element, openTag } from "@/components/customize/code"
 import type { Control, Customization, Values } from "@/components/customize/types"
-import { GlassBadge } from "@/registry/opaline/ui/glass-badge"
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassBadge } from "@/registry/opaline/ui/opaline/glass-badge"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import {
   GlassCard,
   GlassCardContent,
   GlassCardDescription,
   GlassCardHeader,
   GlassCardTitle,
-} from "@/registry/opaline/ui/glass-card"
-import { GlassClock } from "@/registry/opaline/ui/glass-clock"
-import { GlassInput } from "@/registry/opaline/ui/glass-input"
-import { GlassKnob } from "@/registry/opaline/ui/glass-knob"
-import { GlassLens } from "@/registry/opaline/ui/glass-lens"
-import { GlassOTP } from "@/registry/opaline/ui/glass-otp"
-import { GlassSlider } from "@/registry/opaline/ui/glass-slider"
-import { GlassStepper } from "@/registry/opaline/ui/glass-stepper"
-import { GlassSwitch } from "@/registry/opaline/ui/glass-switch"
-import { GlassText } from "@/registry/opaline/ui/glass-text"
-import { GlassWidget, type WidgetSize } from "@/registry/opaline/ui/glass-widget"
-import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
+} from "@/registry/opaline/ui/opaline/glass-card"
+import { GlassClock } from "@/registry/opaline/ui/opaline/glass-clock"
+import { GlassInput } from "@/registry/opaline/ui/opaline/glass-input"
+import { GlassKnob } from "@/registry/opaline/ui/opaline/glass-knob"
+import { GlassLens } from "@/registry/opaline/ui/opaline/glass-lens"
+import { GlassOTP } from "@/registry/opaline/ui/opaline/glass-otp"
+import { GlassSlider } from "@/registry/opaline/ui/opaline/glass-slider"
+import { GlassStepper } from "@/registry/opaline/ui/opaline/glass-stepper"
+import { GlassSwitch } from "@/registry/opaline/ui/opaline/glass-switch"
+import { GlassText } from "@/registry/opaline/ui/opaline/glass-text"
+import { GlassWidget, type WidgetSize } from "@/registry/opaline/ui/opaline/glass-widget"
+import { LiquidGlass } from "@/registry/opaline/ui/opaline/liquid-glass"
 
 const ui = (name: string, ...names: string[]) =>
-  `import { ${names.join(", ")} } from "@/components/ui/${name}"`
+  `import { ${names.join(", ")} } from "@/components/ui/opaline/${name}"`
 
 const text = (key: string, label: string, value: string, description?: string): Control => ({
   kind: "text",

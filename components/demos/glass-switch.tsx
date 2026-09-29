@@ -1,7 +1,7 @@
 "use client"
 
-import { GlassCard } from "@/registry/opaline/ui/glass-card"
-import { GlassSwitch } from "@/registry/opaline/ui/glass-switch"
+import { GlassCard } from "@/registry/opaline/ui/opaline/glass-card"
+import { GlassSwitch } from "@/registry/opaline/ui/opaline/glass-switch"
 
 const settings = [
   { label: "Wi-Fi", on: true },

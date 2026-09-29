@@ -3,7 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { PlaneIcon, SparklesIcon, Ticket01Icon } from "@hugeicons/core-free-icons"
 
-import { GlassStack, GlassStackCard } from "@/registry/opaline/ui/glass-stack"
+import { GlassStack, GlassStackCard } from "@/registry/opaline/ui/opaline/glass-stack"
 
 export default function GlassStackDemo() {
   return (

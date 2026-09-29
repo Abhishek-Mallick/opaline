@@ -17,7 +17,7 @@ import {
   GlassContextMenuSubContent,
   GlassContextMenuSubTrigger,
   GlassContextMenuTrigger,
-} from "@/registry/opaline/ui/glass-context-menu"
+} from "@/registry/opaline/ui/opaline/glass-context-menu"
 
 const tags = [
   { name: "Red", color: "#ff453a" },

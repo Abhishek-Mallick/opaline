@@ -3,7 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowRight01Icon, HeartIcon, Mic01Icon, Share01Icon } from "@hugeicons/core-free-icons"
 
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 
 export default function GlassButtonDemo() {
   return (

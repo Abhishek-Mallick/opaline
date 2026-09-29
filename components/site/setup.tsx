@@ -1,21 +1,10 @@
 import { CodeBlock } from "@/components/site/code-block"
-import { siteConfig, withBase } from "@/lib/site"
+import { withBase } from "@/lib/site"
 
 const steps = [
   {
-    title: "Add the registry",
-    body: "Point the @opaline namespace at the registry in components.json.",
-    label: "components.json",
-    lang: "json" as const,
-    code: `{
-  "registries": {
-    "@opaline": "${siteConfig.registryUrl}/{name}.json"
-  }
-}`,
-  },
-  {
     title: "Install components",
-    body: "Pull individual pieces, or the theme and everything at once.",
+    body: "@opaline is in the shadcn directory, so there's nothing to configure.",
     label: "Terminal",
     lang: "bash" as const,
     code: `# Install individual components
@@ -29,11 +18,22 @@ npx shadcn@latest add @opaline/all`,
     body: "Glass looks best over something colourful — photos, gradients, content.",
     label: "app/page.tsx",
     lang: "tsx" as const,
-    code: `import { GlassButton } from "@/components/ui/glass-button"
+    code: `import { GlassButton } from "@/components/ui/opaline/glass-button"
 
 export default function Page() {
   return <GlassButton variant="prominent">Get started</GlassButton>
 }`,
+  },
+  {
+    title: "Tune the glass",
+    body: "Set the optics once for everything inside, or per component.",
+    label: "app/layout.tsx",
+    lang: "tsx" as const,
+    code: `import { LiquidGlassProvider } from "@/components/ui/opaline/liquid-glass"
+
+<LiquidGlassProvider ior={1.9} surface="lip" specular={0.5}>
+  {children}
+</LiquidGlassProvider>`,
   },
 ]
 
@@ -50,6 +50,16 @@ export function Setup() {
             /llms.txt
           </a>
           .
+        </p>
+        <p className="max-w-2xl text-[13px] leading-relaxed text-muted-foreground">
+          On an older shadcn CLI?{" "}
+          <a
+            href="https://github.com/deepraj21/opaline#installation"
+            className="text-foreground underline underline-offset-4"
+          >
+            Add the registry to components.json
+          </a>{" "}
+          first.
         </p>
       </div>
       <ol className="grid gap-4 lg:grid-cols-3">

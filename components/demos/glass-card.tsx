@@ -9,7 +9,7 @@ import {
   GlassCardDescription,
   GlassCardHeader,
   GlassCardTitle,
-} from "@/registry/opaline/ui/glass-card"
+} from "@/registry/opaline/ui/opaline/glass-card"
 
 const hours = [
   ["Now", "72°"],

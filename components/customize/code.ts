@@ -74,7 +74,7 @@ export function render({ imports, jsx }: Snippet, provider: string[]) {
   const all = [...imports]
   let body = jsx
   if (provider.length) {
-    all.unshift('import { LiquidGlassProvider } from "@/components/ui/liquid-glass"')
+    all.unshift('import { LiquidGlassProvider } from "@/components/ui/opaline/liquid-glass"')
     body = `${openTag("LiquidGlassProvider", provider)}\n${indent(jsx)}\n</LiquidGlassProvider>`
   }
   return `${mergeImports(all).join("\n")}\n\n${body}\n`

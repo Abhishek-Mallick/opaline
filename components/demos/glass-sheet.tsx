@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassButton } from "@/registry/opaline/ui/glass-button"
+import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import {
   GlassSheet,
   GlassSheetClose,
@@ -10,9 +10,9 @@ import {
   GlassSheetHeader,
   GlassSheetTitle,
   GlassSheetTrigger,
-} from "@/registry/opaline/ui/glass-sheet"
-import { GlassSlider } from "@/registry/opaline/ui/glass-slider"
-import { GlassSwitch } from "@/registry/opaline/ui/glass-switch"
+} from "@/registry/opaline/ui/opaline/glass-sheet"
+import { GlassSlider } from "@/registry/opaline/ui/opaline/glass-slider"
+import { GlassSwitch } from "@/registry/opaline/ui/opaline/glass-switch"
 
 export default function GlassSheetDemo() {
   return (

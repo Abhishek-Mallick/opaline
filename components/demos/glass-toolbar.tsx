@@ -8,7 +8,7 @@ import {
   GlassToolbar,
   GlassToolbarButton,
   GlassToolbarSeparator,
-} from "@/registry/opaline/ui/glass-toolbar"
+} from "@/registry/opaline/ui/opaline/glass-toolbar"
 
 const tools = [
   { id: "bold", icon: <HugeiconsIcon icon={BoldIcon} /> },

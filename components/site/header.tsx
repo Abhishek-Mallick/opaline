@@ -9,7 +9,7 @@ import Link from "next/link"
 import { SearchCommand } from "@/components/site/search"
 import { siteConfig } from "@/lib/site"
 import { applyTheme, isDark, THEME_STORAGE_KEY, toggleTheme } from "@/lib/theme"
-import { LiquidGlass } from "@/registry/opaline/ui/liquid-glass"
+import { LiquidGlass } from "@/registry/opaline/ui/opaline/liquid-glass"
 
 export function Logo({ className }: { className?: string }) {
   return (

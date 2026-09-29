@@ -9,7 +9,7 @@ import {
   GlassSelectSeparator,
   GlassSelectTrigger,
   GlassSelectValue,
-} from "@/registry/opaline/ui/glass-select"
+} from "@/registry/opaline/ui/opaline/glass-select"
 
 export default function GlassSelectDemo() {
   return (

@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassWidgetCalendar } from "@/registry/opaline/ui/glass-widget-calendar"
+import { GlassWidgetCalendar } from "@/registry/opaline/ui/opaline/glass-widget-calendar"
 
 const events = [
   { title: "Design review", time: "2:00 – 3:00 PM", color: "#ff9f0a" },

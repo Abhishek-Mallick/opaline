@@ -1,6 +1,6 @@
 "use client"
 
-import { GlassWidget } from "@/registry/opaline/ui/glass-widget"
+import { GlassWidget } from "@/registry/opaline/ui/opaline/glass-widget"
 
 export default function GlassWidgetDemo() {
   return (
