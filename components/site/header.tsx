@@ -87,8 +87,8 @@ export function Header() {
           <Link href="/components" className="rounded-full px-3 py-1.5 transition-colors hover:text-foreground">
             Components
           </Link>
-          <Link href="/#setup" className="rounded-full px-3 py-1.5 transition-colors hover:text-foreground">
-            Setup
+          <Link href="/installation" className="rounded-full px-3 py-1.5 transition-colors hover:text-foreground">
+            Installation
           </Link>
         </nav>
         <SearchCommand />

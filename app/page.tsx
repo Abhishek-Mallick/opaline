@@ -1,6 +1,5 @@
 import { ComponentGrid } from "@/components/site/grid"
 import { Hero } from "@/components/site/hero"
-import { Setup } from "@/components/site/setup"
 import { docItems } from "@/registry/index"
 
 export default function Page() {
@@ -13,7 +12,7 @@ export default function Page() {
             {docItems.length} components
           </span>
           <h2 className="text-3xl font-semibold tracking-[-0.035em] text-balance sm:text-4xl">
-            Liquid Glass, and friends
+            Interfaces that bend the light
           </h2>
           <p className="max-w-xl text-[15px] leading-relaxed text-pretty text-muted-foreground">
             Real refraction, not just blur. Each surface bends the backdrop through a displacement
@@ -22,7 +21,6 @@ export default function Page() {
         </div>
         <ComponentGrid items={docItems.filter((i) => i.name !== "liquid-glass")} />
       </section>
-      <Setup />
     </main>
   )
 }

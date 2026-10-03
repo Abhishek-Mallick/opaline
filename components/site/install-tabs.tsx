@@ -120,8 +120,8 @@ export function InstallTabs({ data }: { data: InstallData }) {
               <>
                 First time using <code className="font-mono text-foreground">@opaline</code>? Add
                 the registry to your <code className="font-mono">components.json</code> (see{" "}
-                <Link href="/#setup" className="text-foreground underline underline-offset-4">
-                  Setup
+                <Link href="/installation" className="text-foreground underline underline-offset-4">
+                  Installation
                 </Link>
                 ) or{" "}
                 <button

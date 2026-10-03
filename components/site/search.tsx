@@ -94,7 +94,7 @@ export function SearchCommand() {
           })}
           <GlassCommandSeparator />
           <GlassCommandGroup heading="General">
-            <GlassCommandItem onSelect={() => go("/#setup")}>
+            <GlassCommandItem onSelect={() => go("/installation")}>
               <HugeiconsIcon icon={BookOpen01Icon} /> Installation
             </GlassCommandItem>
             <GlassCommandItem onSelect={() => go("/llms.txt")}>

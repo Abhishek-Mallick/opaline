@@ -79,7 +79,7 @@ export function Hero() {
               <HugeiconsIcon icon={HeartIcon} />
             </GlassButton>
             <GlassButton variant="prominent" asChild>
-              <a href="#components">
+              <a href="/components">
                 Explore components <HugeiconsIcon icon={ArrowRight01Icon} />
               </a>
             </GlassButton>

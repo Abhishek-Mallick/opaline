@@ -2,7 +2,7 @@
   <a href="https://opaline.buildlab.in">
     <img src="app/icon.svg" width="72" height="72" alt="Opaline" />
   </a>
-  <h1>Opaline</h1>
+  <p style="font-size: 32px;">Opaline</p>
   <p>Liquid glass components for React.</p>
   <p>
     <a href="https://opaline.buildlab.in">Website</a> ·
@@ -98,14 +98,6 @@ import { LiquidGlassProvider } from "@/components/ui/opaline/liquid-glass"
 
 Every component page has a **Customize** panel to try these live and copy the code, and the [Liquid Glass page](https://opaline.buildlab.in/components/liquid-glass) walks through the maths with interactive figures.
 
-## Components
-
-**Liquid Glass**: Badge · Button · Card · Clock · Command · Context Menu · Control Center · Date Picker · Dialog · Dock · Input · Knob · Lens · Menu · Notification · OTP Input · Player · Popover · Segmented · Select · Sheet · Sidebar · Slider · Stack · Stepper · Switch · Tab Bar · Tabs · Text · Toast · Toolbar · Tooltip
-
-**Widgets**: Weather · Calendar · Battery, in iOS small, medium and large sizes
-
-Every component has a live preview with a Customize panel, a props table, source code and install commands on the [website](https://opaline.buildlab.in/components).
-
 ## Browser support
 
 Chromium browsers (Chrome, Edge, Arc, Brave, Opera) render true refraction. Safari and Firefox fall back to frosted glass.
@@ -116,4 +108,4 @@ Contributions are welcome, from bug reports to new components. Read the [contrib
 
 ## License
 
-[MIT](./LICENSE) © Abhishek Mallick
+[MIT](./LICENSE)
