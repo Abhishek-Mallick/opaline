@@ -16,9 +16,9 @@ Each release is published on [GitHub Releases](https://github.com/deepraj21/opal
 - **Glass Terminal:** a macOS terminal on dark glass whose commands type themselves out, line by line, when scrolled into view
 - **Glass Accordion:** Radix accordion as one glass panel (`inset`) or a glass card per item (`separated`)
 - **Glass Bento Grid:** feature tiles with a background visual, a pointer-following light and a call to action that slides in
-- **Glass Tweet Card:** a post from X with rich text, media, stats and a tappable like
+- **Glass Tweet Card:** a post from X with rich text, media, stats and a tappable like. Pass `id` (or a status URL) to load the real post with `react-tweet`; it shows a glass skeleton while loading and falls back to your data, or a "post unavailable" card, if it can't be fetched
 - **Glass Credit Card:** tilts towards the pointer, flips to its back, detects the brand and masks the number
-- **Glass QR Code:** a scannable code on a glass tile with soft finder squares, a logo on its own glass lens and an optional drifting magnifier (uses `uqr`)
+- **Glass QR Code:** a scannable code on a glass tile with soft finder squares, a logo on its own glass lens and an optional drifting magnifier (uses `uqr`). For URLs it shows the site's favicon, falling back to your `logo`
 - **Glass Scroll Stack:** cards that pin and pile up as you scroll, shrinking and dimming as new ones land on them
 
 ### Changed

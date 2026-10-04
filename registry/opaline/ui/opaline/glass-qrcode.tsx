@@ -11,11 +11,85 @@ type QRDotStyle = "square" | "rounded" | "dots"
 /** uqr marks finder-pattern cells with type 2. */
 const POSITION = 2
 
+/** Conventional icon paths, best first. Sites can't be read cross-origin, but images can. */
+const ICON_PATHS = [
+  "/apple-touch-icon.png",
+  "/apple-icon.png",
+  "/favicon.svg",
+  "/icon.svg",
+  "/favicon.ico",
+  "/icon.png",
+]
+
+const faviconCache = new Map<string, Promise<string | null>>()
+
+function loadImage(src: string, timeout = 4000) {
+  return new Promise<boolean>((resolve) => {
+    const img = new Image()
+    const timer = setTimeout(() => done(false), timeout)
+    function done(ok: boolean) {
+      clearTimeout(timer)
+      img.onload = img.onerror = null
+      resolve(ok)
+    }
+    img.onload = () => done(img.naturalWidth >= 16)
+    img.onerror = () => done(false)
+    img.src = src
+  })
+}
+
+/** Finds a site's icon by trying the usual paths. Resolves `null` if none load. */
+function findFavicon(origin: string) {
+  let found = faviconCache.get(origin)
+  if (!found) {
+    found = (async () => {
+      for (const path of ICON_PATHS) {
+        const src = origin + path
+        if (await loadImage(src)) return src
+      }
+      return null
+    })()
+    faviconCache.set(origin, found)
+  }
+  return found
+}
+
+/** The favicon for an http(s) `value`, or `null` while loading or if there isn't one. */
+function useFavicon(value: string, enabled: boolean) {
+  const origin = React.useMemo(() => {
+    if (!enabled) return null
+    try {
+      const url = new URL(value)
+      return url.protocol === "http:" || url.protocol === "https:" ? url.origin : null
+    } catch {
+      return null
+    }
+  }, [value, enabled])
+  const [icon, setIcon] = React.useState<{ origin: string; src: string | null } | null>(null)
+
+  React.useEffect(() => {
+    if (!origin) return
+    let live = true
+    findFavicon(origin).then(
+      (src) => live && setIcon({ origin, src }),
+      () => live && setIcon({ origin, src: null })
+    )
+    return () => {
+      live = false
+    }
+  }, [origin])
+
+  return origin && icon?.origin === origin ? icon.src : null
+}
+
 /**
  * A QR code printed on a glass tile. Finder squares are drawn as soft
  * squircles, modules as dots or rounded squares, and an optional logo sits
  * on its own glass lens in the middle (error correction is raised to `H` so
  * the code still scans). Turn on `lens` for a drifting magnifier.
+ *
+ * When `value` is a web address, the centre shows that site's favicon. If it
+ * can't be loaded, the `logo` you pass is shown instead (or nothing).
  */
 function GlassQRCode({
   value,
@@ -24,6 +98,7 @@ function GlassQRCode({
   color = "#0b0b10",
   ecc,
   logo,
+  favicon = true,
   lens = false,
   label,
   className,
@@ -38,21 +113,34 @@ function GlassQRCode({
   color?: string
   /** Error correction level. Defaults to `M`, or `H` with a logo. */
   ecc?: "L" | "M" | "Q" | "H"
-  /** Node shown in the centre, e.g. an <img> or an icon. */
+  /**
+   * Node shown in the centre, e.g. an <img> or an icon. With `favicon`, this
+   * is the fallback while the icon loads or when it can't be found.
+   */
   logo?: React.ReactNode
+  /** Use the favicon of the URL in `value` as the logo. */
+  favicon?: boolean
   /** A small glass lens that drifts over the code. */
   lens?: boolean
   /** Caption under the code. */
   label?: React.ReactNode
 }) {
+  const icon = useFavicon(value, favicon)
+  const center = icon ? (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={icon} alt="" referrerPolicy="no-referrer" />
+  ) : (
+    logo
+  )
+  const hasLogo = Boolean(center)
   const qr = React.useMemo(
-    () => encode(value, { ecc: ecc ?? (logo ? "H" : "M"), border: 0 }),
-    [value, ecc, logo]
+    () => encode(value, { ecc: ecc ?? (hasLogo ? "H" : "M"), border: 0 }),
+    [value, ecc, hasLogo]
   )
   const n = qr.size
   const cell = size / n
   // Clear a square in the middle for the logo (about 22% of the code).
-  const hole = logo ? Math.ceil(n * 0.22) | 1 : 0
+  const hole = hasLogo ? Math.ceil(n * 0.22) | 1 : 0
   const holeStart = (n - hole) / 2
 
   const modules: React.ReactNode[] = []
@@ -131,7 +219,7 @@ function GlassQRCode({
           <g fill={color}>{modules}</g>
           {finders}
         </svg>
-        {logo ? (
+        {center ? (
           <LiquidGlass
             aria-hidden
             bezel={10}
@@ -139,7 +227,7 @@ function GlassQRCode({
             className="absolute top-1/2 left-1/2 grid -translate-x-1/2 -translate-y-1/2 place-items-center overflow-hidden rounded-[30%] [&_img]:size-[70%] [&_img]:object-contain [&_svg]:size-[60%]"
             style={{ width: hole * cell * 0.95, height: hole * cell * 0.95 }}
           >
-            {logo}
+            {center}
           </LiquidGlass>
         ) : null}
         {lens ? (

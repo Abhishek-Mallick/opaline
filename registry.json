@@ -1840,8 +1840,9 @@
       "name": "glass-tweet-card",
       "type": "registry:ui",
       "title": "Glass Tweet Card",
-      "description": "A post from X on glass: author, rich text, media and a tappable like.",
+      "description": "A post from X on glass, loaded live with react-tweet by id, with a fallback when it can't be fetched.",
       "dependencies": [
+        "react-tweet",
         "@hugeicons/react",
         "@hugeicons/core-free-icons"
       ],
