@@ -31,7 +31,7 @@ Opaline is a collection of liquid glass components built on Tailwind CSS v4 and 
 ## What's included
 
 - **A physically based glass engine.** `LiquidGlass` traces light through the glass rim with Snell's law and refracts the backdrop through an SVG displacement map, with chromatic dispersion and a specular rim.
-- **32 glass components and iOS-style widgets**, built on Radix UI with keyboard and screen-reader support.
+- **44 glass components and iOS-style widgets**, from buttons, dialogs and toasts to a terminal, code block, QR code, credit card and scroll stack, built on Radix UI with keyboard and screen-reader support.
 - **Customization everywhere.** Every component page has a Customize panel with presets and copy-ready code, and a generated props table.
 - **Docs for humans and agents.** An [interactive write-up](https://opaline.buildlab.in/components/liquid-glass) of the maths, plus [`llms.txt`](https://opaline.buildlab.in/llms.txt) and per-component Markdown for AI coding tools.
 
