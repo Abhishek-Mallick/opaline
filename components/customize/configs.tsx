@@ -5,6 +5,18 @@ import { ArrowRight01Icon, Mic01Icon, Search01Icon } from "@hugeicons/core-free-
 
 import { element, openTag } from "@/components/customize/code"
 import type { Control, Customization, Values } from "@/components/customize/types"
+import {
+  GlassAccordion,
+  GlassAccordionContent,
+  GlassAccordionItem,
+  GlassAccordionTrigger,
+} from "@/registry/opaline/ui/opaline/glass-accordion"
+import {
+  GlassAlert,
+  GlassAlertDescription,
+  GlassAlertTitle,
+  type AlertVariant,
+} from "@/registry/opaline/ui/opaline/glass-alert"
 import { GlassBadge } from "@/registry/opaline/ui/opaline/glass-badge"
 import { GlassButton } from "@/registry/opaline/ui/opaline/glass-button"
 import {
@@ -15,14 +27,26 @@ import {
   GlassCardTitle,
 } from "@/registry/opaline/ui/opaline/glass-card"
 import { GlassClock } from "@/registry/opaline/ui/opaline/glass-clock"
+import { GlassCodeBlock } from "@/registry/opaline/ui/opaline/glass-code-block"
+import { GlassCreditCard } from "@/registry/opaline/ui/opaline/glass-credit-card"
 import { GlassInput } from "@/registry/opaline/ui/opaline/glass-input"
 import { GlassKnob } from "@/registry/opaline/ui/opaline/glass-knob"
 import { GlassLens } from "@/registry/opaline/ui/opaline/glass-lens"
 import { GlassOTP } from "@/registry/opaline/ui/opaline/glass-otp"
+import { GlassQRCode, type QRDotStyle } from "@/registry/opaline/ui/opaline/glass-qrcode"
+import { GlassScrollStack, GlassScrollStackItem } from "@/registry/opaline/ui/opaline/glass-scroll-stack"
 import { GlassSlider } from "@/registry/opaline/ui/opaline/glass-slider"
+import { GlassSnippet } from "@/registry/opaline/ui/opaline/glass-snippet"
 import { GlassStepper } from "@/registry/opaline/ui/opaline/glass-stepper"
 import { GlassSwitch } from "@/registry/opaline/ui/opaline/glass-switch"
+import {
+  GlassTerminal,
+  GlassTerminalLine,
+  GlassTerminalTyping,
+} from "@/registry/opaline/ui/opaline/glass-terminal"
 import { GlassText } from "@/registry/opaline/ui/opaline/glass-text"
+import { GlassTextarea } from "@/registry/opaline/ui/opaline/glass-textarea"
+import { GlassTweetCard } from "@/registry/opaline/ui/opaline/glass-tweet-card"
 import { GlassWidget, type WidgetSize } from "@/registry/opaline/ui/opaline/glass-widget"
 import { LiquidGlass } from "@/registry/opaline/ui/opaline/liquid-glass"
 
@@ -47,6 +71,40 @@ const num = (
   extra: Partial<Extract<Control, { kind: "number" }>> = {}
 ): Control => ({ kind: "number", key, label, default: value, min, max, ...extra })
 
+const samples: Record<string, string> = {
+  tsx: `import { GlassButton } from "@/components/ui/opaline/glass-button"
+
+export default function Page() {
+  return <GlassButton variant="prominent">Get started</GlassButton>
+}`,
+  ts: `export function refract(theta: number, n: number) {
+  return Math.asin(Math.sin(theta) / n)
+}`,
+  js: `const glass = document.querySelector(".glass")
+glass.style.backdropFilter = "url(#refract)"`,
+  css: `.glass {
+  backdrop-filter: url(#refract);
+  border-radius: 28px;
+}`,
+  json: `{
+  "registries": {
+    "@opaline": "https://opaline.buildlab.in/r/{name}.json"
+  }
+}`,
+  bash: `npx shadcn@latest add @opaline/all
+pnpm dev`,
+  python: `import math
+
+def refract(theta, n):
+    return math.asin(math.sin(theta) / n)`,
+}
+
+const faqs = [
+  ["Is it real refraction?", "Yes. Light is traced through the rim with Snell's law."],
+  ["Can I tune the glass?", "Set the optics once with LiquidGlassProvider."],
+  ["Is it accessible?", "Built on Radix, with keyboard support and ARIA roles."],
+]
+
 const s = (v: Values, k: string) => String(v[k] ?? "")
 const n = (v: Values, k: string) => Number(v[k])
 const b = (v: Values, k: string) => Boolean(v[k])
@@ -56,6 +114,17 @@ const b = (v: Values, k: string) => Boolean(v[k])
  * frosted), so a provider can't change them. Their controls are hidden.
  */
 export const pinned: Record<string, string[]> = {
+  "glass-accordion": ["variant"],
+  "glass-alert": ["variant", "tint"],
+  "glass-bento-grid": ["variant"],
+  "glass-code-block": ["bezel", "variant"],
+  "glass-credit-card": ["bezel", "tint"],
+  "glass-message": ["bezel", "variant", "tint"],
+  "glass-qrcode": ["variant", "tint"],
+  "glass-scroll-stack": ["variant"],
+  "glass-snippet": ["bezel", "variant"],
+  "glass-terminal": ["variant", "tint"],
+  "glass-tweet-card": ["variant"],
   "glass-badge": ["bezel"],
   "glass-card": ["variant"],
   "glass-clock": ["bezel"],
@@ -548,4 +617,375 @@ export const customizations: Record<string, Customization> = {
     }),
   },
 
+
+  "glass-alert": {
+    controls: [
+      {
+        kind: "select",
+        key: "variant",
+        label: "Intent",
+        default: "default",
+        options: ["default", "info", "success", "warning", "destructive"],
+        type: '"default" | "info" | "success" | "warning" | "destructive"',
+        description: "Tints the glass and picks the icon.",
+      },
+      text("title", "Title", "Heads up"),
+      text("description", "Description", "You can add components to your app with the CLI."),
+      { kind: "boolean", key: "icon", label: "Icon", default: true, description: "Pass `icon={null}` to hide it, or any node to replace it." },
+    ],
+    presets: [
+      { name: "Success", values: { variant: "success", title: "Payment received", description: "Your plan renews on 12 November." } },
+      { name: "Warning", values: { variant: "warning", title: "Storage almost full", description: "You've used 92% of your 50 GB." } },
+      { name: "Error", values: { variant: "destructive", title: "Couldn't sync", description: "Check your connection and try again." } },
+    ],
+    render: (v) => (
+      <GlassAlert variant={s(v, "variant") as AlertVariant} icon={b(v, "icon") ? undefined : null} className="max-w-md">
+        <GlassAlertTitle>{s(v, "title")}</GlassAlertTitle>
+        <GlassAlertDescription>{s(v, "description")}</GlassAlertDescription>
+      </GlassAlert>
+    ),
+    code: (v, attrs) => ({
+      imports: [ui("glass-alert", "GlassAlert", "GlassAlertTitle", "GlassAlertDescription")],
+      jsx: element(
+        "GlassAlert",
+        [...attrs(["variant"]), ...(b(v, "icon") ? [] : ["icon={null}"])],
+        [element("GlassAlertTitle", [], s(v, "title")), element("GlassAlertDescription", [], s(v, "description"))].join("\n")
+      ),
+    }),
+  },
+
+  "glass-textarea": {
+    controls: [
+      text("placeholder", "Placeholder", "Write a message…"),
+      num("minRows", "Min rows", 3, 1, 8),
+      num("maxRows", "Max rows", 8, 2, 16, { description: "Grow up to this many rows, then scroll." }),
+      num("maxLength", "Max length", 280, 20, 1000, { step: 10 }),
+      { kind: "boolean", key: "showCount", label: "Counter", default: true, description: "Show a character counter." },
+    ],
+    render: (v) => (
+      <GlassTextarea
+        key={`${n(v, "minRows")}-${n(v, "maxRows")}`}
+        containerClassName="max-w-md"
+        aria-label="Message"
+        placeholder={s(v, "placeholder")}
+        minRows={n(v, "minRows")}
+        maxRows={n(v, "maxRows")}
+        maxLength={n(v, "maxLength")}
+        showCount={b(v, "showCount")}
+      />
+    ),
+    code: (v, attrs) => ({
+      imports: [ui("glass-textarea", "GlassTextarea")],
+      jsx: openTag("GlassTextarea", [...attrs(["placeholder", "minRows", "maxRows"]), `maxLength={${n(v, "maxLength")}}`, ...attrs(["showCount"])], true),
+    }),
+  },
+
+  "glass-snippet": {
+    controls: [
+      text("code", "Command", "npx shadcn@latest add @opaline/all"),
+      text("prefix", "Prefix", "$", "Prompt before the command."),
+      { kind: "boolean", key: "tabs", label: "Package managers", default: true, description: "Preview only: pass `commands` for tabs." },
+    ],
+    render: (v) => (
+      <GlassSnippet
+        className="max-w-md"
+        prefix={s(v, "prefix") || null}
+        code={s(v, "code")}
+        commands={
+          b(v, "tabs")
+            ? [
+                { label: "npm", code: s(v, "code") },
+                { label: "pnpm", code: s(v, "code").replace(/^npx /, "pnpm dlx ") },
+                { label: "bun", code: s(v, "code").replace(/^npx /, "bunx --bun ") },
+              ]
+            : undefined
+        }
+      />
+    ),
+    code: (v, attrs) => ({
+      imports: [ui("glass-snippet", "GlassSnippet")],
+      jsx: b(v, "tabs")
+        ? openTag(
+            "GlassSnippet",
+            [
+              ...attrs(["prefix"]),
+              `commands={[\n  { label: "npm", code: ${JSON.stringify(s(v, "code"))} },\n  { label: "pnpm", code: ${JSON.stringify(s(v, "code").replace(/^npx /, "pnpm dlx "))} },\n]}`,
+            ],
+            true
+          )
+        : openTag("GlassSnippet", [`code=${JSON.stringify(s(v, "code"))}`, ...attrs(["prefix"])], true),
+    }),
+  },
+
+  "glass-code-block": {
+    controls: [
+      text("filename", "Filename", "app/page.tsx"),
+      {
+        kind: "select",
+        key: "language",
+        label: "Language",
+        default: "tsx",
+        options: ["tsx", "ts", "js", "css", "json", "bash", "python"],
+        type: "string",
+      },
+      { kind: "boolean", key: "showLineNumbers", label: "Line numbers", default: true },
+      num("highlight", "Highlighted line", 3, 0, 6, { description: "Passed as `highlightLines`. 0 for none.", type: "number[]" }),
+    ],
+    render: (v) => (
+      <GlassCodeBlock
+        className="max-w-lg"
+        filename={s(v, "filename") || undefined}
+        language={s(v, "language")}
+        showLineNumbers={b(v, "showLineNumbers")}
+        highlightLines={n(v, "highlight") ? [n(v, "highlight")] : []}
+        code={samples[s(v, "language")] ?? samples.tsx}
+      />
+    ),
+    code: (v, attrs) => ({
+      imports: [ui("glass-code-block", "GlassCodeBlock")],
+      jsx: openTag(
+        "GlassCodeBlock",
+        [
+          ...attrs(["filename", "language", "showLineNumbers"]),
+          ...(n(v, "highlight") ? [`highlightLines={[${n(v, "highlight")}]}`] : []),
+          "code={source}",
+        ],
+        true
+      ),
+    }),
+  },
+
+  "glass-terminal": {
+    controls: [
+      text("title", "Title", "~/my-app — zsh"),
+      text("command", "Command", "npx shadcn@latest add @opaline/all"),
+      { kind: "boolean", key: "sequence", label: "Animate", default: true, description: "Play lines one after another." },
+    ],
+    render: (v) => (
+      <GlassTerminal key={s(v, "command")} title={s(v, "title")} sequence={b(v, "sequence")} className="max-w-lg">
+        <GlassTerminalTyping>{s(v, "command") || " "}</GlassTerminalTyping>
+        <GlassTerminalLine className="text-[oklch(0.72_0.17_150)]">✔ Checking registry.</GlassTerminalLine>
+        <GlassTerminalLine className="text-[oklch(0.72_0.17_150)]">✔ Created 50 files.</GlassTerminalLine>
+      </GlassTerminal>
+    ),
+    code: (v, attrs) => ({
+      imports: [ui("glass-terminal", "GlassTerminal", "GlassTerminalLine", "GlassTerminalTyping")],
+      jsx: element(
+        "GlassTerminal",
+        attrs(["title", "sequence"]),
+        [
+          element("GlassTerminalTyping", [], s(v, "command")),
+          element("GlassTerminalLine", [], "✔ Checking registry."),
+          element("GlassTerminalLine", [], "✔ Created 50 files."),
+        ].join("\n")
+      ),
+    }),
+  },
+
+  "glass-accordion": {
+    controls: [
+      {
+        kind: "select",
+        key: "variant",
+        label: "Layout",
+        default: "inset",
+        options: ["inset", "separated"],
+        type: '"inset" | "separated"',
+        description: "One glass panel, or a glass card per item.",
+      },
+      {
+        kind: "select",
+        key: "type",
+        label: "Type",
+        default: "single",
+        options: ["single", "multiple"],
+        type: '"single" | "multiple"',
+        description: "Whether one or several items can be open.",
+      },
+    ],
+    presets: [{ name: "Cards", values: { variant: "separated" } }],
+    render: (v) => (
+      <GlassAccordion
+        key={s(v, "type")}
+        {...(s(v, "type") === "multiple"
+          ? { type: "multiple" as const, defaultValue: ["0"] }
+          : { type: "single" as const, collapsible: true, defaultValue: "0" })}
+        variant={s(v, "variant") as "inset"}
+        className="max-w-md"
+      >
+        {faqs.map(([q, a], i) => (
+          <GlassAccordionItem key={q} value={String(i)}>
+            <GlassAccordionTrigger>{q}</GlassAccordionTrigger>
+            <GlassAccordionContent>{a}</GlassAccordionContent>
+          </GlassAccordionItem>
+        ))}
+      </GlassAccordion>
+    ),
+    code: (v, attrs) => ({
+      imports: [ui("glass-accordion", "GlassAccordion", "GlassAccordionItem", "GlassAccordionTrigger", "GlassAccordionContent")],
+      jsx: element(
+        "GlassAccordion",
+        [`type="${s(v, "type")}"`, ...(s(v, "type") === "single" ? ["collapsible"] : []), ...attrs(["variant"])],
+        element(
+          "GlassAccordionItem",
+          ['value="a"'],
+          [element("GlassAccordionTrigger", [], faqs[0][0]), element("GlassAccordionContent", [], faqs[0][1])].join("\n")
+        )
+      ),
+    }),
+  },
+
+  "glass-qrcode": {
+    controls: [
+      text("value", "Value", "https://opaline.buildlab.in", "Text or URL to encode."),
+      num("size", "Size", 200, 120, 320, { unit: "px", step: 4 }),
+      {
+        kind: "select",
+        key: "dotStyle",
+        label: "Dots",
+        default: "rounded",
+        options: ["rounded", "dots", "square"],
+        type: '"rounded" | "dots" | "square"',
+      },
+      { kind: "color", key: "color", label: "Colour", default: "#0b0b10", type: "string", description: "Keep it dark so phones can scan it." },
+      { kind: "boolean", key: "lens", label: "Lens", default: false, description: "A glass magnifier drifting over the code." },
+      { kind: "boolean", key: "logo", label: "Logo", default: true, description: "Preview only: pass any node as `logo`." },
+      text("label", "Label", "Scan to open"),
+    ],
+    presets: [
+      { name: "Magnifier", values: { lens: true } },
+      { name: "Dots", values: { dotStyle: "dots", color: "#1d4ed8" } },
+      { name: "Classic", values: { dotStyle: "square", logo: false } },
+    ],
+    render: (v) => (
+      <GlassQRCode
+        value={s(v, "value") || " "}
+        size={n(v, "size")}
+        dotStyle={s(v, "dotStyle") as QRDotStyle}
+        color={s(v, "color")}
+        lens={b(v, "lens")}
+        label={s(v, "label") || undefined}
+        // eslint-disable-next-line @next/next/no-img-element
+        logo={b(v, "logo") ? <img src="/icon.svg" alt="" /> : undefined}
+      />
+    ),
+    code: (v, attrs) => ({
+      imports: [ui("glass-qrcode", "GlassQRCode")],
+      jsx: openTag(
+        "GlassQRCode",
+        [`value=${JSON.stringify(s(v, "value"))}`, ...attrs(["size", "dotStyle", "color", "lens", "label"]), ...(b(v, "logo") ? ['logo={<img src="/logo.svg" alt="" />}'] : [])],
+        true
+      ),
+    }),
+  },
+
+  "glass-credit-card": {
+    controls: [
+      text("number", "Number", "4242 4242 4242 4242", "Brand is detected from the prefix."),
+      text("name", "Name", "Jony Ive"),
+      text("expiry", "Expiry", "09/29"),
+      {
+        kind: "select",
+        key: "gradient",
+        label: "Finish",
+        default: "aurora",
+        options: ["aurora", "midnight", "sunset", "clear"],
+        type: "string",
+        description: "A preset name or any CSS background.",
+      },
+      { kind: "boolean", key: "mask", label: "Mask number", default: true, description: "Hide all but the last four digits." },
+      { kind: "boolean", key: "tilt", label: "Tilt", default: true, description: "Tilt towards the pointer." },
+      { kind: "boolean", key: "flipped", label: "Show back", default: false, description: "Controlled `flipped`; clicking also flips." },
+    ],
+    presets: [
+      { name: "Mastercard", values: { number: "5555 3412 4444 1115", gradient: "midnight" } },
+      { name: "Amex", values: { number: "3782 822463 10005", gradient: "sunset" } },
+      { name: "Clear", values: { gradient: "clear" } },
+    ],
+    render: (v) => (
+      <GlassCreditCard
+        number={s(v, "number")}
+        name={s(v, "name")}
+        expiry={s(v, "expiry")}
+        cvc="123"
+        gradient={s(v, "gradient")}
+        mask={b(v, "mask")}
+        tilt={b(v, "tilt")}
+        flipped={b(v, "flipped")}
+        flipOnClick={false}
+      />
+    ),
+    code: (v, attrs) => ({
+      imports: [ui("glass-credit-card", "GlassCreditCard")],
+      jsx: openTag(
+        "GlassCreditCard",
+        [`number=${JSON.stringify(s(v, "number"))}`, `name=${JSON.stringify(s(v, "name"))}`, `expiry=${JSON.stringify(s(v, "expiry"))}`, ...attrs(["gradient", "mask", "tilt", "flipped"])],
+        true
+      ),
+    }),
+  },
+
+  "glass-tweet-card": {
+    controls: [
+      text("name", "Name", "Opaline"),
+      text("handle", "Handle", "opalineui"),
+      text("content", "Text", "Liquid glass for the web, with real refraction. #react @shadcn"),
+      { kind: "boolean", key: "verified", label: "Verified", default: true },
+      { kind: "boolean", key: "media", label: "Media", default: false, description: "Preview only: pass image URLs as `media`." },
+    ],
+    render: (v) => (
+      <GlassTweetCard
+        author={{ name: s(v, "name"), handle: s(v, "handle"), verified: b(v, "verified") }}
+        content={s(v, "content")}
+        media={b(v, "media") ? ["/wallpapers/dunes.jpg"] : []}
+        date="2026-10-04T09:41:00Z"
+        stats={{ replies: 24, reposts: 112, likes: 1840, views: 52300 }}
+      />
+    ),
+    code: (v) => ({
+      imports: [ui("glass-tweet-card", "GlassTweetCard")],
+      jsx: openTag(
+        "GlassTweetCard",
+        [
+          `author={{ name: ${JSON.stringify(s(v, "name"))}, handle: ${JSON.stringify(s(v, "handle"))}${b(v, "verified") ? ", verified: true" : ""} }}`,
+          `content=${JSON.stringify(s(v, "content"))}`,
+          ...(b(v, "media") ? ['media={["/photo.jpg"]}'] : []),
+          "stats={{ replies: 24, reposts: 112, likes: 1840 }}",
+        ],
+        true
+      ),
+    }),
+  },
+
+  "glass-scroll-stack": {
+    controls: [
+      num("stackTop", "Stack top", 12, 0, 80, { unit: "px", description: "Where cards pin, from the top of the scroller." }),
+      num("stackGap", "Stack gap", 14, 0, 40, { unit: "px", description: "How much of each buried card peeks out." }),
+      num("scaleStep", "Shrink", 0.045, 0, 0.12, { step: 0.005, description: "Scale lost per card stacked on top." }),
+    ],
+    render: (v) => (
+      <GlassScrollStack
+        height={380}
+        className="w-full max-w-md px-1 pt-2"
+        stackTop={n(v, "stackTop")}
+        stackGap={n(v, "stackGap")}
+        scaleStep={n(v, "scaleStep")}
+      >
+        {["Bend", "Tune", "Ship", "Repeat"].map((t, i) => (
+          <GlassScrollStackItem key={t} className="flex h-56 flex-col justify-between">
+            <span className="text-[13px] font-semibold opacity-60">0{i + 1}</span>
+            <div className="text-[34px] font-semibold tracking-[-0.04em]">{t}</div>
+          </GlassScrollStackItem>
+        ))}
+      </GlassScrollStack>
+    ),
+    code: (_, attrs) => ({
+      imports: [ui("glass-scroll-stack", "GlassScrollStack", "GlassScrollStackItem")],
+      jsx: element(
+        "GlassScrollStack",
+        attrs(),
+        ["First", "Second", "Third"].map((t) => element("GlassScrollStackItem", [], t)).join("\n")
+      ),
+    }),
+  },
 }
