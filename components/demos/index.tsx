@@ -2,6 +2,18 @@
 
 // List of demo components, keyed by registry item name.
 
+import GlassAlertDemo from "./glass-alert"
+import GlassTextareaDemo from "./glass-textarea"
+import GlassMessageDemo from "./glass-message"
+import GlassSnippetDemo from "./glass-snippet"
+import GlassCodeBlockDemo from "./glass-code-block"
+import GlassTerminalDemo from "./glass-terminal"
+import GlassAccordionDemo from "./glass-accordion"
+import GlassBentoGridDemo from "./glass-bento-grid"
+import GlassTweetCardDemo from "./glass-tweet-card"
+import GlassCreditCardDemo from "./glass-credit-card"
+import GlassQRCodeDemo from "./glass-qrcode"
+import GlassScrollStackDemo from "./glass-scroll-stack"
 import GlassBadgeDemo from "./glass-badge"
 import GlassButtonDemo from "./glass-button"
 import GlassCardDemo from "./glass-card"
@@ -41,6 +53,18 @@ import GlassWidgetWeatherDemo from "./glass-widget-weather"
 import LiquidGlassDemo from "./liquid-glass"
 
 const demos: Record<string, React.ComponentType> = {
+  "glass-alert": GlassAlertDemo,
+  "glass-textarea": GlassTextareaDemo,
+  "glass-message": GlassMessageDemo,
+  "glass-snippet": GlassSnippetDemo,
+  "glass-code-block": GlassCodeBlockDemo,
+  "glass-terminal": GlassTerminalDemo,
+  "glass-accordion": GlassAccordionDemo,
+  "glass-bento-grid": GlassBentoGridDemo,
+  "glass-tweet-card": GlassTweetCardDemo,
+  "glass-credit-card": GlassCreditCardDemo,
+  "glass-qrcode": GlassQRCodeDemo,
+  "glass-scroll-stack": GlassScrollStackDemo,
   "glass-badge": GlassBadgeDemo,
   "glass-button": GlassButtonDemo,
   "glass-card": GlassCardDemo,

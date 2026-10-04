@@ -2,22 +2,30 @@
 
 Internal action items for the core maintainers ([@Abhishek-Mallick](https://github.com/Abhishek-Mallick), [@deepraj21](https://github.com/deepraj21)). Contributors: please pick up work from [issues](https://github.com/deepraj21/opaline/issues) instead. Shipped work is recorded in [`CHANGELOG.md`](../CHANGELOG.md).
 
-## v0.1.0 release
-- [ ] Merge the release PR, then tag it: `git tag v0.1.0 && git push upstream v0.1.0` (the Release workflow publishes the notes)
+## Next release (v0.2.0)
+- [x] v0.1.0 tagged (check the Release workflow run published it)
+- [x] New components: alert, textarea, message, snippet, code block, terminal, accordion, bento grid, tweet card, credit card, QR code, scroll stack; toast upgraded
+- [ ] Merge the new-components PR, move `[Unreleased]` to `[0.2.0]`, bump `package.json`, tag `v0.2.0`
 - [ ] Smoke test the zero-config install in a fresh app: `npx shadcn@latest add @opaline/glass-button`
-- [ ] Pin the release in the repo, and share it
 
 ## Repository
 - [ ] Settings → About: description, website, topics (`react`, `shadcn`, `tailwindcss`, `liquid-glass`, `glassmorphism`, `ui-components`)
 - [ ] Enable Discussions (the issue template links to it)
 - [ ] Protect `main`: require CI and code-owner review, no force pushes
-- [ ] Labels: `good first issue`, `help wanted`, `component`, `widget`, `site`, `ignore-for-release`
-- [ ] Label 3–5 small, well-scoped issues as `good first issue`
+- [ ] Labels: `good first issue`, `help wanted`, `component`, `widget`, `site`, `ignore-for-release`, and 3–5 small issues labelled `good first issue`
 
 ## Next components
-- [ ] Glass: date range picker, time picker, color picker
+- [ ] Inputs: date range picker, time picker, color picker, file dropzone, rating
+- [ ] Display: progress / meter, skeleton, avatar group, kbd, hover card, image compare slider
+- [ ] Navigation: breadcrumb, pagination, navigation menu, carousel / marquee
 - [ ] Widgets: music, fitness, stocks, photos, reminders
-- [ ] Blocks: hero, pricing, auth, lock screen, full macOS desktop
+- [ ] Blocks: AI chat (message + textarea + code block), pricing, auth, lock screen, changelog wall (tweet cards + bento), full macOS desktop
+
+## Component follow-ups
+- [ ] Code block: accept pre-highlighted HTML so server components can skip client-side Shiki
+- [ ] QR code: download as SVG / PNG
+- [ ] Toast: `toast.custom()` for arbitrary content
+- [ ] Terminal: copy button and a `prompt` per line
 
 ## Site & docs
 - [ ] Let visitors drop in their own wallpaper behind the demos
