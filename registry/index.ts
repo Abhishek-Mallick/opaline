@@ -910,15 +910,23 @@ import {
   glass(
     "glass-tweet-card",
     "Glass Tweet Card",
-    "A post from X on glass: author, rich text, media and a tappable like.",
+    "A post from X on glass, loaded live with react-tweet by id, with a fallback when it can't be fetched.",
     `import { GlassTweetCard } from "@/components/ui/opaline/glass-tweet-card"
 
+// Load a post by id or URL; shows a skeleton, then the post
+<GlassTweetCard id="https://x.com/jack/status/20" />
+
+// Falls back to your data if the post can't be fetched
 <GlassTweetCard
+  id="1234567890"
   author={{ name: "Opaline", handle: "opalineui", verified: true }}
   content="Liquid glass for the web. #react #shadcn"
-  stats={{ replies: 24, reposts: 112, likes: 1840, views: 52000 }}
+  onError={(error) => console.warn(error)}
 />`,
-    { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"], keyframes: ["opaline-pop"] }
+    {
+      dependencies: ["react-tweet", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      keyframes: ["opaline-pop"],
+    }
   ),
   glass(
     "glass-credit-card",
@@ -939,7 +947,12 @@ import {
     "A scannable QR code printed on a glass tile, with soft finders, a glass logo lens and an optional magnifier.",
     `import { GlassQRCode } from "@/components/ui/opaline/glass-qrcode"
 
-<GlassQRCode value="https://opaline.buildlab.in" label="Scan to open" lens />`,
+// Shows the site's favicon in the middle, or your logo if it can't load
+<GlassQRCode
+  value="https://opaline.buildlab.in"
+  logo={<img src="/logo.svg" alt="" />}
+  label="Scan to open"
+/>`,
     { dependencies: ["uqr"], keyframes: ["opaline-qr-lens"] }
   ),
   glass(

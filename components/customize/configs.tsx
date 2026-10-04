@@ -849,13 +849,14 @@ export const customizations: Record<string, Customization> = {
       },
       { kind: "color", key: "color", label: "Colour", default: "#0b0b10", type: "string", description: "Keep it dark so phones can scan it." },
       { kind: "boolean", key: "lens", label: "Lens", default: false, description: "A glass magnifier drifting over the code." },
-      { kind: "boolean", key: "logo", label: "Logo", default: true, description: "Preview only: pass any node as `logo`." },
+      { kind: "boolean", key: "favicon", label: "Favicon", default: true, description: "Show the site's favicon when `value` is a URL." },
+      { kind: "boolean", key: "logo", label: "Fallback logo", default: true, description: "Preview only: pass any node as `logo`. Shown if the favicon can't load." },
       text("label", "Label", "Scan to open"),
     ],
     presets: [
       { name: "Magnifier", values: { lens: true } },
       { name: "Dots", values: { dotStyle: "dots", color: "#1d4ed8" } },
-      { name: "Classic", values: { dotStyle: "square", logo: false } },
+      { name: "Classic", values: { dotStyle: "square", logo: false, favicon: false } },
     ],
     render: (v) => (
       <GlassQRCode
@@ -864,6 +865,7 @@ export const customizations: Record<string, Customization> = {
         dotStyle={s(v, "dotStyle") as QRDotStyle}
         color={s(v, "color")}
         lens={b(v, "lens")}
+        favicon={b(v, "favicon")}
         label={s(v, "label") || undefined}
         // eslint-disable-next-line @next/next/no-img-element
         logo={b(v, "logo") ? <img src="/icon.svg" alt="" /> : undefined}
@@ -873,7 +875,7 @@ export const customizations: Record<string, Customization> = {
       imports: [ui("glass-qrcode", "GlassQRCode")],
       jsx: openTag(
         "GlassQRCode",
-        [`value=${JSON.stringify(s(v, "value"))}`, ...attrs(["size", "dotStyle", "color", "lens", "label"]), ...(b(v, "logo") ? ['logo={<img src="/logo.svg" alt="" />}'] : [])],
+        [`value=${JSON.stringify(s(v, "value"))}`, ...attrs(["size", "dotStyle", "color", "lens", "favicon", "label"]), ...(b(v, "logo") ? ['logo={<img src="/logo.svg" alt="" />}'] : [])],
         true
       ),
     }),
@@ -927,16 +929,23 @@ export const customizations: Record<string, Customization> = {
 
   "glass-tweet-card": {
     controls: [
-      text("name", "Name", "Opaline"),
+      text("id", "Tweet id or URL", "20", "Loads the post with react-tweet. Leave empty to render only your data."),
+      text("name", "Name", "Opaline", "Fallback author, shown if the post can't be fetched."),
       text("handle", "Handle", "opalineui"),
       text("content", "Text", "Liquid glass for the web, with real refraction. #react @shadcn"),
       { kind: "boolean", key: "verified", label: "Verified", default: true },
       { kind: "boolean", key: "media", label: "Media", default: false, description: "Preview only: pass image URLs as `media`." },
     ],
+    presets: [
+      { name: "Live post", values: { id: "https://x.com/jack/status/20" } },
+      { name: "Your data only", values: { id: "" } },
+      { name: "Missing post", values: { id: "1", name: "", content: "" } },
+    ],
     render: (v) => (
       <GlassTweetCard
-        author={{ name: s(v, "name"), handle: s(v, "handle"), verified: b(v, "verified") }}
-        content={s(v, "content")}
+        id={s(v, "id") || undefined}
+        author={s(v, "name") ? { name: s(v, "name"), handle: s(v, "handle"), verified: b(v, "verified") } : undefined}
+        content={s(v, "content") || undefined}
         media={b(v, "media") ? ["/wallpapers/dunes.jpg"] : []}
         date="2026-10-04T09:41:00Z"
         stats={{ replies: 24, reposts: 112, likes: 1840, views: 52300 }}
@@ -947,10 +956,15 @@ export const customizations: Record<string, Customization> = {
       jsx: openTag(
         "GlassTweetCard",
         [
-          `author={{ name: ${JSON.stringify(s(v, "name"))}, handle: ${JSON.stringify(s(v, "handle"))}${b(v, "verified") ? ", verified: true" : ""} }}`,
-          `content=${JSON.stringify(s(v, "content"))}`,
-          ...(b(v, "media") ? ['media={["/photo.jpg"]}'] : []),
-          "stats={{ replies: 24, reposts: 112, likes: 1840 }}",
+          ...(s(v, "id") ? [`id=${JSON.stringify(s(v, "id"))}`] : []),
+          ...(s(v, "name")
+            ? [
+                `author={{ name: ${JSON.stringify(s(v, "name"))}, handle: ${JSON.stringify(s(v, "handle"))}${b(v, "verified") ? ", verified: true" : ""} }}`,
+                `content=${JSON.stringify(s(v, "content"))}`,
+                ...(b(v, "media") ? ['media={["/photo.jpg"]}'] : []),
+                "stats={{ replies: 24, reposts: 112, likes: 1840 }}",
+              ]
+            : []),
         ],
         true
       ),
