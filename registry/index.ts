@@ -67,6 +67,30 @@ export const keyframes: Record<string, Record<string, Record<string, string>>> =
     "30%": { opacity: "1" },
     to: { transform: "translateY(4px)", opacity: "0" },
   },
+  // Height animates on the accordion's content, never on the glass.
+  "opaline-accordion-down": {
+    from: { height: "0" },
+    to: { height: "var(--radix-accordion-content-height)" },
+  },
+  "opaline-accordion-up": {
+    from: { height: "var(--radix-accordion-content-height)" },
+    to: { height: "0" },
+  },
+  "opaline-typing": {
+    "0%, 60%, 100%": { transform: "translateY(0)", opacity: "0.4" },
+    "30%": { transform: "translateY(-4px)", opacity: "1" },
+  },
+  "opaline-pop": {
+    "0%": { transform: "scale(1)" },
+    "40%": { transform: "scale(1.35)" },
+    "100%": { transform: "scale(1)" },
+  },
+  "opaline-qr-lens": {
+    "0%, 100%": { transform: "translate(0, 0)" },
+    "25%": { transform: "translate(210%, 30%)" },
+    "50%": { transform: "translate(150%, 190%)" },
+    "75%": { transform: "translate(20%, 160%)" },
+  },
   // Blobs are centred with the `translate` property, so this only drifts.
   "opaline-drift": {
     "0%": { transform: "translate(0, 0) scale(1)" },
@@ -572,16 +596,21 @@ import { GlassTabBar, GlassTabBarItem } from "@/components/ui/opaline/glass-tab-
   glass(
     "glass-toast",
     "Glass Toast",
-    "Imperative toasts on glass that drop in from the top.",
+    "Imperative toasts on glass that stack into a deck, fan out on hover and swipe away.",
     `import { GlassToaster, toast } from "@/components/ui/opaline/glass-toast"
 
 // once, in your root layout
-<GlassToaster />
+<GlassToaster position="bottom-right" closeButton />
 
 // anywhere
 toast("Message sent")
 toast.success("Saved", { description: "Your changes are live." })
-toast("File deleted", { action: { label: "Undo", onClick: restore } })`,
+toast("File deleted", { action: { label: "Undo", onClick: restore } })
+toast.promise(upload(file), {
+  loading: "Uploading…",
+  success: "Uploaded",
+  error: "Upload failed",
+})`,
     { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"] }
   ),
   glass(
@@ -750,6 +779,193 @@ import {
       internal: ["liquid-glass", "use-active-indicator"],
       keyframes: ["opaline-glass-in", "opaline-caret", "opaline-shake"],
     }
+  ),
+  glass(
+    "glass-alert",
+    "Glass Alert",
+    "A callout on frosted glass, tinted by intent: info, success, warning or destructive.",
+    `import { GlassAlert, GlassAlertDescription, GlassAlertTitle } from "@/components/ui/opaline/glass-alert"
+
+<GlassAlert variant="success">
+  <GlassAlertTitle>Payment received</GlassAlertTitle>
+  <GlassAlertDescription>Your plan renews on 12 November.</GlassAlertDescription>
+</GlassAlert>`,
+    { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"] }
+  ),
+  glass(
+    "glass-textarea",
+    "Glass Textarea",
+    "A multi-line field on glass that grows with its content, with a counter and a footer slot.",
+    `import { GlassTextarea } from "@/components/ui/opaline/glass-textarea"
+
+<GlassTextarea
+  placeholder="Write a message…"
+  maxLength={280}
+  showCount
+  onSubmitShortcut={(text) => send(text)}
+/>`
+  ),
+  glass(
+    "glass-message",
+    "Glass Message",
+    "Chat bubbles on glass: tinted for you, clear for them, with avatars, meta and a typing indicator.",
+    `import {
+  GlassMessage,
+  GlassMessageContent,
+  GlassMessageList,
+  GlassMessageTyping,
+} from "@/components/ui/opaline/glass-message"
+
+<GlassMessageList>
+  <GlassMessage avatar="AI" name="Assistant">
+    <GlassMessageContent>How can I help?</GlassMessageContent>
+  </GlassMessage>
+  <GlassMessage from="user" footer="Read">
+    <GlassMessageContent>Plan a weekend in Kyoto.</GlassMessageContent>
+  </GlassMessage>
+  <GlassMessageTyping />
+</GlassMessageList>`,
+    { keyframes: ["opaline-glass-in", "opaline-typing"] }
+  ),
+  glass(
+    "glass-snippet",
+    "Glass Snippet",
+    "A command on a glass capsule with copy, and tabs for npm, pnpm, yarn and bun.",
+    `import { GlassSnippet } from "@/components/ui/opaline/glass-snippet"
+
+<GlassSnippet
+  commands={[
+    { label: "npm", code: "npx shadcn@latest add @opaline/all" },
+    { label: "pnpm", code: "pnpm dlx shadcn@latest add @opaline/all" },
+  ]}
+/>`,
+    { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"], internal: ["liquid-glass", "use-active-indicator"] }
+  ),
+  glass(
+    "glass-code-block",
+    "Glass Code Block",
+    "Syntax-highlighted code in a glass window, with tabs, line numbers, highlighted lines and copy.",
+    `import { GlassCodeBlock } from "@/components/ui/opaline/glass-code-block"
+
+<GlassCodeBlock
+  filename="app/page.tsx"
+  language="tsx"
+  highlightLines={[3]}
+  code={source}
+/>`,
+    { dependencies: ["shiki", "@hugeicons/react", "@hugeicons/core-free-icons"], internal: ["liquid-glass", "use-active-indicator"] }
+  ),
+  glass(
+    "glass-terminal",
+    "Glass Terminal",
+    "A macOS terminal on glass whose commands type themselves out, line by line, when scrolled into view.",
+    `import { GlassTerminal, GlassTerminalLine, GlassTerminalTyping } from "@/components/ui/opaline/glass-terminal"
+
+<GlassTerminal title="~/app">
+  <GlassTerminalTyping>npx shadcn@latest add @opaline/all</GlassTerminalTyping>
+  <GlassTerminalLine>✔ Checking registry.</GlassTerminalLine>
+  <GlassTerminalLine>✔ Created 50 files.</GlassTerminalLine>
+</GlassTerminal>`,
+    { keyframes: ["opaline-caret"] }
+  ),
+  glass(
+    "glass-accordion",
+    "Glass Accordion",
+    "Collapsible sections on one glass panel, or as separate glass cards that grow open.",
+    `import {
+  GlassAccordion,
+  GlassAccordionContent,
+  GlassAccordionItem,
+  GlassAccordionTrigger,
+} from "@/components/ui/opaline/glass-accordion"
+
+<GlassAccordion type="single" collapsible defaultValue="a">
+  <GlassAccordionItem value="a">
+    <GlassAccordionTrigger>Is it accessible?</GlassAccordionTrigger>
+    <GlassAccordionContent>Yes. It follows the WAI-ARIA pattern.</GlassAccordionContent>
+  </GlassAccordionItem>
+</GlassAccordion>`,
+    {
+      dependencies: ["radix-ui", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      keyframes: ["opaline-accordion-down", "opaline-accordion-up"],
+    }
+  ),
+  glass(
+    "glass-bento-grid",
+    "Glass Bento Grid",
+    "Feature tiles on glass in a bento layout, with a pointer light and a call to action that slides in.",
+    `import { GlassBentoCard, GlassBentoGrid } from "@/components/ui/opaline/glass-bento-grid"
+
+<GlassBentoGrid>
+  <GlassBentoCard
+    className="md:col-span-2"
+    name="Real refraction"
+    description="Light traced through the rim with Snell's law."
+    href="/docs"
+    background={<img src="/hero.jpg" alt="" className="size-full object-cover" />}
+  />
+</GlassBentoGrid>`,
+    { dependencies: ["@hugeicons/react", "@hugeicons/core-free-icons"] }
+  ),
+  glass(
+    "glass-tweet-card",
+    "Glass Tweet Card",
+    "A post from X on glass, loaded live with react-tweet by id, with a fallback when it can't be fetched.",
+    `import { GlassTweetCard } from "@/components/ui/opaline/glass-tweet-card"
+
+// Load a post by id or URL; shows a skeleton, then the post
+<GlassTweetCard id="https://x.com/jack/status/20" />
+
+// Falls back to your data if the post can't be fetched
+<GlassTweetCard
+  id="1234567890"
+  author={{ name: "Opaline", handle: "opalineui", verified: true }}
+  content="Liquid glass for the web. #react #shadcn"
+  onError={(error) => console.warn(error)}
+/>`,
+    {
+      dependencies: ["react-tweet", "@hugeicons/react", "@hugeicons/core-free-icons"],
+      keyframes: ["opaline-pop"],
+    }
+  ),
+  glass(
+    "glass-credit-card",
+    "Glass Credit Card",
+    "A glass payment card that tilts to the pointer, flips to its back and detects the brand.",
+    `import { GlassCreditCard } from "@/components/ui/opaline/glass-credit-card"
+
+<GlassCreditCard
+  number="4242424242424242"
+  name="Jony Ive"
+  expiry="09/29"
+  cvc="123"
+/>`
+  ),
+  glass(
+    "glass-qrcode",
+    "Glass QR Code",
+    "A scannable QR code printed on a glass tile, with soft finders, a glass logo lens and an optional magnifier.",
+    `import { GlassQRCode } from "@/components/ui/opaline/glass-qrcode"
+
+// Shows the site's favicon in the middle, or your logo if it can't load
+<GlassQRCode
+  value="https://opaline.buildlab.in"
+  logo={<img src="/logo.svg" alt="" />}
+  label="Scan to open"
+/>`,
+    { dependencies: ["uqr"], keyframes: ["opaline-qr-lens"] }
+  ),
+  glass(
+    "glass-scroll-stack",
+    "Glass Scroll Stack",
+    "Glass cards that pin and pile up as you scroll, shrinking as new cards land on them.",
+    `import { GlassScrollStack, GlassScrollStackItem } from "@/components/ui/opaline/glass-scroll-stack"
+
+<GlassScrollStack>
+  <GlassScrollStackItem>First</GlassScrollStackItem>
+  <GlassScrollStackItem>Second</GlassScrollStackItem>
+  <GlassScrollStackItem>Third</GlassScrollStackItem>
+</GlassScrollStack>`
   ),
 ]
 
